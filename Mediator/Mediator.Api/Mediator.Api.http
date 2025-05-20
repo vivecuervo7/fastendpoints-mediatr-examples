@@ -1,6 +1,7 @@
 @Mediator.Api_HostAddress = http://localhost:5036
+@UserId = 1
 
-GET {{Mediator.Api_HostAddress}}/weatherforecast/
+GET {{Mediator.Api_HostAddress}}/users/{{UserId}}
 Accept: application/json
 
 ###

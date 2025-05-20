@@ -1,17 +1,28 @@
+using System.Reflection;
+using Mediator.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddControllers();
+builder.Services.AddDbContext<AppDbContext>();
+
+builder.Services.AddMediatR(c =>
+{
+    var assembly = Assembly.Load("Mediator.Application");
+    c.RegisterServicesFromAssembly(assembly);
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+await InitializeDatabase(app);
 
+app.MapControllers();
 app.UseHttpsRedirection();
-
 app.Run();
+
+static async Task InitializeDatabase(WebApplication app)
+{
+    using var scope = app.Services.CreateScope();
+    using var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await db.Database.EnsureCreatedAsync();
+}
