@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "coreclr",
+      "request": "launch",
+      "name": "Launch .NET Web API",
+      "program": "${workspaceFolder}/${input:project}/${input:project}.Api/bin/Debug/net9.0/${input:project}.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/${input:project}/${input:project}.Api",
+      "stopAtEntry": false,
+      "preLaunchTask": "build ${input:project}"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "project",
+      "type": "pickString",
+      "description": "Select the API project to debug",
+      "options": ["FastEndpoints", "Mediator"]
+    }
+  ]
+}

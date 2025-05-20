@@ -1,0 +1,23 @@
+// In tasks.json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build FastEndpoints",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "FastEndpoints/FastEndpoints.Api/FastEndpoints.Api.csproj"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build Mediator",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "Mediator/Mediator.Api/Mediator.Api.csproj"],
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}
