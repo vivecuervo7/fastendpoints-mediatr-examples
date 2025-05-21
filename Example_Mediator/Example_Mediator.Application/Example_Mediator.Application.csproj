@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Example_Mediator.Domain/Example_Mediator.Domain.csproj" />
+    <ProjectReference Include="../Example_Mediator.Infrastructure/Example_Mediator.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

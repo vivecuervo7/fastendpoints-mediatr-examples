@@ -1,0 +1,12 @@
+@Example_Mediator.Api_HostAddress = http://localhost:5036
+@UserId = 4
+
+### Success
+
+GET {{Example_Mediator.Api_HostAddress}}/users/{{UserId}}
+Accept: application/json
+
+### Failure
+
+GET {{Example_Mediator.Api_HostAddress}}/users/0
+Accept: application/json

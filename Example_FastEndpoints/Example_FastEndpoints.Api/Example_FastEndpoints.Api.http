@@ -1,0 +1,27 @@
+@Example_FastEndpoints.Api_HostAddress = http://localhost:5158
+@UserId = 1
+
+### Success
+
+GET {{Example_FastEndpoints.Api_HostAddress}}/users/{{UserId}}
+Accept: application/json
+
+### Failure
+
+GET {{Example_FastEndpoints.Api_HostAddress}}/users/0
+Accept: application/json
+
+###
+
+GET {{Example_FastEndpoints.Api_HostAddress}}/users/0/problemdetails/senderror
+Accept: application/json
+
+###
+
+GET {{Example_FastEndpoints.Api_HostAddress}}/users/0/problemdetails/explicit
+Accept: application/json
+
+###
+
+GET {{Example_FastEndpoints.Api_HostAddress}}/users/0/problemdetails/mvc
+Accept: application/json

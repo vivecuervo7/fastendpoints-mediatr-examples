@@ -8,7 +8,7 @@
       "type": "process",
       "args": [
         "build",
-        "FastEndpoints/FastEndpoints.Api/FastEndpoints.Api.csproj"
+        "Example_FastEndpoints/Example_FastEndpoints.Api/Example_FastEndpoints.Api.csproj"
       ],
       "problemMatcher": "$msCompile"
     },
@@ -16,7 +16,10 @@
       "label": "build Mediator",
       "command": "dotnet",
       "type": "process",
-      "args": ["build", "Mediator/Mediator.Api/Mediator.Api.csproj"],
+      "args": [
+        "build",
+        "Example_Mediator/Example_Mediator.Api/Example_Mediator.Api.csproj"
+      ],
       "problemMatcher": "$msCompile"
     }
   ]

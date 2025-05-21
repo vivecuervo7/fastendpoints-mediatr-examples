@@ -5,9 +5,9 @@
       "type": "coreclr",
       "request": "launch",
       "name": "Launch .NET Web API",
-      "program": "${workspaceFolder}/${input:project}/${input:project}.Api/bin/Debug/net9.0/${input:project}.Api.dll",
+      "program": "${workspaceFolder}/Example_${input:project}/Example_${input:project}.Api/bin/Debug/net9.0/Example_${input:project}.Api.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/${input:project}/${input:project}.Api",
+      "cwd": "${workspaceFolder}/Example_${input:project}/Example_${input:project}.Api",
       "stopAtEntry": false,
       "preLaunchTask": "build ${input:project}"
     }
