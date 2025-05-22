@@ -1,10 +1,9 @@
 using Example_FastEndpoints.Infrastructure;
 using FastEndpoints;
-using Microsoft.EntityFrameworkCore;
 
 namespace Example_FastEndpoints.Api.Features.Users.GetUser;
 
-public class Endpoint(AppDbContext db) : Endpoint<Request, Response>
+public class Endpoint(AppDbContext db) : Endpoint<Request, Response, Mapper>
 {
     public override void Configure()
     {
@@ -13,7 +12,7 @@ public class Endpoint(AppDbContext db) : Endpoint<Request, Response>
 
     public override async Task HandleAsync(Request req, CancellationToken ct)
     {
-        var user = await db.Users.Where(u => u.Id == req.Id).FirstOrDefaultAsync(ct);
+        var user = await Data.GetUser(db, req.Id, ct);
 
         if (user == null)
         {
@@ -21,13 +20,6 @@ public class Endpoint(AppDbContext db) : Endpoint<Request, Response>
             return;
         }
 
-        var response = new Response
-        {
-            Id = user.Id,
-            Name = user.Name,
-            Email = user.Email,
-        };
-
-        await SendAsync(response, cancellation: ct);
+        await SendMappedAsync(user, ct: ct);
     }
 }

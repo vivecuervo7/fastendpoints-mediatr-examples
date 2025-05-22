@@ -14,6 +14,7 @@ app.UseHttpsRedirection();
 
 app.UseFastEndpoints(c =>
 {
+    c.Errors.UseProblemDetails();
     c.Endpoints.Configurator = e => e.AllowAnonymous();
 });
 

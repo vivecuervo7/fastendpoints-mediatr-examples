@@ -6,22 +6,27 @@
 GET {{Example_FastEndpoints.Api_HostAddress}}/users/{{UserId}}
 Accept: application/json
 
-### Failure
+### Failure (Validation Error)
 
 GET {{Example_FastEndpoints.Api_HostAddress}}/users/0
 Accept: application/json
 
-###
+### Failure (Not Found)
 
-GET {{Example_FastEndpoints.Api_HostAddress}}/users/0/problemdetails/senderror
+GET {{Example_FastEndpoints.Api_HostAddress}}/users/255
 Accept: application/json
 
-###
+### Problem details via SendErrorsAsync()
 
-GET {{Example_FastEndpoints.Api_HostAddress}}/users/0/problemdetails/explicit
+GET {{Example_FastEndpoints.Api_HostAddress}}/problem-details/send-error
 Accept: application/json
 
-###
+### Using FastEndpoint's ProblemDetails
 
-GET {{Example_FastEndpoints.Api_HostAddress}}/users/0/problemdetails/mvc
+GET {{Example_FastEndpoints.Api_HostAddress}}/problem-details/explicit
+Accept: application/json
+
+### Using an extension method to wrap creating an MVC problem details
+
+GET {{Example_FastEndpoints.Api_HostAddress}}/problem-details/mvc
 Accept: application/json
