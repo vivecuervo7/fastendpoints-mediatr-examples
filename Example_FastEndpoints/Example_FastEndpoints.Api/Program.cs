@@ -1,3 +1,4 @@
+using Example_FastEndpoints.Api.Processors;
 using Example_FastEndpoints.Infrastructure;
 using FastEndpoints;
 
@@ -15,7 +16,29 @@ app.UseHttpsRedirection();
 app.UseFastEndpoints(c =>
 {
     c.Errors.UseProblemDetails();
-    c.Endpoints.Configurator = e => e.AllowAnonymous();
+
+    c.Endpoints.Configurator = e =>
+    {
+        e.AllowAnonymous();
+        e.PreProcessors(Order.Before, typeof(StartServerTiming<>));
+
+        // A bug is preventing this from functioning correctly, so will need to be registered in
+        // each endpoint that needs to log request duration
+        // See: https://github.com/FastEndpoints/FastEndpoints/pull/950
+        e.PostProcessors(Order.After, typeof(LogRequestDuration<,>));
+    };
+
+    c.Endpoints.GlobalResponseModifier = (ctx, content) =>
+    {
+        var serverTimingState = ctx.ProcessorState<ServerTimingState>();
+
+        if (ctx.Response.SupportsTrailers())
+        {
+            ctx.Response.Headers.Trailer = "Server-Timing";
+        }
+
+        ctx.Response.Headers["Server-Timing"] = serverTimingState.ToServerTimingHeader();
+    };
 });
 
 app.Run();

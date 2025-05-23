@@ -15,4 +15,8 @@
     <ProjectReference Include="../Example_FastEndpoints.Infrastructure/Example_FastEndpoints.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features/PrePostProcessorExample/" />
+  </ItemGroup>
+
 </Project>

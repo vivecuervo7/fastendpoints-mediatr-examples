@@ -1,9 +1,14 @@
 @Example_FastEndpoints.Api_HostAddress = http://localhost:5158
 @UserId = 1
 
-### Success
+### GetUser
 
 GET {{Example_FastEndpoints.Api_HostAddress}}/users/{{UserId}}
+Accept: application/json
+
+### Pre / Post Processor
+
+GET {{Example_FastEndpoints.Api_HostAddress}}/processors
 Accept: application/json
 
 ### Failure (Validation Error)

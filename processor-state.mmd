@@ -1,0 +1,38 @@
+---
+config:
+    theme:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+    note for StartServerTiming "Pre-processor"
+    note for Endpoint "Access state via<br/>ProcessorState&lt;State&gt;()"
+    note for LogRequestDuration "Post-processor"
+    note for AddServerTimingHeader "Response interceptor -<br/>Can also be configured as<br/>a global response modifier"
+
+    StartServerTiming --|> State : Initializes state bucket
+    Endpoint --|> State : Add timings for specific actions
+    AddServerTimingHeader <|-- State : Adds Server-Timing header to response
+    LogRequestDuration <|-- State : Logs total execution time
+
+    class StartServerTiming {
+        PreProcessAsync()
+    }
+
+    class State {
+      StartNewActivity(string name)
+      GetTotalDuration()
+      ToServerTimingHeader()
+    }
+
+    class Endpoint {
+      HandleAsync()
+    }
+
+    class LogRequestDuration {
+      PostProcessAsync()
+    }
+
+    class AddServerTimingHeader {
+      InterceptResponseAsync()
+    }
