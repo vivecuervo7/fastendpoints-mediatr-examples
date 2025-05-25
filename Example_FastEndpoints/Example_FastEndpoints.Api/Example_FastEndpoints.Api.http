@@ -16,6 +16,11 @@ Accept: application/json
 GET {{Example_FastEndpoints.Api_HostAddress}}/events
 Accept: application/json
 
+### Command bus
+
+GET {{Example_FastEndpoints.Api_HostAddress}}/commands
+Accept: application/json
+
 ### Failure (Validation Error)
 
 GET {{Example_FastEndpoints.Api_HostAddress}}/users/0

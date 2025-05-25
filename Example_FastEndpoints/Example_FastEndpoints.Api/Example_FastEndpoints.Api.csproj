@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features/CommandBusExample/" />
     <Folder Include="Features/PrePostProcessorExample/" />
   </ItemGroup>
 

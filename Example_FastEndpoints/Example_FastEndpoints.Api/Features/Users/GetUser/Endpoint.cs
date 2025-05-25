@@ -3,7 +3,8 @@ using FastEndpoints;
 
 namespace Example_FastEndpoints.Api.Features.Users.GetUser;
 
-public class Endpoint(AppDbContext db) : Endpoint<Request, Response, Mapper>
+public class Endpoint(AppDbContext db, ILogger<Request> logger)
+    : Endpoint<Request, Response, Mapper>
 {
     public override void Configure()
     {
@@ -21,5 +22,7 @@ public class Endpoint(AppDbContext db) : Endpoint<Request, Response, Mapper>
         }
 
         await SendMappedAsync(user, ct: ct);
+
+        logger.LogInformation("Successfully sent user response");
     }
 }
