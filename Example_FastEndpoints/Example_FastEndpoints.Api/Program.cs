@@ -1,3 +1,4 @@
+using Example_FastEndpoints.Api.Features.CommandBusExample;
 using Example_FastEndpoints.Api.Processors;
 using Example_FastEndpoints.Infrastructure;
 using FastEndpoints;
@@ -5,6 +6,7 @@ using FastEndpoints;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddFastEndpoints();
+builder.Services.AddCommandMiddleware(c => c.Register<DoubleValueCommand, int, CommandLogger>());
 builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
