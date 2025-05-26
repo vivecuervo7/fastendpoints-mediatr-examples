@@ -17,6 +17,9 @@
 
   <ItemGroup>
     <Folder Include="Features/PrePostProcessorExample/" />
+    <Folder Include="Features/RemoteProcedureCallsExamples/" />
+    <Folder Include="Features/RemoteProcedureCallsExamples/RemoteCommandBus/" />
+    <Folder Include="Features/RemoteProcedureCallsExamples/RemoteEventQueue/" />
   </ItemGroup>
 
 </Project>
