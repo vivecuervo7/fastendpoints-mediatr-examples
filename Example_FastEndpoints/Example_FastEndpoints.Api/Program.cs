@@ -1,4 +1,5 @@
 using Example_FastEndpoints.Api.Features.CommandBusExample;
+using Example_FastEndpoints.Api.JobStorage;
 using Example_FastEndpoints.Api.Processors;
 using Example_FastEndpoints.Infrastructure;
 using FastEndpoints;
@@ -6,6 +7,7 @@ using FastEndpoints;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddFastEndpoints();
+builder.Services.AddJobQueues<JobRecord, JobStorageProvider>();
 builder.Services.AddCommandMiddleware(c => c.Register<DoubleValueCommand, int, CommandLogger>());
 builder.Services.AddDbContext<AppDbContext>();
 
@@ -41,6 +43,14 @@ app.UseFastEndpoints(c =>
 
         ctx.Response.Headers["Server-Timing"] = serverTimingState.ToServerTimingHeader();
     };
+});
+
+app.UseJobQueues(c =>
+{
+    c.MaxConcurrency = 2;
+    c.ExecutionTimeLimit = TimeSpan.FromMinutes(10);
+
+    // Set command-specific concurrency and time limits with c.LimitsFor<CommandName>();
 });
 
 app.Run();

@@ -21,6 +21,31 @@ Accept: application/json
 GET {{Example_FastEndpoints.Api_HostAddress}}/commands
 Accept: application/json
 
+### Job queue (start)
+
+POST {{Example_FastEndpoints.Api_HostAddress}}/job-queue
+Accept: application/json
+Content-Type: application/json
+
+{
+    "FirstName": "John",
+    "LastName": "Smith"
+}
+
+### <<Set return value of previous call here>>
+
+@JobId = 1d0eec40-3cb4-4118-97e9-09f1136b1b84
+
+### Job queue (result)
+
+GET {{Example_FastEndpoints.Api_HostAddress}}/job-queue/result/{{JobId}}
+Accept: application/json
+
+### Job queue (cancel)
+
+POST {{Example_FastEndpoints.Api_HostAddress}}/job-queue/cancel/{{JobId}}
+Accept: application/json
+
 ### Failure (Validation Error)
 
 GET {{Example_FastEndpoints.Api_HostAddress}}/users/0

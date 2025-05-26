@@ -455,3 +455,6 @@ Temporary Items
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,dotnetcore,csharp
+
+# Job database used for job persistence between restarts of the server
+**/JobDatabase.db*
