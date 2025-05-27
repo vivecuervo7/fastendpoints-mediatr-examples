@@ -1,0 +1,17 @@
+@Api_HostAddress = http://localhost:5158
+@UserId = 1
+
+### GetUser
+
+GET {{Api_HostAddress}}/users/{{UserId}}
+Accept: application/json
+
+### Failure (Validation Error)
+
+GET {{Api_HostAddress}}/users/0
+Accept: application/json
+
+### Failure (Not Found)
+
+GET {{Api_HostAddress}}/users/255
+Accept: application/json

@@ -1,0 +1,6 @@
+@Api_HostAddress = http://localhost:5158
+
+### Event bus
+
+GET {{Api_HostAddress}}/events
+Accept: application/json

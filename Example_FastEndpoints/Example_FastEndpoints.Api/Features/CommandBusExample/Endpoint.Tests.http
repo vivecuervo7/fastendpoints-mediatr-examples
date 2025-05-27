@@ -1,0 +1,6 @@
+@Api_HostAddress = http://localhost:5158
+
+### Command bus
+
+GET {{Api_HostAddress}}/commands
+Accept: application/json

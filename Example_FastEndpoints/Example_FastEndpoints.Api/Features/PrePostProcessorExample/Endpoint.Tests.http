@@ -1,0 +1,6 @@
+@Api_HostAddress = http://localhost:5158
+
+### Pre / Post Processor
+
+GET {{Api_HostAddress}}/processors
+Accept: application/json

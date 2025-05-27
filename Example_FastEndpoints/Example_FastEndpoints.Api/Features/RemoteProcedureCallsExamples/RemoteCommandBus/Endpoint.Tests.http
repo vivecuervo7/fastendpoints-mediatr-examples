@@ -1,0 +1,6 @@
+@Api_HostAddress = http://localhost:5158
+
+### RPC - Remote command bus
+
+GET {{Api_HostAddress}}/rpc/command?firstNumber=2&secondNumber=3
+Accept: application/json

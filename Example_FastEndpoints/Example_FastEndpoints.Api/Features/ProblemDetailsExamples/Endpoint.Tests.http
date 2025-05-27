@@ -1,0 +1,16 @@
+@Api_HostAddress = http://localhost:5158
+
+### Problem details via SendErrorsAsync()
+
+GET {{Api_HostAddress}}/problem-details/send-error
+Accept: application/json
+
+### Using FastEndpoint's ProblemDetails
+
+GET {{Api_HostAddress}}/problem-details/explicit
+Accept: application/json
+
+### Using an extension method to wrap creating an MVC problem details
+
+GET {{Api_HostAddress}}/problem-details/mvc
+Accept: application/json
