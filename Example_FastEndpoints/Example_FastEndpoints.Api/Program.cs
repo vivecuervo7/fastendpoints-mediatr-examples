@@ -2,6 +2,7 @@ using Example_FastEndpoints.Api.Features.CommandBusExample;
 using Example_FastEndpoints.Api.JobStorage;
 using Example_FastEndpoints.Api.Processors;
 using Example_FastEndpoints.Infrastructure;
+using Example_FastEndpoints_RpcServer.Contracts;
 using FastEndpoints;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,9 +50,19 @@ app.UseJobQueues(c =>
 {
     c.MaxConcurrency = 2;
     c.ExecutionTimeLimit = TimeSpan.FromMinutes(10);
-
     // Set command-specific concurrency and time limits with c.LimitsFor<CommandName>();
 });
+
+app.MapRemote(
+    "http://localhost:6000",
+    c =>
+    {
+        // Namespace of command must match between this project and the RPC server. Using a project
+        // reference makes sense here, but if the solutions live in different repositories it may be
+        // necessary to use a non-standard (i.e. matching folder structure) namespace for the command
+        c.Register<AddNumbersCommand, AddNumbersCommandResult>();
+    }
+);
 
 app.Run();
 

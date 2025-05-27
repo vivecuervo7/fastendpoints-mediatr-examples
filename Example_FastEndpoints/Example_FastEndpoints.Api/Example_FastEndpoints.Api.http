@@ -46,6 +46,11 @@ Accept: application/json
 POST {{Example_FastEndpoints.Api_HostAddress}}/job-queue/cancel/{{JobId}}
 Accept: application/json
 
+### RPC - Remote command bus
+
+GET {{Example_FastEndpoints.Api_HostAddress}}/rpc/command?firstNumber=2&secondNumber=3
+Accept: application/json
+
 ### Failure (Validation Error)
 
 GET {{Example_FastEndpoints.Api_HostAddress}}/users/0

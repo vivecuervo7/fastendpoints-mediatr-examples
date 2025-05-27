@@ -4,20 +4,39 @@
     {
       "type": "coreclr",
       "request": "launch",
-      "name": "Launch .NET Web API",
-      "program": "${workspaceFolder}/Example_${input:project}/Example_${input:project}.Api/bin/Debug/net9.0/Example_${input:project}.Api.dll",
+      "name": "FastEndpoints",
+      "program": "${workspaceFolder}/Example_FastEndpoints/Example_FastEndpoints.Api/bin/Debug/net9.0/Example_FastEndpoints.Api.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/Example_${input:project}/Example_${input:project}.Api",
+      "cwd": "${workspaceFolder}/Example_FastEndpoints/Example_FastEndpoints.Api",
       "stopAtEntry": false,
-      "preLaunchTask": "build ${input:project}"
+      "preLaunchTask": "build FastEndpoints"
+    },
+    {
+      "type": "coreclr",
+      "request": "launch",
+      "name": "FastEndpoints RPC Server",
+      "program": "${workspaceFolder}/Example_FastEndpoints_RpcServer/Example_FastEndpoints_RpcServer.Api/bin/Debug/net9.0/Example_FastEndpoints_RpcServer.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Example_FastEndpoints_RpcServer/Example_FastEndpoints_RpcServer.Api",
+      "stopAtEntry": false,
+      "preLaunchTask": "build FastEndpoints_RpcServer"
+    },
+    {
+      "type": "coreclr",
+      "request": "launch",
+      "name": "Mediator",
+      "program": "${workspaceFolder}/Example_Mediator/Example_Mediator.Api/bin/Debug/net9.0/Example_Mediator.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Example_Mediator/Example_Mediator.Api",
+      "stopAtEntry": false,
+      "preLaunchTask": "build Mediator"
     }
   ],
-  "inputs": [
+  "compounds": [
     {
-      "id": "project",
-      "type": "pickString",
-      "description": "Select the API project to debug",
-      "options": ["FastEndpoints", "Mediator"]
+      "name": "FastEndpoints + RPC",
+      "configurations": ["FastEndpoints", "FastEndpoints RPC Server"],
+      "stopAll": true
     }
   ]
 }

@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="FastEndpoints" Version="6.1.0" />
+    <PackageReference Include="FastEndpoints.Messaging.Remote" Version="6.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../Example_FastEndpoints_RpcServer/Example_FastEndpoints_RpcServer.Contracts/Example_FastEndpoints_RpcServer.Contracts.csproj" />
     <ProjectReference Include="../Example_FastEndpoints.Infrastructure/Example_FastEndpoints.Infrastructure.csproj" />
   </ItemGroup>
 

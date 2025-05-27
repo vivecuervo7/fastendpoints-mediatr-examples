@@ -13,6 +13,16 @@
       "problemMatcher": "$msCompile"
     },
     {
+      "label": "build FastEndpoints_RpcServer",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "Example_FastEndpoints_RpcServer/Example_FastEndpoints_RpcServer.Api/Example_FastEndpoints_RpcServer.Api.csproj"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
       "label": "build Mediator",
       "command": "dotnet",
       "type": "process",
