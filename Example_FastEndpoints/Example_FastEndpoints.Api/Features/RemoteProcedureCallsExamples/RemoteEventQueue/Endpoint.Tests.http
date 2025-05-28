@@ -1,0 +1,6 @@
+@Api_HostAddress = http://localhost:5158
+
+### RPC - Remote event bus
+
+GET {{Api_HostAddress}}/rpc/event?username="Billy"
+Accept: application/json

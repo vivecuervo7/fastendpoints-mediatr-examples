@@ -18,6 +18,7 @@ var app = builder.Build();
 app.MapHandlers(h =>
 {
     h.Register<AddNumbersCommand, AddNumbersCommandHandler, AddNumbersCommandResult>();
+    h.RegisterEventHub<UserCreatedEvent>(HubMode.EventBroker);
 });
 
 app.Run();

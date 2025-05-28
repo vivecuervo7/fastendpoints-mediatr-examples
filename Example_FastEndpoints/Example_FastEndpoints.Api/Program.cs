@@ -1,4 +1,5 @@
 using Example_FastEndpoints.Api.Features.CommandBusExample;
+using Example_FastEndpoints.Api.Features.RemoteProcedureCallsExamples.RemoteEventQueue;
 using Example_FastEndpoints.Api.JobStorage;
 using Example_FastEndpoints.Api.Processors;
 using Example_FastEndpoints.Infrastructure;
@@ -61,6 +62,10 @@ app.MapRemote(
         // reference makes sense here, but if the solutions live in different repositories it may be
         // necessary to use a non-standard (i.e. matching folder structure) namespace for the command
         c.Register<AddNumbersCommand, AddNumbersCommandResult>();
+
+        c.RegisterEvent<UserCreatedEvent>();
+        c.Subscribe<UserCreatedEvent, OnUserCreatedFirstEventHandler>();
+        c.Subscribe<UserCreatedEvent, OnUserCreatedSecondEventHandler>();
     }
 );
 
