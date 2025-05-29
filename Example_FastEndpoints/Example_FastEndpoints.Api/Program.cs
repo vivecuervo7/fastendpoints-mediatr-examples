@@ -8,6 +8,7 @@ using FastEndpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors();
 builder.Services.AddFastEndpoints();
 builder.Services.AddJobQueues<JobRecord, JobStorageProvider>();
 builder.Services.AddCommandMiddleware(c => c.Register<DoubleValueCommand, int, CommandLogger>());
@@ -17,6 +18,7 @@ var app = builder.Build();
 
 await InitializeDatabase(app);
 
+app.UseCors();
 app.UseHttpsRedirection();
 
 app.UseFastEndpoints(c =>

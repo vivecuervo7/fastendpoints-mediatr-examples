@@ -22,6 +22,7 @@
     <Folder Include="Features/RemoteProcedureCallsExamples/" />
     <Folder Include="Features/RemoteProcedureCallsExamples/RemoteCommandBus/" />
     <Folder Include="Features/RemoteProcedureCallsExamples/RemoteEventQueue/" />
+    <Folder Include="Features/ServerSentEventsExample/" />
   </ItemGroup>
 
 </Project>
