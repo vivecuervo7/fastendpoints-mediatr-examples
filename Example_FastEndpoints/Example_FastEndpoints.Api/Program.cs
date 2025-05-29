@@ -79,3 +79,5 @@ static async Task InitializeDatabase(WebApplication app)
     using var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     await db.Database.EnsureCreatedAsync();
 }
+
+public partial class Program { }
