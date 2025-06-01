@@ -67,12 +67,6 @@ I had played with it a little, liked what I had seen, but really it was the rece
   </div>
 </v-drag>
 
-<v-drag pos="320,175,340,340">
-  <div class="onion-infrastructure onion-circle view-transition-presentation">
-    <hr/>
-  </div>
-</v-drag>
-
 <v-drag pos="370,225,240,240">
   <div class="onion-application onion-circle view-transition-application"></div>
 </v-drag>
@@ -230,7 +224,7 @@ FastEndpoints allows us to move that application logic into the presentation lay
 </v-drag>
 
 <v-click at="5">
-  <FancyArrow q1="[data-id=handler]" q2="[data-id=domain]" pos1="left" pos2="bottom-right" color="purple" arc="0.06" head-size="20" class="z-100" />
+  <FancyArrow q1="[data-id=handler]" q2="[data-id=domain]" pos1="left" pos2="right" color="purple" arc="0.06" head-size="20" class="z-100" />
 </v-click>
 
 <v-click at="6">
