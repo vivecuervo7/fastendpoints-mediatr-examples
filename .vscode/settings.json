@@ -25,5 +25,8 @@
     "*.dart": "${capture}.g.dart",
     "appsettings.json": "appsettings.*.json",
     "*.cs": "${capture}.Tests.http"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false
   }
 }
