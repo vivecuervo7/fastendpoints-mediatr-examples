@@ -1,3 +1,7 @@
+* > {
+  box-sizing: border-box;
+}
+
 .slidev-layout {
   background: linear-gradient(to bottom, #090d18, #000306);
   color: white;
@@ -31,48 +35,21 @@
   }
 }
 
-.onion-circle {
-  border-radius: 50%;
-  box-shadow: 0 0 20px #00000033;
-  display: flex;
-  justify-content: center;
-  border: 2px solid #4b6179;
-  color: #9caaba;
-  height: 100%;
-  width: 100%;
-}
-
-.onion-label {
+.floating-label {
   text-align: center;
   font-size: 0.9rem;
   font-weight: 500;
   line-height: 0.95rem;
   color: #9caaba;
-}
-
-.onion-presentation {
-  background: #202b36;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  hr {
-    border: 1px solid #4b6179;
-  }
-}
-
-.onion-application {
-  background: #2a3745;
-}
-
-.onion-domain {
-  background: #38495b;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  --uno: font-serif;
 }
 
 .box {
   position: relative;
   background: #202b36;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 8px;
   border: 2px solid #4b6179;
   box-shadow: 8px 8px 20px #00000033;
@@ -87,9 +64,10 @@
   hr {
     border-style: dashed;
     border-color: #38495b;
-    margin-top: 1.5rem;
-    margin-left: -1rem;
-    margin-right: -1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
   }
 }
 
