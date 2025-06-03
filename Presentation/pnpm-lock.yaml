@@ -23,6 +23,10 @@ importers:
       vue:
         specifier: ^3.5.14
         version: 3.5.16(typescript@5.8.3)
+    devDependencies:
+      chokidar:
+        specifier: ^4.0.3
+        version: 4.0.3
 
 packages:
 

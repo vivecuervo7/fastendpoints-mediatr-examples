@@ -685,11 +685,15 @@ public class Endpoint : EndpointWithoutRequest
 
 <h3>Endpoint structure</h3>
 
+<span class="slide-reload-marker" style="display:none">reload-1748908959702</span>
+
+<button onclick="fetch('/.slidev-reload', { method: 'POST' })">
+  Force Reload Code
+</button>
+
 <div class="editor-runner">
 
-::div {id="endpoint-code"}
 <<< ../Example_FastEndpoints/Example_FastEndpoints.Api/Features/Users/Temp/Endpoint.cs csharp {monaco-write}
-::
 
 ::div
 ```js {monaco-run} {autorun:false}
