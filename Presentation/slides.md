@@ -685,11 +685,8 @@ public class Endpoint : EndpointWithoutRequest
 
 <h3>Endpoint structure</h3>
 
-<span class="slide-reload-marker" style="display:none">reload-1748908959702</span>
-
-<button onclick="fetch('/.slidev-reload', { method: 'POST' })">
-  Force Reload Code
-</button>
+<span class="slide-reload-marker" style="display:none">reload-1748910879302</span>
+<ReloadCodeButton />
 
 <div class="editor-runner">
 
