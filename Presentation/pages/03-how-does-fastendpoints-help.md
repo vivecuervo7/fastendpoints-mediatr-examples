@@ -29,7 +29,21 @@
 </v-drag>
 
 <!--
-...making it much easier to maintain that clear boundary of the domain layer
+FastEndpoints, on the other hand, looks to flip this relationship around, and this is in my mind the biggest benefit that is on offer.
+
+Sans an explicit application layer, moving that logic into the _presentation_ layer allows us to better maintain the boundaries around our domain layer.
+
+The temptation to just slide a bit more code into an already busy handler that's already doing all the things kind of goes away.
+
+And sure, there's a risk that we might just start overloading our presentation code, but I would argue that the impact of that is far less potentially damaging to our codebase than an outright merging of our application and domain layers.
+
+At the very least, it gives us a simple decision as to whether this is presentation slash application logic, or domain logic.
+
+It becomes an either-or choice, and we're also not polluting our thoughts with when and where to put DTOs and how we're mapping to and from them.
+
+Now, of course, there is a very real concern that with a typical controller setup, or even Minimal API, that we have a bunch of routes grouped together in a single class or file.
+
+And sure, this is going to get super messy, right? All that code in one place?
 -->
 
 ---
@@ -91,7 +105,29 @@
 </v-click>
 
 <!--
-…by having only one endpoint per file that also contains the handler code
+FastEndpoints addresses this concern by pushing us into a single endpoint per class or file approach.
+
+Conceptually, our presentation layer becomes the code that describes our route.
+
+[click]
+
+[click]
+
+And our application layer becomes the code that handles the execution of that endpoint.
+
+[click]
+
+[click]
+
+Of course, much like our application layer, this is where we access our domain and infrastructure layers.
+
+[click]
+
+What I have found, is that by pushing a lot of the thought process right up to the presentation layer, it causes almost a sense of revulsion when you start seeing the sort of code that would have typically been domain-ish, or the sort of thing that would usually live in the application layer.
+
+It goes very much from "yeah, this looks a bit off" to "nah, this just isn't right at all".
+
+Which is a good thing!
 -->
 
 ---
@@ -187,3 +223,13 @@
     scale: 70%;
   }
 </style>
+
+<!-- 
+So, our typical controller gets broken up into a bunch of separate endpoints.
+
+[click]
+
+Request comes in, gets mapped to an endpoint, we execute the code in our handler, and spit out the result.
+
+[click]
+ -->
