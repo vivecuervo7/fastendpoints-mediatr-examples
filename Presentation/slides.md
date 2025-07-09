@@ -353,17 +353,37 @@ FastEndpoints allows us to move that application logic into the presentation lay
 </v-drag>
 
 <v-drag pos="430,485,112,_">
-  <div v-click="1" class="floating-label text-xl color-orange" data-id="response">Response</div>
+  <div v-click="2" class="floating-label text-xl color-orange" data-id="response">Response</div>
 </v-drag>
 
 <FancyArrow v-click="1" q1="[data-id=request]" q2="[data-id=ep2]" pos1="left" pos2="top" color="orange" arc="-0.15" head-size="20" class="z-100" />
-<FancyArrow v-click="1" q1="[data-id=ep2]" q2="[data-id=response]" pos1="bottom" pos2="top-left" color="orange" arc="-0.15" head-size="20" class="z-100" />
+<FancyArrow v-click="2" q1="[data-id=ep2]" q2="[data-id=response]" pos1="bottom" pos2="top-left" color="orange" arc="-0.15" head-size="20" class="z-100" />
 
 <style>
   .box {
     scale: 70%;
   }
 </style>
+
+---
+layout: section
+---
+
+<div class="text-size-4xl mx-30">
+  Can't we just do that ourselves?
+</div>
+
+---
+
+<h1>FastEndpoints</h1>
+<h2>More bang for your buck</h2>
+
+<ul class="content">
+  <li>Encourages the use of vertical slices — no more “endpoint here” and “handler there”</li>
+  <li>Introduces strong conventions, lowering the surface area for disagreement</li>
+  <li>Reduced boilerplate — less code to read, write and maintain</li>
+  <li>Facilitates many of the common features that typically need to be tacked onto every project, such as validation, mapping and error handling</li>
+</ul>
 
 ---
 
@@ -503,7 +523,7 @@ FastEndpoints allows us to move that application logic into the presentation lay
           <span><FolderIcon />...</span>
             <ul>
               <li data-id="data"><span><CsharpIcon />Data.cs</span></li>
-              <li data-id="endpoint" v-mark.highlight="{ at: 1, color: '#2A3845'}"><span><CsharpIcon />Endpoint.cs</span></li>
+              <li data-id="endpoint" v-mark.circle="{ at: 1, color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Endpoint.cs</span></li>
               <li data-id="mapper"><span><CsharpIcon />Mapper.cs</span></li>
               <li data-id="models"><span><CsharpIcon />Models.cs</span></li>
             </ul>
@@ -512,14 +532,17 @@ FastEndpoints allows us to move that application logic into the presentation lay
     </li>
   </ul>
 
-````md magic-move { at: 2, maxHeight: '450px' }
+````md magic-move { at: 2, maxHeight: '450px', 'data-id': 'ep2' }
+```csharp
+‎ 
+```
 ```csharp
 public class Endpoint : EndpointWithoutRequest
 {
   
 }
 ```
-```csharp
+```csharp {3-6}
 public class Endpoint : EndpointWithoutRequest
 {
     public override void Configure()
@@ -528,7 +551,7 @@ public class Endpoint : EndpointWithoutRequest
     }
 }
 ```
-```csharp
+```csharp {5}
 public class Endpoint : EndpointWithoutRequest
 {
     public override void Configure()
@@ -537,7 +560,7 @@ public class Endpoint : EndpointWithoutRequest
     }
 }
 ```
-```csharp
+```csharp {5}
 public class Endpoint : EndpointWithoutRequest
 {
     public override void Configure()
@@ -546,7 +569,7 @@ public class Endpoint : EndpointWithoutRequest
     }
 }
 ```
-```csharp
+```csharp {6}
 public class Endpoint : EndpointWithoutRequest
 {
     public override void Configure()
@@ -556,7 +579,7 @@ public class Endpoint : EndpointWithoutRequest
     }
 }
 ```
-```csharp
+```csharp {6-12}
 public class Endpoint : EndpointWithoutRequest
 {
     public override void Configure()
@@ -572,13 +595,12 @@ public class Endpoint : EndpointWithoutRequest
     }
 }
 ```
-```csharp
+```csharp {9-18}
 public class Endpoint : EndpointWithoutRequest
 {
     public override void Configure()
     {
         Get("/users/{id:int}");
-        Description(b => b.Produces(403));
     }
 }
 
@@ -602,7 +624,7 @@ public class Endpoint : EndpointWithoutRequest
     }
 }
 ```
-```csharp
+```csharp {8-11}
 public class Endpoint : EndpointWithoutRequest
 {
     public override void Configure()
@@ -616,7 +638,7 @@ public class Endpoint : EndpointWithoutRequest
     }
 }
 ```
-```csharp
+```csharp {8-12}
 public class Endpoint : EndpointWithoutRequest
 {
     public override void Configure()
@@ -624,9 +646,27 @@ public class Endpoint : EndpointWithoutRequest
         Get("/users/{id:int}");
     }
 
-    public override Task HandleAsync(CancellationToken ct)
+    public override async Task HandleAsync(CancellationToken ct)
     {
-        return SendOkAsync(ct);
+        // Do some stuff
+        await SendOkAsync(ct);
+    }
+}
+```
+```csharp {1,8-14}
+public class Endpoint : EndpointWithoutRequest<Results<Ok, NotFound>>
+{
+    public override void Configure()
+    {
+        Get("/users/{id:int}");
+    }
+
+    public override async Task<Results<Ok, NotFound>> ExecuteAsync(CancellationToken ct)
+    {
+        // Do some stuff
+        await Task.CompletedTask;
+
+        return TypedResults.Ok();
     }
 }
 ```
@@ -638,23 +678,9 @@ public class Endpoint : EndpointWithoutRequest
         Get("/users/{id:int}");
     }
 
-    public override Task HandleAsync(CancellationToken ct)
+    public override async Task HandleAsync(CancellationToken ct)
     {
-        return SendNotFoundAsync(ct);
-    }
-}
-```
-```csharp
-public class Endpoint : EndpointWithoutRequest
-{
-    public override void Configure()
-    {
-        Get("/users/{id:int}");
-    }
-
-    public override Task HandleAsync(CancellationToken ct)
-    {
-        return SendForbiddenAsync(ct);
+        await SendOkAsync(ct);
     }
 }
 ```
@@ -685,7 +711,7 @@ public class Endpoint : EndpointWithoutRequest
 
 <h3>Endpoint structure</h3>
 
-<span class="slide-reload-marker" style="display:none">reload-1748910879302</span>
+<span class="slide-reload-marker" style="display:none">reload-1751934151449</span>
 <ReloadCodeButton />
 
 <div class="editor-runner">
@@ -699,7 +725,31 @@ const response = await fetch(url);
 const isJson = response.headers.get("content-type")?.includes("application/json");
 const data = isJson ? await response.json() : await response.text();
 console.log(`Status: ${response.status}`);
-console.log(`Body: ${JSON.stringify(data)}`);
+console.log(`Body: ${JSON.stringify(data, null, 2)}`);
+```
+::
+</div>
+
+
+---
+
+<h3>Endpoint structure</h3>
+
+<span class="slide-reload-marker" style="display:none">reload-1751934151449</span>
+<ReloadCodeButton />
+
+<div class="editor-runner">
+
+<<< ../Example_FastEndpoints/Example_FastEndpoints.Api/Features/Users/Temp/Models.cs csharp {monaco-write}
+
+::div
+```js {monaco-run} {autorun:false}
+const url = 'http://localhost:5158/users/1';
+const response = await fetch(url);
+const isJson = response.headers.get("content-type")?.includes("json");
+const data = isJson ? await response.json() : await response.text();
+console.log(`Status: ${response.status}`);
+console.log(`Body: ${JSON.stringify(data, null, 2)}`);
 ```
 ::
 </div>
