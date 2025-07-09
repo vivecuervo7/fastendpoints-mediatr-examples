@@ -193,21 +193,42 @@ public class Endpoint : EndpointWithoutRequest<Results<Ok, NotFound>>
 }
 ```
 ```csharp {1}
+public class Endpoint : EndpointWithoutRequest
+{
+    public override void Configure()
+    {
+        Get("/users/{id:int}");
+    }
+}
+```
+```csharp {1}
 public class Endpoint : EndpointWithoutRequest<Response>
 {
     public override void Configure()
     {
         Get("/users/{id:int}");
     }
-
-    public override async Task<Results<Ok, NotFound>> ExecuteAsync(CancellationToken ct)
+}
+```
+```csharp {1}
+public class Endpoint : Endpoint<Request>
+{
+    public override void Configure()
     {
-        var response = TypedResults.Ok();
-        return await Task.FromResult(response);
+        Get("/users/{id:int}");
     }
 }
 ```
-```csharp {1,8}
+```csharp {1}
+public class Endpoint : Endpoint<Request, Response>
+{
+    public override void Configure()
+    {
+        Get("/users/{id:int}");
+    }
+}
+```
+```csharp {1,8-12}
 public class Endpoint : Endpoint<Request, Response>
 {
     public override void Configure()
@@ -215,9 +236,9 @@ public class Endpoint : Endpoint<Request, Response>
         Get("/users/{id:int}");
     }
 
-    public override async Task HandleAsync(Request req,CancellationToken ct)
+    public override async Task HandleAsync(Request req, CancellationToken ct)
     {
-        var response = new Response();
+        var response = new Response { Id = req.Id };
         await SendOkAsync(response, ct);
     }
 }
@@ -226,7 +247,7 @@ public class Endpoint : Endpoint<Request, Response>
 </div>
 
 <!--
-So, looking at our overall structure, we'll focus on the basic endpoint structure.
+So, looking at our overall structure, we'll focus on the implementation of a very basic endpoint before we start diving into the other features.
 
 There is some minimal global registration for FastEndpoints that must be done first in our main `Program` file, but we'll skip over that as it's not anything too unexpected.
 
@@ -292,9 +313,9 @@ Marking this as async allows us to return a response by calling one of many help
 
 In this case, we're calling `SendOkAsync` which returns a response with a 200 status code.
 
-FastEndpoints offers quite a few convenience methods here &mdash; without listing them all, we have options such as `SendNotFoundAsync`, or `SendForbiddenAsync`.
+FastEndpoints offers quite a few convenience methods here. Without listing them all, we have options such as `SendNotFoundAsync`, or `SendForbiddenAsync` which do very much what the label says.
 
-The first gotcha that I encountered with FastEndpoints arose here.
+Now, the first gotcha that I encountered with FastEndpoints arose here.
 
 The usage of `await` makes it seem that we can execute code _after_ the request has been sent, but in practice I found that this was not the case.
 
@@ -308,23 +329,27 @@ The `ExecuteAsync` method allows us to specify a strict return type for the meth
 
 Following Minimal API, we can also use the `Results` union type to allow for multiple possible return values.
 
-Ultimately though, this comes down to a trade-off between code that needs to be written, and adding guardrails for ourselves.
+Ultimately though, this comes down to a trade-off between using those expressive helper methods, and adding guardrails for ourselves.
 
 [click]
 
-We'll focus now on the first line again, where we can see we've passed in the return type here.
+We'll focus now on the first line here, where we can see we've passed in the return type.
 
-This is a good segue into the different classes from which we can inherit.
+This is a good segue into the different classes from which we can inherit when creating a new endpoint.
 
 [click]
 
 We started by inheriting from `EndpointWithoutRequest` with _no_ type parameter. As mentioned earlier, this is used when we have neither a request nor response DTO.
 
-By passing in a type for our response, we're now describing an endpoint with no request DTO, but with a response DTO.
+[click]
+
+By passing in a type for our response, we're now describing an endpoint with no request DTO, but _with_ a response DTO.
 
 [click]
 
-Inheriting from the `Endpoint` class expects that we provide a type for the request DTO, and optionally we can pass a type for the response DTO.
+Inheriting from the `Endpoint` class expects that we provide a type for the request DTO, and optionally [click], we can pass in a type for the response DTO if we're returning one.
+
+[click]
 
 We can then pass the request into the `HandleAsync` method, and access it in our handler code.
 -->

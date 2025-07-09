@@ -57,8 +57,8 @@
       <li>
         Too many places for code; too many decisions
         <ul>
+          <li>Domain logic often present in application layer</li>
           <li>Handlers often calling other handlers</li>
-          <li>Domain logic present in application layer</li>
         </ul>
       </li>
     </ul>
@@ -120,3 +120,27 @@
     </ul>
   </div>
 </div>
+
+<!-- 
+First off, we'll have a quick look at the basic structure of a FastEndpoints'... well, endpoint.
+
+On the left here we've got a pretty basic view of the sort of architecture that I typically see. Now, all of these would typically be required to implement a single, basic feature &mdash; in this case, a simple request to get a user.
+
+We've got our Api project, and our DTOs, controllers all grouped together.
+
+Our application layer has our query and handler, and we've got our all-too expected user entity and `DbContext`.
+
+Naturally, as a project grows, it becomes quite hard to navigate and find the relevant code.
+
+Additionally, as we've covered previously we see domain logic start creeping into the application layer, and eventually we have handlers calling other handlers and it can quickly turn into a spiderweb of complexity.
+
+[click]
+
+The vertical slice encouraged by FastEndpoints comprises of a single endpoint, or feature, nested under appropriately-named folders.
+
+Now, I fully understand that this may not be everyone's cup of tea, and we're free to call things whatever we like here, but the majority of the examples &mdash; not just in this presentation, but out in the wild &mdash; will follow this naming pattern or similar.
+
+But, thanks to namespaces, if we so wish to adopt the convention we can have a series of files that very explicitly reflects what they do, consistently, across every endpoint.
+
+Also, if a pull request happens to implement more than one endpoint, it is _so_ much nicer just being able to review all the code, nicely grouped together.
+ -->
