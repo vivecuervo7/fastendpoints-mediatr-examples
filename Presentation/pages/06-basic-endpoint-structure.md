@@ -20,7 +20,7 @@
 
 ````md magic-move { at: 1, maxHeight: '450px' }
 ```csharp
-‎ 
+‎
 ```
 ```csharp
 public class Endpoint : EndpointWithoutRequest
@@ -335,7 +335,7 @@ Ultimately though, this comes down to a trade-off between using those expressive
 
 We'll focus now on the first line here, where we can see we've passed in the return type.
 
-This is a good segue into the different classes from which we can inherit when creating a new endpoint.
+This is a good segue into the different base classes from which we can inherit when creating a new endpoint.
 
 [click]
 

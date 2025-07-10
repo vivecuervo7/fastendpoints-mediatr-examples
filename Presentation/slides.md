@@ -44,7 +44,7 @@ src: ./pages/06-basic-endpoint-structure.md
 ---
 
 ---
-src: ./pages/07-endpoint-types.md
+src: ./pages/07-model-binding.md
 ---
 
 ---
