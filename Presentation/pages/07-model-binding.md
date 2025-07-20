@@ -60,7 +60,7 @@ public class Request
 
 
   <v-drag pos="694,182,113,_">
-    <div v-click="5" class="floating-label text-left" data-id="request-dto">
+    <div v-click="5" class="floating-label font-serif text-left" data-id="request-dto">
       <p class="text-pink-500">POST: /users/1</p>
     </div>
   </v-drag>
@@ -69,13 +69,13 @@ public class Request
     <div v-click="5" class="floating-label text-left" data-id="request-dto">
       <pre class="leading-4 text-xs">
 <span class="text-yellow-500">{</span>
-<span class="text-sky-500">  Id: 2,</span>
+<span v-mark.blue.strike="6" class="text-sky-500">  Id: 2,</span>
 <span class="text-yellow-500">}</span>
       </pre>
     </div>
   </v-drag>
 
-  <FancyArrow v-click="6" x1="830" y1="300" q2="[data-id=request-dto]" pos2="right" color="orange" arc="-0.5" head-size="20" class="z-100" />
+  <FancyArrow v-click="6" x1="690" y1="220" x2="420" y2="310" color="pink" arc="-0.05" head-size="15" width="1" class="z-100" />
 </div>
 
 <!--
