@@ -64,6 +64,8 @@ src: ./pages/11-entity-mapping.md
 ---
 
 ---
+disabled: true
+---
 
 <h3>Endpoint structure</h3>
 
@@ -87,6 +89,8 @@ console.log(`Body: ${JSON.stringify(data, null, 2)}`);
 </div>
 
 
+---
+disabled: true
 ---
 
 <h3>Endpoint structure</h3>

@@ -23,8 +23,6 @@
 ‎
 ```
 ````
-
-  <FancyArrow v-click="2" x1="550" y1="240" x2="180" y2="148" color="orange" arc="-0.15" head-size="15" width="1" class="z-100" />
 </div>
 
 <!--
