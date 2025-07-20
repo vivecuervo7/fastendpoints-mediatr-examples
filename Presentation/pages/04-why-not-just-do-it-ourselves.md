@@ -15,7 +15,7 @@ We've kind of solved that whole problem that I was talking about, _and_ avoided 
 
 I can certainly accept that as an argument. I can't guarantee that FastEndpoints won't be the next FluentAssertions or MediatR. Even if it's printed on a shirt.
 
-That particular argument aside, I believe that FastEndpoints offers enough in the way bells and whistles that it is absolutely worth considering using.
+That particular argument aside, I believe that FastEndpoints offers enough additional features and benefits that it is absolutely worth considering using.
  -->
 
 ---

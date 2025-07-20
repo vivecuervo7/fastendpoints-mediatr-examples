@@ -27,7 +27,7 @@ And there's a big question in "why".
 
 In particular, it's the "developer-friendly" claim that really dragged me in.
 
-I've certainly not found Minimal API to be particularly developer _un_ friendly, so why even look for an alternative?
+I've certainly not found Minimal API, MVC, MediatR to be particularly developer _un_ friendly, so why even look for an alternative?
  -->
 
 ---
@@ -37,9 +37,11 @@ I've certainly not found Minimal API to be particularly developer _un_ friendly,
 
 <ul class="content">
   <li>A feeling of over-abstracted code in what were often relatively simple APIs</li>
-  <li>Stumbled across FastEndpoints online and started tinkering with it out of curiosity</li>
-  <li>FastEndpoints seemed easy to use where the typical architecture felt cumbersome</li>
-  <li>Commercialisation of MediatR led me to consider FastEndpoints as a genuine alternative</li>
+  <v-clicks>
+    <li>Stumbled across FastEndpoints online and started tinkering with it out of curiosity</li>
+    <li>FastEndpoints seemed easy to use where the typical architecture felt cumbersome</li>
+    <li>Commercialisation of MediatR led me to consider FastEndpoints as a genuine alternative</li>
+  </v-clicks>
 </ul>
 
 <!-- 
@@ -49,9 +51,13 @@ One of my favourite terms I've come across as a complaint with .NET is that we h
 
 Really though, I never found the current landscape of API development in .NET to be off-putting by any stretch.
 
+[click]
+
 FastEndpoints was something I discovered much by accident, half-watching YouTube while laying in bed. Something about a particular video caught my eye, and I found myself re-watching it with much more intent.
 
 Now, while I say "something" caught my eye, I realised in hindsight exactly what it was.
+
+[click]
 
 Anybody who has worked with me over the past couple of years knows I'm quite a fan of SvelteKit &mdash; but in particular it's the simplicity and ease of development that appeals to me.
 
@@ -64,6 +70,8 @@ Now, as nice as all that seemed, it just felt like a nice alternative.
 Much like SvelteKit, it felt like it would be a framework that would always live in the shadow of the status quo.
 
 It didn't seem like many would be too eager to move away from the stock-standard MediatR-based approach that I've seen in 90% of the projects I've worked on.
+
+[click]
 
 And then, all of a sudden the dollar signs started to appear.
 

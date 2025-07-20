@@ -41,7 +41,7 @@ At the very least, it gives us a simple decision as to whether this is presentat
 
 It becomes an either-or choice, and we're also not polluting our thoughts with when and where to put DTOs and how we're mapping to and from them.
 
-Now, of course, there is a very real concern that with a typical controller setup, or even Minimal API, that we have a bunch of routes grouped together in a single class or file.
+Now of course, there is a very real concern that with a typical controller setup, or even Minimal API, that we have a bunch of routes grouped together in a single class or file.
 
 And sure, this is going to get super messy, right? All that code in one place?
 -->
@@ -123,7 +123,7 @@ Of course, much like our application layer, this is where we access our domain a
 
 [click]
 
-What I have found, is that by pushing a lot of the thought process right up to the presentation layer, it causes almost a sense of revulsion when you start seeing the sort of code that would have typically been domain-ish, or the sort of thing that would usually live in the application layer.
+And what I have found, is that by pushing a lot of the thought process right up to the presentation layer, it causes almost a sense of revulsion when you start seeing the sort of code that absolutely could go into the domain layer.
 
 It goes very much from "yeah, this looks a bit off" to "nah, this just isn't right at all".
 

@@ -103,7 +103,7 @@ which are then responsible for outputting a result that can be turned into a res
 
 Assuming, of course, that we haven't just exposed those DTOs to the handlers themselves to make our lives easier.
 
-Ultimately, what I have observed however is that with this many layers at play, that a disproportionate amount of logic end up in the handlers.
+Ultimately, what I have observed however is that with this many layers at play, that a disproportionate amount of logic ends up in the handlers.
 
 [click]
 
@@ -136,7 +136,7 @@ It becomes hard to find those rules as they're scattered amongst handlers and en
   </div>
 </v-drag>
 
-<v-drag pos="380,235,220,220">
+<v-drag pos="400,255,180,180">
   <div class="onion-domain onion-circle view-transition-domain"></div>
 </v-drag>
 
@@ -160,11 +160,45 @@ It becomes hard to find those rules as they're scattered amongst handlers and en
 <!--
 In most projects, I have seen this increasingly normalised combination of the domain and application layers to result in _explicitly_ moving the entire application layer into the domain.
 
-Truth be told, I have yet to work on a project that does maintain the distinction between the two &mdash; largely, they have all been reduced to presentation, infrastructure and domain layers.
+Truth be told, I have yet to work on a project that _does_ maintain the distinction between the two &mdash; largely, they have all been reduced to presentation, infrastructure and domain layers.
+-->
 
-Typically, this has resulted in very thin controllers, thin wrappers around a database or services, and then a very busy "domain" project which does, well, everything.
+---
 
-_Especially_ when we combine this with the somewhat more practical approach of allowing our application layer to be aware of, and map to and from our presentation layer's DTOs &mdash; all of a sudden, we have those DTOs present in our _domain_ layer, and our domain layer is accessing the database directly etc.
+<h1>Why?</h1>
+<h2>What's wrong with the current way of doing things?</h2>
 
-Even when things are kept relatively clean, we're relying on developers to maintain boundaries instead of putting the appropriate guardrails in place.
+<v-drag pos="320,175,340,340">
+  <div class="onion-presentation onion-circle view-transition-presentation">
+    <hr/>
+  </div>
+</v-drag>
+
+<v-drag pos="370,225,240,240">
+  <div class="onion-domain onion-circle view-transition-domain"></div>
+</v-drag>
+
+<v-drag pos="430,195,120,_">
+  <div class="onion-label view-transition-presentation-label" data-id="presentation">Presentation</div>
+</v-drag>
+
+<v-drag pos="430,340,120,_">
+  <div class="onion-label view-transition-application-label" data-id="application">Application</div>
+</v-drag>
+
+<v-drag pos="450,310,80,_">
+  <div class="onion-label view-transition-domain-label">Domain</div>
+  <div class="onion-label view-transition-domain-plus">+</div>
+</v-drag>
+
+<v-drag pos="430,470,120,_">
+  <div class="onion-label view-transition-infrastructure-label">Infrastructure</div>
+</v-drag>
+
+<!--
+Typically, this has resulted in very thin controllers, thin wrappers around a database or services, and then a very busy "domain" project which does pretty much everything.
+
+_Especially_ when we combine this with that approach of allowing our application layer to be aware of, and map to and from our presentation layer's DTOs &mdash; all of a sudden, we have those DTOs present in our _domain_ layer.
+
+Even when things are kept relatively clean, we're relying on _individual developers_ to maintain boundaries instead of putting the appropriate guardrails in place.
 -->

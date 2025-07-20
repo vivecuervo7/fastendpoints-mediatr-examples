@@ -88,12 +88,15 @@ public class Endpoint : EndpointWithoutRequest
     }
 }
 ```
-```csharp {6-12}
+```csharp {9-15}
 public class Endpoint : EndpointWithoutRequest
 {
     public override void Configure()
     {
         Get("/users/{id:int}");
+        AllowAnonymous();
+        Description(x => x.Produces(200));
+        Options(x => x.RequireCors(p => p.AllowAnyOrigin()));
         Summary(s =>
         {
             s.Summary = "Short summary goes here";
@@ -104,12 +107,15 @@ public class Endpoint : EndpointWithoutRequest
     }
 }
 ```
-```csharp {9-18}
+```csharp {12-21}
 public class Endpoint : EndpointWithoutRequest
 {
     public override void Configure()
     {
         Get("/users/{id:int}");
+        AllowAnonymous();
+        Description(x => x.Produces(200));
+        Options(x => x.RequireCors(p => p.AllowAnyOrigin()));
     }
 }
 
@@ -157,7 +163,6 @@ public class Endpoint : EndpointWithoutRequest
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        // Do some stuff
         await SendOkAsync(ct);
     }
 }
@@ -305,7 +310,7 @@ We do this by overriding the `HandleAsync` method.
 
 Essentially, given the proposed usage, this is where we would put the code that would otherwise live in our application layer.
 
-Of course, nothing is stopping us from simply passing this off to a mediator pipeline, but this in my mind undermines the value of having this nice little file that contains all of our endpoint through to handler code.
+Of course, nothing is stopping us from simply passing this off to a mediator pipeline, but this in my mind undermines the value of having this nice little file that contains all of our endpoint's code.
 
 [click]
 
@@ -327,7 +332,7 @@ The `ExecuteAsync` method allows us to specify a strict return type for the meth
 
 [click]
 
-Following Minimal API, we can also use the `Results` union type to allow for multiple possible return values.
+As with Minimal API, we can also use the `Results` union type to allow for multiple possible return values.
 
 Ultimately though, this comes down to a trade-off between using those expressive helper methods, and adding guardrails for ourselves.
 
