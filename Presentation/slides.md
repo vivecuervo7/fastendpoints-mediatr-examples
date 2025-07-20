@@ -16,7 +16,7 @@ fonts:
 </div>
 
 <!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+TODO: Introduction
 -->
 
 ---
@@ -62,6 +62,28 @@ src: ./pages/10-data-access.md
 ---
 src: ./pages/11-entity-mapping.md
 ---
+
+---
+layout: section
+---
+
+<div class="text-size-7xl mx-30">
+  Sweet, what else?
+</div>
+
+<!--
+So, FastEndpoints gives us a nice, _expressive_ way to write our endpoints, and reduces a fair amount of boilerplate.
+
+By keeping all of our code closely linked together, it allows us to start simple, declaring a single endpoint and easily extending functionality to supporting classes as required.
+
+No more creating single-line queries and their handlers, or implementing a results pattern to convert errors in our application layer into `ProblemDetails`.
+
+That said, so far all we've done really is wrap a few helper methods around Minimal API and moved our application layer code into the presentation layer.
+
+Not really a big deal, and honestly if it stopped here I'd probably consider it not worth the risk of leaning so heavily on another library.
+
+So, onto the really fun bits.
+-->
 
 ---
 disabled: true
