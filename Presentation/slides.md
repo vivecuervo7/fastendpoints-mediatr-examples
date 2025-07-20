@@ -48,6 +48,22 @@ src: ./pages/07-model-binding.md
 ---
 
 ---
+src: ./pages/08-validation.md
+---
+
+---
+src: ./pages/09-dependency-injection.md
+---
+
+---
+src: ./pages/10-data-access.md
+---
+
+---
+src: ./pages/11-entity-mapping.md
+---
+
+---
 
 <h3>Endpoint structure</h3>
 

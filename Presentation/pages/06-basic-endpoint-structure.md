@@ -9,7 +9,7 @@
           <span><FolderIcon />...</span>
             <ul>
               <li data-id="data"><span><CsharpIcon />Data.cs</span></li>
-              <li data-id="endpoint" v-mark.circle="{ seed: 1, at: 1, color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Endpoint.cs</span></li>
+              <li data-id="endpoint" v-mark.circle="{ at: 1, color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Endpoint.cs</span></li>
               <li data-id="mapper"><span><CsharpIcon />Mapper.cs</span></li>
               <li data-id="models"><span><CsharpIcon />Models.cs</span></li>
             </ul>
@@ -18,7 +18,7 @@
     </li>
   </ul>
 
-````md magic-move { at: 1, maxHeight: '450px' }
+````md magic-move { maxHeight: '450px' }
 ```csharp
 ‎
 ```

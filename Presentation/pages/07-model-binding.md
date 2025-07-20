@@ -11,14 +11,15 @@
               <li data-id="data"><span><CsharpIcon />Data.cs</span></li>
               <li data-id="endpoint"><span><CsharpIcon />Endpoint.cs</span></li>
               <li data-id="mapper"><span><CsharpIcon />Mapper.cs</span></li>
-              <li data-id="models" v-mark.circle="{ seed: 1, at: 1, color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Models.cs</span></li>
+              <li data-id="models" v-mark.circle="{ at: 1, color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Models.cs</span></li>
             </ul>
         </li>
       </ul>
     </li>
   </ul>
 
-<div>
+<div class="view-transition-models">
+
 ````md magic-move { at: 1, maxHeight: '450px' }
 ```csharp
 ‎
@@ -43,7 +44,9 @@ public class Request
 }
 ```
 ````
+</div>
 
+<div class="fixed left-[283px] top-[170px]">
   <div v-click="4" class="mt-8 ml-2">
     <p>Binding order</p>
     <ul class="text-xs font-light">
@@ -61,7 +64,7 @@ public class Request
 
   <v-drag pos="694,182,113,_">
     <div v-click="5" class="floating-label font-serif text-left" data-id="request-dto">
-      <p class="text-pink-500">POST: /users/1</p>
+      <p class="text-pink-500">POST: /users/2</p>
     </div>
   </v-drag>
 
@@ -69,7 +72,7 @@ public class Request
     <div v-click="5" class="floating-label text-left" data-id="request-dto">
       <pre class="leading-4 text-xs">
 <span class="text-yellow-500">{</span>
-<span v-mark.blue.strike="6" class="text-sky-500">  Id: 2,</span>
+<span v-mark.blue.strike="6" class="text-sky-500">  Id: 1,</span>
 <span class="text-yellow-500">}</span>
       </pre>
     </div>
@@ -101,5 +104,5 @@ As a request moves through the list of binding sources, we essentially take the 
 
 [click]
 
-As a simple example, given a POST request to `users/1`, with a body that specifies a _different_ `Id`, [click] we'll use the value from the route parameter.
+As a simple example, given a POST request to `users/2`, with a body that specifies a _different_ `Id`, [click] we'll use the value from the route parameter instead of that from the JSON body.
 -->
