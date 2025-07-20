@@ -108,4 +108,6 @@ Most examples also make use of a separate `Data` file to house any data access o
 [click]
 
 While there's likely far less value in moving this logic around if we're making us of a repository pattern, it can be useful for moving any large queries out of our handler.
+
+Again, while it's not going to appeal to everyone, this does seem to be the common approach &mdash; and in practice it does give us some nice, expressive endpoints without needing us to move code too far away from the endpoint itself.
 -->
