@@ -65,9 +65,7 @@ It's a framework that I _want_ to work with &mdash; it makes my work _enjoyable_
 
 Right off the bat, FastEndpoints looked like it offered a similar, no-nonsense, cohesive approach to development.
 
-Now, as nice as all that seemed, it just felt like a nice alternative.
-
-Much like SvelteKit, it felt like it would be a framework that would always live in the shadow of the status quo.
+That said, much like SvelteKit, it felt like it would be a framework that would always live in the shadow of the status quo.
 
 It didn't seem like many would be too eager to move away from the stock-standard MediatR-based approach that I've seen in 90% of the projects I've worked on.
 

@@ -147,7 +147,7 @@ public class Endpoint : EndpointWithoutRequest<Response, Mapper>
 </div>
 
 <!--
-The last frequently-seen feature of FastEndpoints is some nice wrappers around mapping between our entities and their request or response DTOs.
+The last of FastEndpoints' basic features are some nice wrappers around mapping between our entities and their request or response DTOs.
 
 [click]
 

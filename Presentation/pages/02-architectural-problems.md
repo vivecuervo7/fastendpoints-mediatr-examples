@@ -121,7 +121,7 @@ The more pressing concern I raise with this convergence of logic in the applicat
 
 Allowing the domain logic to bleed into our application layer undermines the value of encapsulating all of the business rules into a single area of the codebase.
 
-It becomes hard to find those rules as they're scattered amongst handlers and entities, and the access and manipulation of those entities can quickly become inconsistent.
+It becomes hard to find those rules as they're scattered amongst handlers and entities, and working with those entities can quickly become inconsistent.
 
  -->
 
@@ -198,7 +198,7 @@ Truth be told, I have yet to work on a project that _does_ maintain the distinct
 <!--
 Typically, this has resulted in very thin controllers, thin wrappers around a database or services, and then a very busy "domain" project which does pretty much everything.
 
-_Especially_ when we combine this with that approach of allowing our application layer to be aware of, and map to and from our presentation layer's DTOs &mdash; all of a sudden, we have those DTOs present in our _domain_ layer.
+_Especially_ when we combine this with the approach of allowing our application layer to be aware of, and map to and from our presentation layer's DTOs &mdash; all of a sudden, we have those DTOs present in our _domain_ layer.
 
 Even when things are kept relatively clean, we're relying on _individual developers_ to maintain boundaries instead of putting the appropriate guardrails in place.
 -->

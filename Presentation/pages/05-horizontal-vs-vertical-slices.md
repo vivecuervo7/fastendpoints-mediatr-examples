@@ -124,7 +124,7 @@
 <!-- 
 First off, we'll have a quick look at the basic structure of an endpoint.
 
-On the left here we've got a pretty basic view of the sort of architecture that I typically see using current approaches. All of these files would typically be required to implement a single, basic feature &mdash; in this case, a simple request to get a user.
+On the left here we've got a pretty basic view of the sort of architecture that I frequently encounter. All of these files would typically be required to implement a single, basic feature &mdash; in this case, a simple request to get a user.
 
 We've got our Api project, and our DTOs, controllers all grouped together.
 
@@ -138,7 +138,7 @@ As our business logic increases in complexity, we risk ending up with handlers c
 
 The vertical slice architecture encouraged by FastEndpoints comprises of a single endpoint, or feature, nested under appropriately-named folders.
 
-Now, I fully understand that this may not be everyone's cup of tea, and we're free to call things whatever we like here, but the majority of the examples &mdash; not just in this presentation, but out in the wild &mdash; will follow this naming pattern or similar.
+Now, I fully understand that this may not be everyone's cup of tea, and we're free to name our classes however we please, but the majority of the examples &mdash; not just in this presentation, but out in the wild &mdash; will follow this naming pattern or similar.
 
 But thanks to namespaces, if we so wish to adopt the convention we can have a series of files that very explicitly reflects what they do, consistently, across every endpoint.
  -->

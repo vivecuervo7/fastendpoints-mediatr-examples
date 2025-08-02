@@ -49,11 +49,11 @@ public class Validator : Validator<Request>
 </div>
 
 <!--
-We get validation out of the box with FastEndpoints, using FluentValidation rules.
+Closely related to model binding, we also get validation straight out of the box with FastEndpoints, using FluentValidation rules.
 
 [click]
 
-Typically this ends up in our `Models` file, although personally I don't myself a fan of squeezing too many different classes into a single file, but we'll stick to what seems to be the most common pattern in the examples floating around the web.
+Typically this ends up in our `Models` file, although personally I don't find myself a fan of squeezing too many different classes into a single file, but we'll stick to what seems to be the most common pattern in the examples floating around the web.
 
 [click]
 

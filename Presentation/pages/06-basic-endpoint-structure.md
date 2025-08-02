@@ -264,9 +264,9 @@ This is the most basic type of endpoint that FastEndpoints offers, which is used
 
 [click]
 
-To configure the endpoint, we must first override the `Configure` method.
+To configure the endpoint, we simply override the `Configure` method.
 
-Here we can access many of FastEndpoints' helper methods. The example shown here uses the `Get` method to register the route for a HTTP GET method.
+Here we can access many of FastEndpoints' helper methods. The example shown here uses the `Get` method to register the route for a GET method.
 
 [click]
 
@@ -280,7 +280,7 @@ FastEndpoints also allows us to specify multiple routes for a single endpoint. I
 
 We can also call other helper methods here, such as `AllowAnonymous`.
 
-FastEndpoints treats all endpoints as secure by default. Endpoints can be globally configured in `Program.cs`, so we _can_ change this, but this is something to be aware of.
+FastEndpoints requires authorization for all endpoints by default, but this can be globally configured in our `Program.cs`, so we _can_ change this, but it's something to be aware of.
 
 [click]
 
@@ -322,7 +322,7 @@ FastEndpoints offers quite a few convenience methods here. Without listing them 
 
 Now, the first gotcha that I encountered with FastEndpoints arose here.
 
-The usage of `await` makes it seem that we can execute code _after_ the request has been sent, but in practice I found that this was not the case.
+The usage of `await` makes it seem that we can execute code _after_ the request has been sent, but in practice I found that this wasn't quite the case.
 
 To prevent that from misleading devs, an alternative is available by overriding a different method to `HandleAsync`.
 

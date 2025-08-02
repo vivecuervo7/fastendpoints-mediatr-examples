@@ -105,7 +105,7 @@ And sure, this is going to get super messy, right? All that code in one place?
 </v-click>
 
 <!--
-FastEndpoints addresses this concern by pushing us into a single endpoint per class or file approach.
+FastEndpoints addresses this concern by pushing us into a single endpoint per class approach.
 
 Conceptually, our presentation layer becomes the code that describes our route.
 

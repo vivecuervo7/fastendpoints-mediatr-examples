@@ -80,7 +80,7 @@ No more creating single-line queries and their handlers, or implementing a resul
 
 That said, so far all we've done really is wrap a few helper methods around Minimal API and moved our application layer code into the presentation layer.
 
-Not really a big deal, and honestly if it stopped here I'd probably consider it not worth the risk of leaning so heavily on another library.
+Not really a big deal, and honestly if it stopped here I'd probably consider it not worth the risk of leaning so heavily on yet another library.
 
 So, onto the really fun bits.
 -->
