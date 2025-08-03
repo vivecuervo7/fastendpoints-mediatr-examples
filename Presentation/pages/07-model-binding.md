@@ -37,7 +37,7 @@ public class Response
     public string Email { get; set; } = string.Empty;
 }
 ```
-```csharp {all|1-4}
+```csharp
 public class Request
 {
     public int Id { get; set; }
@@ -46,39 +46,39 @@ public class Request
 ````
 </div>
 
-<div class="fixed left-[283px] top-[170px]">
-  <div v-click="4" class="mt-8 ml-2">
+<div class="fixed left-[283px] top-[170px] font-serif text-gray-300">
+  <div v-click="3" class="mt-8 ml-2">
     <p>Binding order</p>
-    <ul class="text-xs font-light">
-      <li>JSON body</li>
+    <ul class="text-xs font-light text-gray-400">
+      <li v-mark.blue.box="5">JSON body</li>
       <li>Form fields</li>
-      <li>Route parameters</li>
+      <li v-mark.yellow.box="4">Route parameters</li>
       <li>Query parameters</li>
-      <li>User claims <span class="font-thin">(if property has the <span class="font-light">[FromClaim]</span> attribute)</span></li>
-      <li>HTTP headers <span class="font-thin">(if property has the <span class="font-light">[FromHeader]</span> attribute)</span></li>
-      <li>Permissions <span class="font-thin">(if property has the <span class="font-light">[HasPermission]</span> attribute)</span></li>
+      <li>User claims <span class="font-thin text-gray-500">(if property has the <span class="font-light">[FromClaim]</span> attribute)</span></li>
+      <li>HTTP headers <span class="font-thin text-gray-500">(if property has the <span class="font-light">[FromHeader]</span> attribute)</span></li>
+      <li>Permissions <span class="font-thin text-gray-500">(if property has the <span class="font-light">[HasPermission]</span> attribute)</span></li>
     </ul>
   </div>
   </div>
 
 
   <v-drag pos="694,182,113,_">
-    <div v-click="5" class="floating-label font-serif text-left" data-id="request-dto">
-      <p class="text-pink-500">POST: /users/2</p>
+    <div v-click="4" class="floating-label font-mono text-left" data-id="request-dto">
+      <p class="text-yellow-400">POST:&nbsp;/users/2</p>
     </div>
   </v-drag>
 
   <v-drag pos="696,225,112,_">
-    <div v-click="5" class="floating-label text-left" data-id="request-dto">
+    <div v-click="4" class="floating-label text-left" data-id="request-dto">
       <pre class="leading-4 text-xs">
-<span class="text-yellow-500">{</span>
-<span v-mark.blue.strike="6" class="text-sky-500">  Id: 1,</span>
-<span class="text-yellow-500">}</span>
+<span v-click="5" class="text-blue-500">{</span>
+<span v-click="5" class="text-blue-400">   Id: 1,</span>
+<span v-click="5" class="text-blue-500">}</span>
       </pre>
     </div>
   </v-drag>
 
-  <FancyArrow v-click="6" x1="690" y1="220" x2="420" y2="310" color="pink" arc="-0.05" head-size="15" width="1" class="z-100" />
+  <FancyArrow v-click="6" x1="690" y1="220" x2="420" y2="310" color="yellow" arc="-0.05" head-size="15" width="1" class="z-100" />
 </div>
 
 <!--
@@ -98,11 +98,11 @@ So, our endpoint is going to be supplied with a fully populated request DTO, wit
 
 The exact order of sources that populate these properties are as can be seen here.
 
-[click]
-
 As a request moves through the list of binding sources, we essentially take the value from the last in the list that matches &mdash; with a slight catch for the last three in that they need explicit attributes on the property before we can bind from that source.
 
 [click]
 
 As a simple example, given a POST request to `users/2`, with a body that specifies a _different_ `Id`, [click] we'll use the value from the route parameter instead of that from the JSON body.
+
+[click]
 -->

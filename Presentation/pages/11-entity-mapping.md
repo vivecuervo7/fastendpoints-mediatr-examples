@@ -51,12 +51,12 @@ public class Mapper : Mapper<Request, Response, User>
 {
     public override User ToEntity(Request request)
     {
-        return new User
-        {
-            Id = request.Id,
-            Name = request.Name,
-            Email = request.Email,
-        };
+        return new User();
+    }
+
+    public override Response FromEntity(User user)
+    {
+        return new Response();
     }
 }
 
@@ -76,14 +76,14 @@ public class Endpoint(AppDbContext db) : EndpointWithMapper<Request, Mapper>
 ```csharp {19}
 public class Mapper : Mapper<Request, Response, User>
 {
+    public override User ToEntity(Request request)
+    {
+        return new User();
+    }
+
     public override Response FromEntity(User user)
     {
-        return new Response
-        {
-            Id = user.Id,
-            Name = user.Name,
-            Email = user.Email,
-        };
+        return new Response();
     }
 }
 
@@ -100,14 +100,14 @@ public class Endpoint : EndpointWithoutRequest<Response, Mapper>
 ```csharp {19}
 public class Mapper : Mapper<Request, Response, User>
 {
+    public override User ToEntity(Request request)
+    {
+        return new User();
+    }
+
     public override Response FromEntity(User user)
     {
-        return new Response
-        {
-            Id = user.Id,
-            Name = user.Name,
-            Email = user.Email,
-        };
+        return new Response();
     }
 }
 
@@ -123,14 +123,14 @@ public class Endpoint : EndpointWithoutRequest<Response, Mapper>
 ```csharp {19}
 public class Mapper : Mapper<Request, Response, User>
 {
+    public override User ToEntity(Request request)
+    {
+        return new User();
+    }
+
     public override Response FromEntity(User user)
     {
-        return new Response
-        {
-            Id = user.Id,
-            Name = user.Name,
-            Email = user.Email,
-        };
+        return new Response();
     }
 }
 
