@@ -119,8 +119,6 @@ And our application layer becomes the code that handles the execution of that en
 
 [click]
 
-Of course, much like our application layer, this is where we access our domain and infrastructure layers.
-
 [click]
 
 And what I have found, is that by pushing a lot of the thought process right up to the presentation layer, it causes almost a sense of revulsion when you start seeing the sort of code that absolutely could go into the domain layer.

@@ -1,6 +1,6 @@
 <h2>Endpoint structure</h2>
 
-<div class="endpoint-structure mt-4">
+<div class="endpoint-structure horizontal mt-4">
   <ul class="files">
     <li class="view-transition-files">
       <span><ProjectIcon />Api</span>

@@ -90,6 +90,10 @@ src: ./pages/12-pre-post-processors.md
 ---
 
 ---
+src: ./pages/13-events-commands-queues.md
+---
+
+---
 disabled: true
 ---
 

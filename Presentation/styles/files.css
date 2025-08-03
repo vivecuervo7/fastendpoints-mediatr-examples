@@ -40,6 +40,10 @@
 .files {
   padding: 0.5rem 0.75rem;
   border-radius: 16px;
+
+  svg {
+    margin-top: -0.2rem;
+  }
 }
 
 .files,

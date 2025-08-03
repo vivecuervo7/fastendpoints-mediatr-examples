@@ -52,11 +52,11 @@
         </ul>  
       </li>
     </ul>
-    <ul class="font-serif text-gray-400">
-      <li>Hard to find or review code</li>
-      <li>Too many places for code</li>
-      <li>Domain logic present in application layer</li>
-      <li>Handlers calling each other</li>
+    <ul class="font-serif text-gray-400 !list-none">
+      <li class="!ml-1">Hard to find or review code</li>
+      <li class="!ml-1">Too many places for code</li>
+      <li class="!ml-1">Domain logic present in application layer</li>
+      <li class="!ml-1">Handlers calling each other</li>
     </ul>
   </div>
 
@@ -109,10 +109,10 @@
         </ul>  
       </li>
     </ul>
-    <ul class="font-serif text-gray-400">
-      <li>Easy to find related code</li>
-      <li>Reviewing changes doesn't require bouncing around</li>
-      <li>Clearer responsibilities between classes</li>
+    <ul class="font-serif text-gray-400 !list-none">
+      <li class="!ml-1">Easy to find related code</li>
+      <li class="!ml-1">Reviewing changes doesn't require bouncing around</li>
+      <li class="!ml-1">Clearer responsibilities between classes</li>
     </ul>
   </div>
 </div>
