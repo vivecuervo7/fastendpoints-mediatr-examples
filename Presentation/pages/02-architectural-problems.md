@@ -24,7 +24,7 @@
 </v-drag>
 
 <v-drag pos="450,330,80,_">
-  <div class="onion-label view-transition-domain-label" data-id="domain" v-mark.red.box="9">Domain</div>
+  <div class="onion-label view-transition-domain-label" data-id="domain" v-mark.blue.box="9">Domain</div>
 </v-drag>
 
 <v-drag pos="430,470,120,_">
@@ -57,7 +57,7 @@
 <FancyArrow v-click="5" q1="[data-id=application]" q2="[data-id=mediator]" pos1="bottom-left" pos2="top" color="red" arc="-0.25" head-size="20" class="z-100" />
 
 <v-drag pos="803,307,81,_">
-  <div v-click="3" class="floating-label" data-id="handler" v-mark.red.box="8">Handler</div>
+  <div v-click="3" class="floating-label" data-id="handler" v-mark.blue.box="8">Handler</div>
 </v-drag>
 <FancyArrow v-click="3" q1="[data-id=application]" q2="[data-id=handler]" pos1="right" pos2="top-left" color="orange" arc="0.1" head-size="20" class="z-100" />
 <FancyArrow v-click="4" q1="[data-id=handler]" q2="[data-id=domain]" pos1="left" pos2="right" color="purple" head-size="20" class="z-100" />

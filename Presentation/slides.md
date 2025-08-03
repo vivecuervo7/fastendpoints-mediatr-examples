@@ -68,7 +68,7 @@ layout: section
 ---
 
 <div class="text-size-7xl mx-30">
-  Sweet, what else?
+  So... Minimal API with less code?
 </div>
 
 <!--
@@ -84,6 +84,10 @@ Not really a big deal, and honestly if it stopped here I'd probably consider it 
 
 So, onto the really fun bits.
 -->
+
+---
+src: ./pages/12-pre-post-processors.md
+---
 
 ---
 disabled: true
