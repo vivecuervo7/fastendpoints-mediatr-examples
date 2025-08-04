@@ -25,16 +25,12 @@ jobs:
         with:
           node-version: "lts/*"
 
-      - name: Setup @antfu/ni
-        run: npm i -g @antfu/ni
-        working-directory: Presentation
-
       - name: Install dependencies
-        run: nci
+        run: npm ci
         working-directory: Presentation
 
       - name: Build
-        run: nr build --base /${{github.event.repository.name}}/
+        run: npm run build --base /${{github.event.repository.name}}/
         working-directory: Presentation
 
       - name: Setup Pages
