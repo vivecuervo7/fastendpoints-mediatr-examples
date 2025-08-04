@@ -7,7 +7,7 @@ layout: statement
 </div>
 
 <!-- 
-So, what is FastEndpoints?
+FastEndpoints!
 
 FastEndpoints is, in it's own words, "a developer friendly alternative to Minimal APIs and MVC".
 
