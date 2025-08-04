@@ -13,7 +13,7 @@
 <!--
 If we’re feeling particularly nostalgic, FastEndpoints allows for that familiar Mediator-like handler pattern as well.
 
-This allows for what is a very simple starting point to organically grow into a solution that more reminiscent of a typical Mediator-based solution; or, perhaps we just want to extract some common logic without necessarily wrapping it a service.
+This allows for what is a very simple starting point to organically grow into a solution that's more reminiscent of a typical MediatR-based solution; or, perhaps we just want to extract some common logic without necessarily wrapping it a service.
 
 FastEndpoint’s commands and events reflect the familiar MediatR request / response pattern, as well as their notifications pattern.
 
@@ -33,100 +33,92 @@ We also have the ability to queue up commands to be run in the background &mdash
 
 <div class="content">
 
-````md magic-move { at: 1, maxHeight: '450px' }
-```csharp {all|5}
-public class Endpoint : EndpointWithoutRequest
-{
-    public override async Task HandleAsync(CancellationToken ct)
-    {
-        await PublishAsync(new ExampleEvent(), cancellation: ct);
-        await SendOkAsync(ct);
-    }
-}
+<div class="box w-[50%]" data-id="endpoint">
+```csharp
+class Endpoint<TRequest>
 ```
-```csharp {5|5}
-public class Endpoint : EndpointWithoutRequest
-{
-    public override async Task HandleAsync(CancellationToken ct)
-    {
-        await PublishAsync(new ExampleEvent(), Mode.WaitForAll, ct);
-        await SendOkAsync(ct);
-    }
-}
+  <hr/>
+````md magic-move
+```csharp
+var _event = new ExampleEvent();
 ```
-```csharp {5}
-public class Endpoint : EndpointWithoutRequest
-{
-    public override async Task HandleAsync(CancellationToken ct)
-    {
-        await new ExampleEvent().PublishAsync(Mode.WaitForAll, ct);
-        await SendOkAsync(ct);
-    }
-}
+```csharp {all|all}
+var _event = new ExampleEvent();
+await PublishAsync(_event, cancellation: ct)
+```
+```csharp
+var _event = new ExampleEvent();
+await PublishAsync(_event, Mode.WaitForAll, ct)
+```
+```csharp
+var _event = new ExampleEvent();
+await PublishAsync(_event, Mode.WaitForAny, ct)
+```
+```csharp {all|all}
+var _event = new ExampleEvent();
+await PublishAsync(_event, Mode.WaitForNone, ct)
+```
+```csharp
+var _event = new ExampleEvent();
+await _event.PublishAsync(Mode.WaitForNone, ct)
 ```
 ````
-
-  <v-drag pos="526,351,403,_">
-    <div v-click="1" v-mark.blue.box="{ at: 1, strokeWidth: 1, iterations: 1 }" class="box2 font-serif " data-id="first">
-```csharp
-public class FirstEventHandler : IEventHandler<ExampleEvent>
-{
-    public Task HandleAsync(ExampleEvent ev, CancellationToken ct)
-    {
-        return Task.CompletedTask;
-    }
-}
-```
-    </div>
-  </v-drag>
-
-  <FancyArrow v-click="1" x1="445" y1="265" q2="[data-id=first]" pos2="top-left" color="blue" head-size="15" width="1" class="z-100" />
-
-  <v-drag pos="547,198,403,_">
-    <div v-click="3" v-mark.blue.box="{ at: 3, strokeWidth: 1, iterations: 1 }" class="box2 font-serif " data-id="second">
-```csharp
-public class SecondEventHandler : IEventHandler<ExampleEvent>
-{
-    public Task HandleAsync(ExampleEvent ev, CancellationToken ct)
-    {
-        return Task.CompletedTask;
-    }
-}
-```
-    </div>
-  </v-drag>
-
-  <FancyArrow v-click="3" x1="465" y1="250" q2="[data-id=second]" pos2="left" color="blue" head-size="15" width="1" class="z-100" />
-
-  <v-drag pos="88,373,403,_">
-    <div v-click="3" v-mark.blue.box="{ at: 3, strokeWidth: 1, iterations: 1 }" class="box2 font-serif " data-id="third">
-```csharp
-public class ThirdEventHandler : IEventHandler<ExampleEvent>
-{
-    public Task HandleAsync(ExampleEvent ev, CancellationToken ct)
-    {
-        return Task.CompletedTask;
-    }
-}
-```
-    </div>
-  </v-drag>
-
-  <FancyArrow v-click="3" x1="340" y1="265" q2="[data-id=third]" pos2="top" color="blue" head-size="15" width="1" class="z-100" />
 </div>
 
-<style>
-  .box {
-    scale: 70%;
-  }
-</style>
+<FancyArrow v-click="[3,6]" x1="330" y1="320" x2="310" y2="280" color="orange" arc="0.15" head-size="15" width="1" class="z-100" seed="1" />
+
+  <v-drag pos="568,352,344,_">
+    <div class="box" data-id="first" v-click="2">
+```csharp
+class Handler_1 : IEventHandler<ExampleEvent>
+```
+      <hr/>
+```csharp
+HandleAsync(ExampleEvent ev, CancellationToken ct)
+```
+    </div>
+  </v-drag>
+
+  <FancyArrow v-click="2" q1="[data-id=endpoint]" q2="[data-id=first]" pos1="bottom-right" pos2="top-left" color="gray" head-size="15" width="1" class="z-100" seed="1" />
+  <FancyArrow v-click="[2,5]" q1="[data-id=endpoint]" q2="[data-id=first]" pos1="bottom-right" pos2="top-left" color="pink" head-size="15" width="1" class="z-100" seed="1" />
+
+  <v-drag pos="608,204,344,_">
+    <div class="box" data-id="second" v-click="3">
+```csharp
+class Handler_2 : IEventHandler<ExampleEvent>
+```
+      <hr/>
+```csharp
+HandleAsync(ExampleEvent ev, CancellationToken ct)
+```
+    </div>
+  </v-drag>
+
+  <FancyArrow v-click="3" q1="[data-id=endpoint]" q2="[data-id=second]" pos1="right" pos2="left" color="gray" head-size="15" width="1" class="z-100" seed="2" />
+  <FancyArrow v-click="[3,4]" q1="[data-id=endpoint]" q2="[data-id=second]" pos1="right" pos2="left" color="pink" head-size="15" width="1" class="z-100" seed="2" />
+
+  <v-drag pos="133,412,344,_">
+    <div class="box" data-id="third" v-click="3">
+```csharp
+class Handler_3 : IEventHandler<ExampleEvent>
+```
+      <hr/>
+```csharp
+HandleAsync(ExampleEvent ev, CancellationToken ct)
+```
+    </div>
+  </v-drag>
+
+  <FancyArrow v-click="3" q1="[data-id=endpoint]" q2="[data-id=third]" pos1="bottom" pos2="top" color="gray" head-size="15" width="1" class="z-100" seed="3" />
+  <FancyArrow v-click="[3,4]" q1="[data-id=endpoint]" q2="[data-id=third]" pos1="bottom" pos2="top" color="pink" head-size="15" width="1" class="z-100" seed="3" />
+</div>
 
 <!--
-Events are pretty straightforward [click] — publish an event, and any event handlers with that event provided as its type parameter will be invoked.
+Events are pretty straightforward — create an event inside an `Endpoint` and publish it with `PublishAsync` [click], and any event handlers with that event provided as its type parameter [click] will be invoked.
 
-[click]
+We can wait for all [click], wait for any [click], or we can wait for none [click] of these events to complete. [click]
 
-We can wait for all [click], any or none of these events to complete.
+Events can also be invoked from outside of an endpoint if required [click], by having our event class implement `IEvent`, which exposes a `PublishAsync()` method on the event itself.
 
-Events can also be invoked from outside of an endpoint if required [click], by marking the event class as an `IEvent`, which exposes a `PublishAsync()` method on the event itself.
+All up, very similar to MediatR's notifications.
 -->

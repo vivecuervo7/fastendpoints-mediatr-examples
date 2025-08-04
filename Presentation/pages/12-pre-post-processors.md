@@ -144,5 +144,5 @@ The clunkiness here [click] comes if we wanted to use a similar approach to, hyp
 
 Overall however, we do have the ability to easily attach logic to either end of the request pipeline.
 
-This example is for a specific request, but we can just as easily register global pre- and post- processors as well.
+This example here is for a specific request, but we can just as easily register global pre- and post- processors as well.
 -->
