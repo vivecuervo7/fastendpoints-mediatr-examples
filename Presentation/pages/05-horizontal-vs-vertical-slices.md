@@ -2,7 +2,7 @@
 <h2>Horizontal vs. vertical slices</h2>
 
 <div class="files-columns mt-8">
-  <div v-click="0">
+  <div v-click="1">
     <ul class="box files">
       <li>
         <span><ProjectIcon />Api</span>
@@ -60,7 +60,7 @@
     </ul>
   </div>
 
-  <div v-click="1" class="relative">
+  <div v-click="2" class="relative">
     <div class="bracket">
       <div></div>
       <img src="../images/FE-icon.svg" class="icon">
@@ -118,7 +118,7 @@
 </div>
 
 <!-- 
-First off, we'll have a quick look at the basic structure of an endpoint.
+First off, we'll have a quick look at the basic structure of an endpoint. [click]
 
 On the left here we've got a pretty basic view of the sort of architecture that I frequently encounter. All of these files would typically be required to implement a single, basic feature &mdash; in this case, a simple request to get a user.
 
