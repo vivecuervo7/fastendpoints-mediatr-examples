@@ -71,9 +71,9 @@ public class Request
   <v-drag pos="696,225,112,_">
     <div v-click="4" class="floating-label text-left" data-id="request-dto">
       <pre class="leading-4 text-xs">
-<span v-click="5" class="text-blue-500">{</span>
-<span v-click="5" class="text-blue-400">   Id: 1,</span>
-<span v-click="5" class="text-blue-500">}</span>
+<span v-click="5" class="text-[#60A5FA]">{</span>
+<span v-click="5" class="text-[#60A5FA]">   Id: 1,</span>
+<span v-click="5" class="text-[#60A5FA]">}</span>
       </pre>
     </div>
   </v-drag>

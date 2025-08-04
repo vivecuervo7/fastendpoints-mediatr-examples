@@ -117,7 +117,7 @@ This is largely due to us needing to lean on an additional state object to share
 
 <style>
   .box {
-    scale: 70%;
+    scale: 75%;
   }
 </style>
 

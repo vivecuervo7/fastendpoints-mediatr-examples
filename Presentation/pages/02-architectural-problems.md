@@ -57,7 +57,7 @@
 <FancyArrow v-click="5" q1="[data-id=application]" q2="[data-id=mediator]" pos1="bottom-left" pos2="top" color="red" arc="-0.25" head-size="20" class="z-100" />
 
 <v-drag pos="803,307,81,_">
-  <div v-click="3" class="floating-label" data-id="handler" v-mark.blue.box="8">Handler</div>
+  <div v-click="3" class="floating-label" data-id="handler" v-mark.blue.circle="[8,9]">Handler</div>
 </v-drag>
 <FancyArrow v-click="3" q1="[data-id=application]" q2="[data-id=handler]" pos1="right" pos2="top-left" color="orange" arc="0.1" head-size="20" class="z-100" />
 <FancyArrow v-click="4" q1="[data-id=handler]" q2="[data-id=domain]" pos1="left" pos2="right" color="purple" head-size="20" class="z-100" />
@@ -67,6 +67,8 @@
 <FancyArrow v-click="5" q1="[data-id=query]" q2="[data-id=mediator]" pos1="bottom" pos2="top-left" color="teal" arc="-0.25" width="0.5" head-size="20" class="z-100" />
 <FancyArrow v-click="6" q1="[data-id=mediator]" q2="[data-id=handler]" pos1="bottom" pos2="bottom" color="red" arc="-0.375" width="0.5" head-size="20" class="z-100" />
 <FancyArrow v-click="7" q1="[data-id=handler]" q2="[data-id=response-dto]" pos1="top" pos2="right" color="teal" arc="-0.25" width="0.5" head-size="20" class="z-100" />
+
+<FancyArrow v-click="9" q1="[data-id=domain]" q2="[data-id=application]" pos1="top" pos2="bottom" color="blue" head-size="20" class="z-100" />
 
 <!-- 
 I hadn't really sat down and tried to figure out exactly what I _didn't_ like quite so much about the way I'd seen things done. For the most part, it worked, and it made sense.
@@ -109,15 +111,13 @@ Ultimately, what I have observed however is that with this many layers at play, 
 
 While it is largely speculation, I would attribute this tendency to be the result of having too many places for code to live.
 
-We make decisions hard for ourselves, and make code cumbersome to write. And so, we cut corners. We find the easy place to put code.
+We make decisions hard for ourselves, and make code cumbersome to write. And so, we cut corners, and we find the easy place to put code.
 
 More often than not, I see this presented as the handlers in our application layer being made aware of, or even "owning" the request and response DTOs.
 
 And honestly, I don't mind this one all that much. It's pragmatic. That said, at best it's still increasing the surface area for disagreement.
 
-[click]
-
-The more pressing concern I raise with this convergence of logic in the application layer however, is that quite often I see what should be considered _domain_ logic ending up in our handlers.
+The more pressing concern I raise with this convergence of logic in the application layer however, is that quite often I see what should be considered _domain_ logic ending up in our handlers. [click]
 
 Allowing the domain logic to bleed into our application layer undermines the value of encapsulating all of the business rules into a single area of the codebase.
 
@@ -160,7 +160,7 @@ It becomes hard to find those rules as they're scattered amongst handlers and en
 <!--
 In most projects, I have seen this increasingly normalised combination of the domain and application layers to result in _explicitly_ moving the entire application layer into the domain.
 
-Truth be told, I have yet to work on a project that _does_ maintain the distinction between the two &mdash; largely, they have all been reduced to presentation, infrastructure and domain layers.
+Very few of the projects I've worked on have maintained the distinction between the two &mdash; largely, they have all been reduced to presentation, infrastructure and domain layers.
 -->
 
 ---
