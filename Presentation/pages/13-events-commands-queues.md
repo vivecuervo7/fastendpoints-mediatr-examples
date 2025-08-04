@@ -17,13 +17,9 @@ This allows for what is a very simple starting point to organically grow into a 
 
 FastEndpoint’s commands and events reflect the familiar MediatR request / response pattern, as well as their notifications pattern.
 
-[click]
+[click] Events are essentially a one-to-many fire-and-forget, while commands [click] have a one-to-one relationship with handlers, and may return a result.
 
-Events are essentially a one-to-many fire-and-forget, while commands [click] have a one-to-one relationship with handlers, and may return a result.
-
-[click]
-
-We also have the ability to queue up commands to be run in the background &mdash; useful for long-running tasks where we don't want to block a user's interaction with a web page.
+[click] We also have the ability to queue up commands to be run in the background &mdash; useful for long-running tasks where we don't want to block a user's interaction with a web page.
 -->
 
 ---
@@ -35,31 +31,40 @@ We also have the ability to queue up commands to be run in the background &mdash
 
 <v-drag pos="52,176,350,_">
   <div class="box" data-id="endpoint">
-```csharp
+```csharp {all|none}{at:1}
 class Endpoint<TRequest>
 ```
   <hr/>
 ````md magic-move
-```csharp
-var _event = new ExampleEvent();
-```
-```csharp {all|all}
+```csharp {all|2}{at:1}
 var _event = new ExampleEvent();
 await PublishAsync(_event, cancellation: ct);
 ```
-```csharp
+```csharp {2}{at:1}
+var _event = new ExampleEvent();
+await PublishAsync(_event, cancellation: ct);
+```
+```csharp {2}{at:1}
+var _event = new ExampleEvent();
+await PublishAsync(_event, cancellation: ct);
+```
+```csharp {2}{at:1}
+var _event = new ExampleEvent();
+await PublishAsync(_event, cancellation: ct);
+```
+```csharp {2}{at:1}
 var _event = new ExampleEvent();
 await PublishAsync(_event, Mode.WaitForAny, ct);
 ```
-```csharp
+```csharp {2}{at:1}
 var _event = new ExampleEvent();
 await PublishAsync(_event, Mode.WaitForAll, ct);
 ```
-```csharp
+```csharp {2}{at:1}
 var _event = new ExampleEvent();
 await PublishAsync(_event, Mode.WaitForNone, ct);
 ```
-```csharp
+```csharp {2}{at:1}
 var _event = new ExampleEvent();
 await _event.PublishAsync(Mode.WaitForNone, ct);
 ```
@@ -73,17 +78,17 @@ await _event.PublishAsync(Mode.WaitForNone, ct);
 class Handler_1 : IEventHandler<ExampleEvent>
 ```
       <hr/>
-```csharp
+```csharp {all|none|all}{at:3}
 HandleAsync(ExampleEvent ev, CancellationToken ct);
 ```
     </div>
   </v-drag>
 
   <FancyArrow v-click="2" q1="[data-id=endpoint]" q2="[data-id=first]" pos1="bottom-right" pos2="top-left" color="gray" head-size="15" width="1" class="z-100" seed="1" />
-  <FancyArrow v-click="[3,5]" q1="[data-id=endpoint]" q2="[data-id=first]" pos1="bottom-right" pos2="top-left" color="pink" head-size="15" width="1" class="z-100" seed="1" />
+  <FancyArrow v-click="[5,7]" q1="[data-id=endpoint]" q2="[data-id=first]" pos1="bottom-right" pos2="top-left" color="pink" head-size="15" width="3" class="z-100" seed="1" />
 
   <v-drag pos="608,204,350,_">
-    <div class="box" data-id="second" v-click="3">
+    <div class="box" data-id="second" v-click="5">
 ```csharp
 class Handler_2 : IEventHandler<ExampleEvent>
 ```
@@ -94,11 +99,11 @@ HandleAsync(ExampleEvent ev, CancellationToken ct);
     </div>
   </v-drag>
 
-  <FancyArrow v-click="3" q1="[data-id=endpoint]" q2="[data-id=second]" pos1="right" pos2="left" color="gray" head-size="15" width="1" class="z-100" seed="2" />
-  <FancyArrow v-click="[4,5]" q1="[data-id=endpoint]" q2="[data-id=second]" pos1="right" pos2="left" color="pink" head-size="15" width="1" class="z-100" seed="2" />
+  <FancyArrow v-click="5" q1="[data-id=endpoint]" q2="[data-id=second]" pos1="right" pos2="left" color="gray" head-size="15" width="1" class="z-100" seed="2" />
+  <FancyArrow v-click="[6,7]" q1="[data-id=endpoint]" q2="[data-id=second]" pos1="right" pos2="left" color="pink" head-size="15" width="3" class="z-100" seed="2" />
 
   <v-drag pos="133,412,350,_">
-    <div class="box" data-id="third" v-click="3">
+    <div class="box" data-id="third" v-click="5">
 ```csharp
 class Handler_3 : IEventHandler<ExampleEvent>
 ```
@@ -109,18 +114,24 @@ HandleAsync(ExampleEvent ev, CancellationToken ct);
     </div>
   </v-drag>
 
-  <FancyArrow v-click="3" q1="[data-id=endpoint]" q2="[data-id=third]" pos1="bottom" pos2="top" color="gray" head-size="15" width="1" class="z-100" seed="3" />
-  <FancyArrow v-click="[4,5]" q1="[data-id=endpoint]" q2="[data-id=third]" pos1="bottom" pos2="top" color="pink" head-size="15" width="1" class="z-100" seed="3" />
+  <FancyArrow v-click="5" q1="[data-id=endpoint]" q2="[data-id=third]" pos1="bottom" pos2="top" color="gray" head-size="15" width="1" class="z-100" seed="3" />
+  <FancyArrow v-click="[6,7]" q1="[data-id=endpoint]" q2="[data-id=third]" pos1="bottom" pos2="top" color="pink" head-size="15" width="3" class="z-100" seed="3" />
 </div>
 
 <!--
-Events are pretty straightforward — create an event inside an `Endpoint` and publish it with `PublishAsync` [click], and any event handlers with that event provided as its type parameter will be invoked. [click]
+Raising events in FastEndpoints is pretty straightforward.
 
-We can wait for any of our handlers [click], wait for all of them [click], or we can wait for none [click].
+Create an event inside an `Endpoint` [click], and publish it with `PublishAsync`.
 
-Events can also be invoked from outside of an endpoint if required [click], by having our event class implement `IEvent`, which exposes a `PublishAsync()` method on the event itself.
+[click] Any event handlers with that event provided as its [click] type parameter will be invoked. [click]
 
-All up, very similar to MediatR's notifications.
+We can wait for any one of our handlers to complete execution... [click]
+
+Or we can wait for all of them... [click]
+
+Or we can wait for none. [click]
+
+Events can also be invoked from outside of an endpoint if required [click], by having our event class implement `IEvent`, which exposes a `PublishAsync` method on the event itself.
 -->
 
 ---
@@ -131,11 +142,11 @@ All up, very similar to MediatR's notifications.
 <div class="content">
   <v-drag pos="52,176,315,_">
     <div class="box" data-id="command-endpoint">
-```csharp
+```csharp {all|none}{at:1}
 class Endpoint<TRequest>
 ```
       <hr/>
-```csharp
+```csharp {all|2}{at:1}
 var command = new ExampleCommand();
 var result = await command.ExecuteAsync(ct);
 ```
@@ -143,26 +154,68 @@ var result = await command.ExecuteAsync(ct);
   </v-drag>
 
   <v-drag pos="491,176,390,_">
-    <div class="box" data-id="command-handler" v-click="1">
-```csharp
+    <div class="box" data-id="command-handler" v-click="[2,5]">
+```csharp {all|none}{at:3}
 class Handler : ICommandHandler<ExampleCommand, int>
 ```
       <hr/>
-```csharp
+```csharp {all|none}{at:3}
 Task<int> ExecuteAsync(
     ExampleCommand command,
     CancellationToken ct);
 ```
-<div v-click="2" class="v-click-foo">
+<div v-click="[3,4]" class="v-click-foo">
   <hr/>
 ```csharp
+return result;
+```
+</div>
+<div v-click="4" class="v-click-foo">
+  <hr/>
+
+```csharp {all|1}{at:3}
 AddError("Error message");
+
+return result;
 ```
 </div>
     </div>
   </v-drag>
 
-  <FancyArrow v-click="1" q1="[data-id=command-endpoint]" pos1="right" x2="493" y2="245" color="pink" head-size="15" width="1" class="z-100" />
+  <v-drag pos="491,176,390,_">
+    <div class="box" data-id="middleware" v-click="5">
+```csharp {all|none}{at:6}
+class Middleware
+    : ICommandMiddleware<ExampleCommand, int>
+```
+      <hr/>
+```csharp {all|none}{at:6}
+Task<int> ExecuteAsync(
+    ExampleCommand command,
+    CommandDelegate<int> next,
+    CancellationToken ct);
+```
+<hr/>
+<div data-id="middleware-before">
+```csharp {all|none|all}{at:6}
+// Code to execute before command
+```
+</div>
+```csharp
+var result = await next();
+```
+```csharp {all|none|none|all}{at:6}
+// Code to execute after command
+```
+<div data-id="middleware-after">
+```csharp {all|none}{at:6}
+return result;
+```
+</div>
+    </div>
+  </v-drag>
+
+  <FancyArrow v-click="2" x1="362" y1="245" x2="493" y2="245" color="pink" head-size="15" width="1" class="z-100" seed="70" />
 </div>
 
 <style>
@@ -172,76 +225,15 @@ AddError("Error message");
 </style>
 
 <!--
-Commands are similarly straightforward at the most basic level, providing us with a request / response pipeline to a single handler.
+Commands are likewise straightforward to implement at the most basic level, providing us with a request / response pipeline to a single handler.
 
-[click]
+[click] We simply call `ExecuteAsync()` on our command [click], which will invoke the handler, and optionally return the result. [click]
 
-We simply call `ExecuteAsync()` on our command, which will invoke the handler and return the result.
+We can also call `AddError` [click] from a command handler to append to the error context, which will add the error to any others raised by other commands or the endpoint itself.
 
-[click]
+[click] Commands also give us the benefit of a middleware-like pipeline which function just about the same as pipeline behaviours in MediatR.
 
-We can also call `AddError` from a command handler to append to the error context, which will be aggregated along with any other errors raised by other commands or the endpoint itself.
--->
-
----
-
-<h1>FastEndpoints</h1>
-<h2>Commands</h2>
-
-<div class="content">
-  <v-drag pos="52,176,315,_">
-    <div class="box" data-id="middleware-endpoint">
-```csharp
-class Endpoint<TRequest>
-```
-      <hr/>
-```csharp
-var command = new ExampleCommand();
-var result = await command.ExecuteAsync(ct);
-```
-    </div>
-  </v-drag>
-
-  <v-drag pos="491,176,390,_">
-    <div class="box" data-id="middleware">
-```csharp
-class Middleware
-    : ICommandMiddleware<ExampleCommand, int>
-```
-      <hr/>
-```csharp
-Task<int> ExecuteAsync(
-    ExampleCommand command,
-    CommandDelegate<int> next,
-    CancellationToken ct);
-```
-<hr/>
-<div data-id="middleware-before">
-```csharp
-// Code to execute before command
-```
-</div>
-```csharp
-var result = await next();  // Invoke handler
-```
-```csharp
-// Code to execute after command
-```
-<div data-id="middleware-after">
-```csharp
-return result;
-```
-</div>
-    </div>
-  </v-drag>
-
-  <FancyArrow q1="[data-id=middleware-endpoint]" pos1="right" x2="493" y2="260" color="pink" head-size="15" width="1" class="z-100" />
-</div>
-
-<!--
-Commands also give us the benefit of a middleware-like pipeline which function just about the same as pipeline behaviours in MediatR.
-
-Using a middleware here simple requires us to invoke the `next()` delegate, with whatever code we wish to execute before and after the command handler.
+[click] Using a middleware here simply requires us to invoke the `next()` delegate to execute our command handler, with whatever code we want to run before [click] and after [click] the command is handled.
 -->
 
 ---

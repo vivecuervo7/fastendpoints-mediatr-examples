@@ -29,21 +29,17 @@
 </v-drag>
 
 <!--
-FastEndpoints, on the other hand, looks to flip this relationship around, and this is in my mind the biggest benefit that is on offer.
+FastEndpoints, on the other hand, looks to flip this relationship around by putting our application logic into the presentation layer.
 
-Sans an explicit application layer, moving that logic into the _presentation_ layer allows us to better maintain the boundaries around our domain layer.
+The temptation to slide just a bit more code into an already busy handler that's already doing all the things kind of goes away.
 
-The temptation to just slide a bit more code into an already busy handler that's already doing all the things kind of goes away.
+At the very least, it gives us a simple decision to make as to whether this is presentation or application logic, or if it's logic that should really belong in the domain layer.
 
-And sure, there's a risk that we might just start overloading our presentation code, but I would argue that the impact of that is far less potentially damaging to our codebase than an outright merging of our application and domain layers.
-
-At the very least, it gives us a simple decision as to whether this is presentation slash application logic, or domain logic.
-
-It becomes an either-or choice, and we're also not polluting our thoughts with when and where to put DTOs and how we're mapping to and from them.
+It becomes an either-or choice, and we're not busying up our thoughts with where to put DTOs and how we're mapping to and from them.
 
 Now of course, there is a very real concern that with a typical controller setup, or even Minimal API, that we have a bunch of routes grouped together in a single class or file.
 
-And sure, this is going to get super messy, right? All that code in one place?
+And if we're talking about moving all that application code into those routes, it's going to get messy, quickly.
 -->
 
 ---
@@ -105,27 +101,13 @@ And sure, this is going to get super messy, right? All that code in one place?
 </v-click>
 
 <!--
-FastEndpoints addresses this concern by pushing us into a single endpoint per class approach.
+FastEndpoints addresses this by pushing us into a single endpoint per class approach.
 
-Conceptually, our presentation layer becomes the code that describes our route.
+Conceptually, our presentation layer becomes the code that describes our route. [click] [click]
 
-[click]
+And our application layer is covered by the handler for that endpoint. [click] [click] [click]
 
-[click]
-
-And our application layer becomes the code that handles the execution of that endpoint.
-
-[click]
-
-[click]
-
-[click]
-
-And what I have found, is that by pushing a lot of the thought process right up to the presentation layer, it causes almost a sense of revulsion when you start seeing the sort of code that absolutely could go into the domain layer.
-
-It goes very much from "yeah, this looks a bit off" to "nah, this just isn't right at all".
-
-Which is a good thing!
+And what I've found is that by pushing a lot of the code right up to the presentation layer, it gives us the mental room to think a bit more critically about whether this is code that would make more sense being in the domain layer.
 -->
 
 ---
@@ -223,11 +205,7 @@ Which is a good thing!
 </style>
 
 <!-- 
-So, our typical controller gets broken up into a bunch of separate endpoints.
+So, our typical controller gets broken up into a bunch of separate endpoints. [click]
 
-[click]
-
-Request comes in, gets mapped to an endpoint, we execute the code in our handler, and spit out the result.
-
-[click]
+Request comes in, gets mapped to an endpoint, we execute the code in our handler [click], and spit out the result.
  -->

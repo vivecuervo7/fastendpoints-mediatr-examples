@@ -1,3 +1,7 @@
+---
+clicksStart: 0
+---
+
 <h2>Dependency Injection</h2>
 
 <div class="endpoint-structure mt-4">
@@ -9,7 +13,7 @@
           <span><FolderIcon />...</span>
             <ul>
               <li data-id="data"><span><CsharpIcon />Data.cs</span></li>
-              <li data-id="endpoint" v-mark.circle="{ at: 0, color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Endpoint.cs</span></li>
+              <li data-id="endpoint" v-mark.circle="{ at: 1, color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Endpoint.cs</span></li>
               <li data-id="mapper"><span><CsharpIcon />Mapper.cs</span></li>
               <li data-id="models"><span><CsharpIcon />Models.cs</span></li>
             </ul>
@@ -19,7 +23,7 @@
   </ul>
 
 ````md magic-move { maxHeight: '450px' }
-```csharp {11|1}
+```csharp {18|18|11|1}
 public class Endpoint(AppDbContext db) : Endpoint<Request>
 {
     public override void Configure()
@@ -75,15 +79,13 @@ public class Endpoint(AppDbContext db) : Endpoint<Request>
 </div>
 
 <!--
-We can see here that we've also introduced the use of a service &mdash; in this case, a `DbContext`.
-
-Accessing this is straightforward, simply requiring constructor injection.
-
 [click]
 
-In addition to any explicitly injected services, FastEndpoints automatically pre-resolves some services for us.
+[click] Now, we can see here that we've also introduced the use of a service &mdash; in this case, a `DbContext`.
 
-[click]
+Injecting this is straightforward [click], just needing to be injected via the constructor.
+
+In addition to any explicitly injected services [click], FastEndpoints automatically pre-resolves some services for us.
 
 Every endpoint, by default, has access to configuration, a logger and the web host environment.
 -->

@@ -24,7 +24,7 @@
 </v-drag>
 
 <v-drag pos="450,330,80,_">
-  <div class="onion-label view-transition-domain-label" data-id="domain" v-mark.blue.box="9">Domain</div>
+  <div class="onion-label view-transition-domain-label" data-id="domain" v-mark.blue.box="10">Domain</div>
 </v-drag>
 
 <v-drag pos="430,470,120,_">
@@ -32,7 +32,7 @@
 </v-drag>
 
 <v-drag pos="160,172,112,_">
-  <div v-click="1" class="floating-label" data-id="request-dto">Request DTO</div>
+  <div v-click="1" class="floating-label" data-id="request-dto" v-mark.blue.circle="[9,10]">Request DTO</div>
 </v-drag>
 <FancyArrow v-click="1" q1="[data-id=presentation]" q2="[data-id=request-dto]" pos1="top-left" pos2="right" color="orange" arc="-0.05" head-size="20" class="z-100" />
 
@@ -42,7 +42,7 @@
 <FancyArrow v-click="1" q1="[data-id=presentation]" q2="[data-id=controller]" pos1="top-left" pos2="right" color="orange" arc="-0.05" head-size="20" class="z-100" />
 
 <v-drag pos="629,177,120,_">
-  <div v-click="1" class="floating-label" data-id="response-dto">Response DTO</div>
+  <div v-click="1" class="floating-label" data-id="response-dto" v-mark.blue.circle="[9,10]">Response DTO</div>
 </v-drag>
 <FancyArrow v-click="1" q1="[data-id=presentation]" q2="[data-id=response-dto]" pos1="top-right" pos2="left" color="orange" arc="0.075" head-size="20" class="z-100" />
 
@@ -57,7 +57,7 @@
 <FancyArrow v-click="5" q1="[data-id=application]" q2="[data-id=mediator]" pos1="bottom-left" pos2="top" color="red" arc="-0.25" head-size="20" class="z-100" />
 
 <v-drag pos="803,307,81,_">
-  <div v-click="3" class="floating-label" data-id="handler" v-mark.blue.circle="[8,9]">Handler</div>
+  <div v-click="3" class="floating-label" data-id="handler" v-mark.blue.circle="[8,10]">Handler</div>
 </v-drag>
 <FancyArrow v-click="3" q1="[data-id=application]" q2="[data-id=handler]" pos1="right" pos2="top-left" color="orange" arc="0.1" head-size="20" class="z-100" />
 <FancyArrow v-click="4" q1="[data-id=handler]" q2="[data-id=domain]" pos1="left" pos2="right" color="purple" head-size="20" class="z-100" />
@@ -68,61 +68,56 @@
 <FancyArrow v-click="6" q1="[data-id=mediator]" q2="[data-id=handler]" pos1="bottom" pos2="bottom" color="red" arc="-0.375" width="0.5" head-size="20" class="z-100" />
 <FancyArrow v-click="7" q1="[data-id=handler]" q2="[data-id=response-dto]" pos1="top" pos2="right" color="teal" arc="-0.25" width="0.5" head-size="20" class="z-100" />
 
-<FancyArrow v-click="9" q1="[data-id=domain]" q2="[data-id=application]" pos1="top" pos2="bottom" color="blue" head-size="20" class="z-100" />
+<FancyArrow v-click="10" q1="[data-id=domain]" q2="[data-id=application]" pos1="top" pos2="bottom" color="blue" head-size="20" class="z-100" />
 
 <!-- 
-I hadn't really sat down and tried to figure out exactly what I _didn't_ like quite so much about the way I'd seen things done. For the most part, it worked, and it made sense.
+I hadn't really sat down and tried to figure out exactly what I _didn't_ like quite so much about the way I'd seen things done.
 
-I was still pretty green and so I didn't feel like I was in a position to question things, and it quickly became the comfortable, established way to do things &mdash; even if it sometimes felt a little cumbersome to hold.
+For the most part, it all worked, and it all made sense.
 
-Now, most people are going to be at least somewhat familiar with a diagram similar to this one. In a very typical application, we would aim to separate our code into presentation, application, domain and infrastructure layers.
+I was still pretty green when I was first introduced to these patterns, and honestly it was all I could do to keep up, let alone question things.
 
-Great!
+Very quickly, it became the comfortable, established way to do things &mdash; even if it sometimes felt a little cumbersome to hold.
 
-Still, there are a lot of moving parts.
+Now, most people are going to be at least somewhat familiar with a diagram similar to this one.
 
-[click]
+In a typical application, particularly one using DDD, we would aim to separate our code into presentation, application, domain and infrastructure layers.
 
-We have our presentation layer which is responsible for the request and response DTOs, and serialisation to and from those formats.
+Which is great, and we're all used to it.
 
-[click]
+Still, there are a lot of moving parts that can make things feel a bit overwhelming.
 
-Then we have queries and commands housed in our application layer, [click] along with our handlers.
+We have our presentation layer which is responsible for the request and response DTOs [click], serialization and returning errors.
 
-[click]
+Then we have queries and commands housed in our application layer [click], along with our handlers [click].
 
-Our handlers are then in turn responsible for reaching into the domain and infrastructure layers, and essentially coordinating the business logic for our application.
+Our handlers are then in turn responsible for reaching into the domain and infrastructure layers [click], and essentially coordinating the business logic for our application.
 
-[click]
-
-And then we throw MediatR into the mix, glueing together our commands and queries to their respective handlers...
-
-[click]
-
-which are then responsible for outputting a result that can be turned into a response DTO.
-
-[click]
+And then we throw MediatR into the mix [click], glueing together our commands and queries to their respective handlers [click], which are then responsible for outputting a result that can be turned into a response DTO [click].
 
 Assuming, of course, that we haven't just exposed those DTOs to the handlers themselves to make our lives easier.
 
-Ultimately, what I have observed however is that with this many layers at play, that a disproportionate amount of logic ends up in the handlers.
+Ultimately, what I've observed is that with this many moving parts, that a disproportionate amount of logic ends up in the handlers. [click]
 
-[click]
+While it's complete speculation, I consider this to be the result of having too many places for code to live.
 
-While it is largely speculation, I would attribute this tendency to be the result of having too many places for code to live.
+We make decisions hard for ourselves, and we make code cumbersome to write.
 
-We make decisions hard for ourselves, and make code cumbersome to write. And so, we cut corners, and we find the easy place to put code.
+And so, we cut corners, and we find the easiest place to put code.
 
-More often than not, I see this presented as the handlers in our application layer being made aware of, or even "owning" the request and response DTOs.
+More often than not, I see this presented as the handlers in our application layer being made aware of, or even "owning" the request and response DTOs. [click]
 
-And honestly, I don't mind this one all that much. It's pragmatic. That said, at best it's still increasing the surface area for disagreement.
+And honestly, I don't mind this one all that much. It's pragmatic.
 
-The more pressing concern I raise with this convergence of logic in the application layer however, is that quite often I see what should be considered _domain_ logic ending up in our handlers. [click]
+That said, at best it's still increasing the surface area for disagreement.
 
-Allowing the domain logic to bleed into our application layer undermines the value of encapsulating all of the business rules into a single area of the codebase.
+The thing I've noticed that doesn't sit well with me however, is that quite often I see what should be considered _domain_ logic ending up in our handlers. [click]
 
-It becomes hard to find those rules as they're scattered amongst handlers and entities, and working with those entities can quickly become inconsistent.
+Allowing the domain logic to bleed into our application layer undermines the value of encapsulating all that business logic into a single area of the codebase.
 
+It becomes hard to find those business rules as they're scattered amongst handlers and entities, and working with our system can quickly become inconsistent and error-prone.
+
+In most projects, I've seen this increasingly normalised combination of the domain and application layers to result in _explicitly_ moving the entire application layer into the domain.
  -->
 
 ---
@@ -158,9 +153,7 @@ It becomes hard to find those rules as they're scattered amongst handlers and en
 </v-drag>
 
 <!--
-In most projects, I have seen this increasingly normalised combination of the domain and application layers to result in _explicitly_ moving the entire application layer into the domain.
-
-Very few of the projects I've worked on have maintained the distinction between the two &mdash; largely, they have all been reduced to presentation, infrastructure and domain layers.
+Very few of the projects I've worked on have actually maintained the distinction between the two &mdash; largely, they have all been reduced to presentation, infrastructure and domain layers.
 -->
 
 ---

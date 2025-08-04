@@ -18,7 +18,7 @@
     </li>
   </ul>
 
-````md magic-move { at: 1, maxHeight: '450px' }
+````md magic-move { maxHeight: '450px' }
 ```csharp
 public class Endpoint(AppDbContext db) : Endpoint<Request>
 {
@@ -47,7 +47,7 @@ public class Endpoint(AppDbContext db) : Endpoint<Request>
     }
 }
 ```
-```csharp {11}
+```csharp {all|11}
 public class Endpoint(AppDbContext db) : Endpoint<Request>
 {
     public override void Configure()
@@ -101,13 +101,11 @@ public class Endpoint(AppDbContext db) : Endpoint<Request>
 </div>
 
 <!--
-CLICK IMMEDIATELY [click]
-
-Most examples also make use of a separate `Data` file to house any data access or manipulation.
+[click] Most examples also make use of a separate `Data` file to house any data access or manipulation.
 
 [click]
 
-While there's likely far less value in moving this logic around if we're making us of a repository pattern, it can be useful for moving any large queries out of our handler.
+While there's likely far less value in moving this logic around if we're making use of a repository pattern, or we only have fairly small queries, it can be useful for moving any large blocks of code out of our handler.
 
-Again, while it's not going to appeal to everyone, this does seem to be the common approach &mdash; and in practice it does give us some nice, expressive endpoints without needing us to move code too far away from the endpoint itself.
+Again, while it's not going to appeal to everyone, this does seem to be the common approach &mdash; and in practice it does give us a really nice, concise, and expressive endpoint without needing us to move code too far away from the endpoint itself.
 -->

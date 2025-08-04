@@ -9,13 +9,11 @@ layout: section
 <!-- 
 And, it's at this point that it's worth asking a very valid question, which is "can't we just do that ourselves?"
 
-And sure, it's not too difficult to simply register a bunch of different endpoints in different files.
+And yeah, it's not too difficult to simply register a bunch of different endpoints in different files.
 
-We've kind of solved that whole problem that I was talking about, _and_ avoided the need to bring in an additional dependency, right?
+We've kind of solved that whole problem that I was talking about, _and_ avoided the need to bring in an additional dependency.
 
-I can certainly accept that as an argument. I can't guarantee that FastEndpoints won't be the next FluentAssertions or MediatR.
-
-That particular argument aside, I believe that FastEndpoints still offers enough that it's absolutely worth using over barebones Minimal API, in this case.
+Concerns about whether FastEndpoints is going to be the next MediatR in going commercial aside, I think it still offers enough that it's absolutely worth using over barebones Minimal API, or using controllers.
  -->
 
 ---
@@ -35,19 +33,13 @@ That particular argument aside, I believe that FastEndpoints still offers enough
 <!-- 
 At a very high level, and starting from the least specific to FastEndpoints, but still a noteworthy benefit, there is a very strong encouragement of the use of vertical slices.
 
-Personally, this one ticks off a bit of an annoyance of mine with regards to the typical architecture I've encountered, where to implement a basic feature or even slightly modify some code requires opening a slew of files from across multiple projects.
+Personally, this one ticks off a bit of an annoyance of mine with regards to the typical architecture I've encountered, where to implement a basic feature or even slightly modify some code requires opening heaps of files from across multiple projects. [click]
 
-[click]
+FastEndpoints introduces opinionated ways of doing things.
 
-FastEndpoints introduces opinionated ways of doing things. While there are options on how exactly to hold parts of it, for the most part it feels like there is a "right" way to do things.
+While there are options on how exactly to hold parts of it, for the most part it feels like there's a "right" way to do things. [click]
 
-I've often disliked tools or frameworks that are opinionated in ways that I find disagreeable, but I've never been able to find an argument against having them in a codebase altogether.
-
-[click]
-
-Couple that with FastEndpoint's concise implementation, and the surface area for disagreements on written code is far lower &mdash; which is one of the things I often strive for in any codebase.
-
-[click]
+Couple that with FastEndpoint's concise implementations, and the surface area for disagreements on written code is far lower. [click]
 
 And the thing that we're going to dive into in a bit more detail, is the various features that FastEndpoints offers straight out of the box, that really make working with it quite a pleasurable experience.
  -->

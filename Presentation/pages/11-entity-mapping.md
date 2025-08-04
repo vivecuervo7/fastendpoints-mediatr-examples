@@ -22,7 +22,7 @@
 ```csharp
 ‎
 ```
-```csharp
+```csharp {all|3|13|all}
 public class Mapper : Mapper<Request, Response, User>
 {
     public override User ToEntity(Request request)
@@ -143,21 +143,42 @@ public class Endpoint : EndpointWithoutRequest<Response, Mapper>
     }
 }
 ```
+```csharp {3,8,19}
+public class Mapper : Mapper<Request, Response, User>
+{
+    public override User ToEntityAsync(Request request)
+    {
+        return Task.FromResult(new User());
+    }
+
+    public override Response FromEntityAsync(User user)
+    {
+        return Task.FromResult(new Response());
+    }
+}
+
+public class Endpoint : EndpointWithoutRequest<Response, Mapper>
+{
+    public override async Task HandleAsync(CancellationToken ct)
+    {
+        var user = new User();
+        await SendMappedAsync(user, ct: ct);
+    }
+}
+```
 ````
 </div>
 
 <!--
-The last of FastEndpoints' basic features are some nice wrappers around mapping between our entities and their request or response DTOs.
+The last thing we'll cover in terms of a basic endpoint is the wrappers that FastEndpoints gives us around mapping between our entities and their request or response DTOs.
 
-[click]
+[click] A `Mapper` file is often introduced, which holds some code that simply maps to [click] and from [click] our entity. [click]
 
-The `Mapper` file is often introduced, which holds some code that simply maps to and from our entity.
+In the case of our request to entity mapping [click], it gives us the ability to simply call `ToEntity` to convert our request into the target entity.
 
-In the case of our request to entity mapping [click], it gives us the ability to simply call `Map.ToEntity` to convert our request into the target entity.
-
-For response mapping [click], we simply do the inverse of this.
+For response mapping [click], we simply do the inverse of this, and call `FromEntity`.
 
 FastEndpoints also gives us a `SendMapped` method [click] that we can use to return the mapped response DTO.
 
-However I've found this can become a little annoying as there's both sync and async mapping methods, and depending on whether you call `SendMapped` [click] or `SendMappedAsync`, you need to have overridden the correct methods.
+I've found this can be a little annoying though, as there's both sync and async mapping methods, and depending on whether you call `SendMapped` [click] or `SendMappedAsync` [click], you need to have overridden the correct methods.
 -->

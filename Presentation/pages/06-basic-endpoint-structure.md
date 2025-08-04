@@ -46,15 +46,6 @@ public class Endpoint : EndpointWithoutRequest
     }
 }
 ```
-```csharp {5}
-public class Endpoint : EndpointWithoutRequest
-{
-    public override void Configure()
-    {
-        Post("/users/{id:int}", "/user/{id:int}");
-    }
-}
-```
 ```csharp {6}
 public class Endpoint : EndpointWithoutRequest
 {
@@ -254,107 +245,73 @@ public class Endpoint : Endpoint<Request, Response>
 <!--
 So, looking at our overall structure, we'll focus on the implementation of a very basic endpoint before we start diving into the other features.
 
-There is some minimal global registration for FastEndpoints that must be done first in our main `Program` file, but we'll skip over that as it's not anything too unexpected.
+There is some registration for FastEndpoints required in the `Program.cs` file, but we'll skip over that as it's not anything too unexpected.
 
-[click]
+Starting with the most basic endpoint possible [click], we need to create a class which inherits from `EndpointWithoutRequest`.
 
-At the most basic level, we simply need to create a class which inherits from `EndpointWithoutRequest`.
+This is the simplest of the base endpoint classes, used when we have neither a request nor response DTO.
 
-This is the most basic type of endpoint that FastEndpoints offers, which is used when we have neither a request nor response DTO.
+To configure the endpoint [click], we simply override the `Configure` method.
 
-[click]
+Here we can use one of FastEndpoints' helper methods to register our route.
 
-To configure the endpoint, we simply override the `Configure` method.
+The example here uses the `Get` method to register a standard endpoint using the HTTP GET method.
 
-Here we can access many of FastEndpoints' helper methods. The example shown here uses the `Get` method to register the route for a GET method.
+As might be expected [click], calling `Post` would register a POST route and so forth.
 
-[click]
+We can also call other helper methods here [click], such as `AllowAnonymous`.
 
-As might be expected, calling `Post` would register a POST route and so forth.
+A little quirk of FastEndpoints is that it requires authorization for all endpoints by default.
 
-[click]
+If that's not desired, we can configure that globally in our `Program.cs`, so we _can_ change this, but it's just something to be aware of.
 
-FastEndpoints also allows us to specify multiple routes for a single endpoint. In this case, a call to either the `user` or `users` route will be handled by this endpoint.
+[click] Helper methods are also available to describe the endpoint...
 
-[click]
+[click] Or even configure CORS on a per-endpoint basis.
 
-We can also call other helper methods here, such as `AllowAnonymous`.
+[click] We can also enhance Swagger documentation through the `Summary` method...
 
-FastEndpoints requires authorization for all endpoints by default, but this can be globally configured in our `Program.cs`, so we _can_ change this, but it's something to be aware of.
+[click] And if we want to avoid cluttering up our endpoint, this can be moved to a separate class that inherits from `Summary`, with the endpoint passed to it as a type parameter.
 
-[click]
+This will get automatically registered to the endpoint, so there's no need to go wiring things up manually.
 
-Helper methods are also available to describe the endpoint...
+Coming back to our basic endpoint [click], we still need a place to put our handler code, and we do this by overriding the `HandleAsync` method. [click]
 
-[click]
+Essentially, this is where we would put the code that would otherwise live in our application layer.
 
-Or even configure CORS for a specific endpoint.
+Of course, nothing is stopping us from simply passing this off to a MediatR pipeline, but this in my mind undermines the value of having this nice little file that contains all of our endpoint's logic.
 
-[click]
-
-We can also enhance Swagger documentation through the `Summary` method...
-
-[click]
-
-And if we want to avoid cluttering up our endpoint, this can be moved to a separate class that inherits from `Summary`, with the endpoint passed to it as a type parameter.
-
-This will be automatically registered to the endpoint, so there's no need to go wiring things up manually.
-
-[click]
-
-Coming back to our basic endpoint, we still need a place to put our handler code.
-
-[click]
-
-We do this by overriding the `HandleAsync` method.
-
-Essentially, given the proposed usage, this is where we would put the code that would otherwise live in our application layer.
-
-Of course, nothing is stopping us from simply passing this off to a mediator pipeline, but this in my mind undermines the value of having this nice little file that contains all of our endpoint's code.
-
-[click]
-
-Marking this as async allows us to return a response by calling one of many helper methods.
+[click] Marking this as async allows us to return a response by calling one of many helper methods.
 
 In this case, we're calling `SendOkAsync` which returns a response with a 200 status code.
 
-FastEndpoints offers quite a few convenience methods here. Without listing them all, we have options such as `SendNotFoundAsync`, or `SendForbiddenAsync` which do very much what the label says.
+FastEndpoints offers a few convenience methods here.
 
-Now, the first gotcha that I encountered with FastEndpoints arose here.
+Without listing them all, we have options such as `SendNotFoundAsync`, or `SendForbiddenAsync` which do very much what they say on the label.
 
-The usage of `await` makes it seem that we can execute code _after_ the request has been sent, but in practice I found that this wasn't quite the case.
+Now, the first gotcha that I encountered with FastEndpoints came up right here.
 
-To prevent that from misleading devs, an alternative is available by overriding a different method to `HandleAsync`.
+Using `await` here makes it seem like we can execute code _after_ the request has been sent, but in practice this just wasn't the case.
 
-[click]
+To prevent that from misleading devs, an alternative is available if we override a different method to `HandleAsync`.
 
-The `ExecuteAsync` method allows us to specify a strict return type for the method, which brings the implementation a little closer to what we're typically used to.
+[click] The `ExecuteAsync` method allows us to specify a strict return type for the method, which brings the implementation a little closer to what we're typically used to.
 
-[click]
-
-As with Minimal API, we can also use the `Results` union type to allow for multiple possible return values.
+[click] As with Minimal API, we can also use the `Results` union type to allow for multiple possible return values.
 
 Ultimately though, this comes down to a trade-off between using those expressive helper methods, and adding guardrails for ourselves.
 
-[click]
+We'll focus now on the first line here [click], where we can see we've passed a return type to `EndpointWithoutRequest`.
 
-We'll focus now on the first line here, where we can see we've passed in the return type.
+This is a good segue into the different base classes we can inherit from when we're creating a new endpoint.
 
-This is a good segue into the different base classes from which we can inherit when creating a new endpoint.
+We started by inheriting from `EndpointWithoutRequest` [click] with _no_ type parameter. As mentioned earlier, this is used when we have neither a request nor response DTO.
 
-[click]
+By passing in a type for our response [click], we're now describing an endpoint with no request DTO, but _with_ a response DTO.
 
-We started by inheriting from `EndpointWithoutRequest` with _no_ type parameter. As mentioned earlier, this is used when we have neither a request nor response DTO.
+[click] Inheriting from the `Endpoint` class expects that we provide a type for the request DTO, and optionally [click], we can pass in a type for the response DTO if we're returning one.
 
-[click]
+Once we've got a request object [click], we can pass it into the `HandleAsync` method, and start using it in our handler code.
 
-By passing in a type for our response, we're now describing an endpoint with no request DTO, but _with_ a response DTO.
-
-[click]
-
-Inheriting from the `Endpoint` class expects that we provide a type for the request DTO, and optionally [click], we can pass in a type for the response DTO if we're returning one.
-
-[click]
-
-We can then pass the request into the `HandleAsync` method, and access it in our handler code.
+Which brings us nicely to the topic of model binding!
 -->

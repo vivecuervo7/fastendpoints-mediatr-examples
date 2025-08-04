@@ -1,4 +1,6 @@
-<h2>Validation</h2>
+<h2 v-click.hide="9">Validation</h2>
+<h2 v-click="[9,12]">Dependency Injection</h2>
+<h2 v-click="12">Data</h2>
 
 <div class="endpoint-structure mt-4">
   <ul class="files">
@@ -9,9 +11,9 @@
           <span><FolderIcon />...</span>
             <ul>
               <li data-id="data"><span><CsharpIcon />Data.cs</span></li>
-              <li data-id="endpoint"><span><CsharpIcon />Endpoint.cs</span></li>
+              <li data-id="endpoint" v-mark.circle="{ at: [5,13], color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Endpoint.cs</span></li>
               <li data-id="mapper"><span><CsharpIcon />Mapper.cs</span></li>
-              <li data-id="models" v-mark.circle="{ at: 1, color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Models.cs</span></li>
+              <li data-id="models" v-mark.circle="{ at: [1,5], color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Models.cs</span></li>
             </ul>
         </li>
       </ul>
@@ -29,7 +31,7 @@ public class Request
     public string Email { get; set; } = string.Empty;
 }
 ```
-```csharp {7-14}
+```csharp {7-14|7|7-14}
 public class Request
 {
     public int Id { get; set; }
@@ -44,51 +46,6 @@ public class Validator : Validator<Request>
         RuleFor(x => x.Email).NotEmpty().EmailAddress();
     }
 }
-```
-````
-</div>
-
-<!--
-Closely related to model binding, we also get validation straight out of the box with FastEndpoints, using FluentValidation rules.
-
-[click]
-
-Typically this ends up in our `Models` file, although personally I don't find myself a fan of squeezing too many different classes into a single file, but we'll stick to what seems to be the most common pattern in the examples floating around the web.
-
-[click]
-
-Similar to where we had the option to move our endpoint summary outside of the endpoint file, we can just pass the endpoint as a type parameter to a class inheriting from `Validator` and we won't need to manually register this with our DI container.
-
-Validation failures will be returned automatically upon receiving a request that fails validation.
-
-Nice and succinct for the simpler cases, but we can build on this for more complex cases where we need to consider business logic.
--->
-
----
-
-<h2>Validation</h2>
-
-<div class="endpoint-structure mt-4">
-  <ul class="files">
-    <li class="view-transition-files">
-      <span><ProjectIcon />Api</span>
-      <ul>
-        <li>
-          <span><FolderIcon />...</span>
-            <ul>
-              <li data-id="data"><span><CsharpIcon />Data.cs</span></li>
-              <li data-id="endpoint" v-mark.circle="{ at: 1, color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Endpoint.cs</span></li>
-              <li data-id="mapper"><span><CsharpIcon />Mapper.cs</span></li>
-              <li data-id="models"><span><CsharpIcon />Models.cs</span></li>
-            </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-
-````md magic-move { at: 1, maxHeight: '450px' }
-```csharp
-‎
 ```
 ```csharp
 public class Endpoint : Endpoint<Request>
@@ -165,19 +122,149 @@ public class Endpoint(AppDbContext db) : Endpoint<Request>
     }
 }
 ```
+```csharp {11|1}
+public class Endpoint(AppDbContext db) : Endpoint<Request>
+{
+    public override void Configure()
+    {
+        Post("/users/{id:int}");
+        DontThrowIfValidationFails();
+    }
+
+    public override async Task HandleAsync(Request req, CancellationToken ct)
+    {
+        var emailAlreadyExists = await db.Users.AnyAsync(u => u.Email == req.Email, ct);
+
+        if (emailAlreadyExists)
+        {
+            AddError("Email is already in use");
+        }
+
+        ThrowIfAnyErrors();
+
+        await SendNoContentAsync(ct);
+    }
+}
+```
+```csharp {11-14}
+public class Endpoint(AppDbContext db) : Endpoint<Request>
+{
+    public override void Configure()
+    {
+        Post("/users/{id:int}");
+        DontThrowIfValidationFails();
+    }
+
+    public override async Task HandleAsync(Request req, CancellationToken ct)
+    {
+        Config.GetSection("");       // IConfiguration
+        Logger.LogInformation("");   // ILogger
+        Env.IsDevelopment();         // IWebHostEnvironment
+
+        var emailAlreadyExists = await db.Users.AnyAsync(u => u.Email == req.Email, ct);
+
+        if (emailAlreadyExists)
+        {
+            AddError("Email is already in use");
+        }
+
+        ThrowIfAnyErrors();
+
+        await SendNoContentAsync(ct);
+    }
+}
+```
+```csharp {11}
+public class Endpoint(AppDbContext db) : Endpoint<Request>
+{
+    public override void Configure()
+    {
+        Post("/users/{id:int}");
+        DontThrowIfValidationFails();
+    }
+
+    public override async Task HandleAsync(Request req, CancellationToken ct)
+    {
+        var emailAlreadyExists = await db.Users.AnyAsync(u => u.Email == req.Email, ct);
+
+        if (emailAlreadyExists)
+        {
+            AddError("Email is already in use");
+        }
+
+        ThrowIfAnyErrors();
+
+        await SendNoContentAsync(ct);
+    }
+}
+```
+```csharp {11}
+public class Endpoint(AppDbContext db) : Endpoint<Request>
+{
+    public override void Configure()
+    {
+        Post("/users/{id:int}");
+        DontThrowIfValidationFails();
+    }
+
+    public override async Task HandleAsync(Request req, CancellationToken ct)
+    {
+        var emailAlreadyExists = await Data.EmailAlreadyExists(db, req, ct);
+
+        if (emailAlreadyExists)
+        {
+            AddError("Email is already in use");
+        }
+
+        ThrowIfAnyErrors();
+
+        await SendNoContentAsync(ct);
+    }
+}
+```
 ````
+
+  <FancyArrow v-click="13" x1="550" y1="240" x2="175" y2="145" color="orange" arc="-0.15" head-size="15" width="1" class="z-100" />
 </div>
 
-<!--
-TODO: See if we can stop using rough notation for the file highlight, and then we can collapse this into the previous slide for a smoother transition
--->
+<style>
+    h2.slidev-vclick-hidden {
+        display: none;
+    }
+</style>
 
 <!--
-[click] Coming back to our `Endpoint` class, we can tell FastEndpoints to not automatically return a validation failed response by calling `DontThrowIfValidationFails` [click].
+Closely related to model binding, we also get validation straight out of the box with FastEndpoints, using FluentValidation rules. [click]
 
-Calling `AddError` adds an error to the aggregated list [click], so we can provide a response that contains _all_ of our errors to save on multiple repeat requests to discover new errors.
+Typically this ends up in our `Models` file [click], although personally I don't find myself a fan of squeezing too many different classes into a single file, but we'll stick to what seems to be the most common pattern in the examples floating around the web.
+
+Similar to where we had the option to move our endpoint summary outside of the endpoint file itself [click], we can just pass the endpoint as a type parameter to a class inheriting from `Validator` and we won't need to manually register this with our DI container. [click]
+
+Now, validation failures _will_ be returned automatically upon receiving a request that fails any validation rules specified here.
+
+Which is nice and succinct for the simple cases, but we can build on this for more complex cases where we need to consider business logic.
+
+Coming back to our `Endpoint` class [click], we can tell FastEndpoints to not automatically return a validation failed response by calling `DontThrowIfValidationFails` [click].
+
+Calling `AddError` adds an error to the aggregated list [click], so we can provide a response that contains _all_ of our errors to save on multiple repeat requests that only discover new errors.
 
 This alone isn't enough to actually return an error, so while FastEndpoints offers us more explicit ways to return such a failure, the easiest way to prevent further execution of our endpoint logic is to simply call `ThrowIfAnyErrors` [click].
 
-This will interrupt our handler execution and send a response with all of our error details, by default with an easily overriden 400 status code.
+This will interrupt our handler execution and send a response with all of our aggregated errors, by default with a 400 status code, but we can override that if we want to.
+
+[click] Now, we can see here that we've also introduced the use of a service &mdash; in this case, a `DbContext`.
+
+Injecting this is straightforward [click], just needing to be injected via the constructor.
+
+In addition to any explicitly injected services [click], FastEndpoints automatically resolves some services for us.
+
+Every endpoint, by default, has access to the configuration, a logger and the web host environment.
+
+[click] Most examples also make use of a separate `Data` file to house any data access or manipulation.
+
+[click]
+
+While there's likely far less value in moving this logic around if we're making use of a repository pattern, or we only have fairly small queries, it can be useful for moving any large blocks of code out of our handler.
+
+Again, while it's not going to appeal to everyone, this does seem to be the common approach &mdash; and in practice it does give us a really nice, concise, and expressive endpoint without needing us to move code too far away from the endpoint itself.
 -->
