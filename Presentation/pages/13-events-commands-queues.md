@@ -368,3 +368,117 @@ The only difference is that instead of invoking it directly with `ExecuteAsync` 
 
 [click] Now, as mentioned, these jobs are designed to be durable, and as this method indicates, we need to set up some way to store the jobs and their results.
 -->
+
+---
+
+<h1>FastEndpoints</h1>
+<h2>Job queues</h2>
+
+<v-drag pos="52,176,385,_">
+<div class="box">
+
+````md magic-move {at:1}
+```csharp {all|all|none|none}{at:1}
+class JobRecord : IJobStorageRecord
+```
+```csharp {all|none|none|none|none|none|none|none|all}
+class JobRecord : IJobStorageRecord, IJobResultStorage
+```
+````
+
+<hr/>
+
+````md magic-move {at:1}
+```csharp {all|none|all|none|none}{at:1}
+Guid TrackingID { get; set; }
+object Command { get; set; }
+```
+```csharp {3|none|none|none|none|none|none}
+Guid TrackingID { get; set; }
+object Command { get; set; }
+object? Result { get; set; }
+```
+````
+
+<hr/>
+
+````md magic-move {at:1}
+```csharp {all|none|none|all|none|none}{at:1}
+TCommand GetCommand<TCommand>();
+
+void SetCommand<TCommand>(TCommand command);
+```
+```csharp {5,7|none|none|none|none|none}
+TCommand GetCommand<TCommand>();
+
+void SetCommand<TCommand>(TCommand command);
+
+TResult? GetResult<TResult>();
+
+void SetResult<TResult>(TResult result);
+```
+````
+
+</div>
+</v-drag>
+
+<v-drag pos="480,176,405,_">
+<div class="box" v-click="7">
+
+````md magic-move {at:8}
+```csharp {all|all|none}{at:8}
+class JobStorageProvider
+    : IJobStorageProvider<JobRecord>
+```
+```csharp {all|none}
+class JobStorageProvider
+    : IJobStorageProvider<JobRecord>, IJobResultProvider
+```
+````
+
+<hr/>
+
+````md magic-move {at:8}
+```csharp {all|none|all|none}{at:8}
+Task StoreJobAsync(TStorageRecord r, CancellationToken ct);
+
+Task CancelJobAsync(Guid trackingId, CancellationToken ct);
+```
+```csharp {5-11}
+Task StoreJobAsync(TStorageRecord r, CancellationToken ct);
+
+Task CancelJobAsync(Guid trackingId, CancellationToken ct);
+
+Task StoreJobResultAsync<TResult>(Guid trackingId,
+    TResult result,
+    CancellationToken ct);
+
+Task<TResult?> GetJobResultAsync<TResult>(
+    Guid trackingId,
+    CancellationToken ct);
+```
+````
+</div>
+</v-drag>
+
+<!--
+Outside of calling `AddJobQueues` in our `Program.cs`, we also need to implement a job storage record.
+
+[click] This is a class that implements `IJobStorageRecord` [click], which among a few other properties is used to store the job's tracking ID and the command itself.
+
+[click] The `Get` and `SetCommand` methods here are used to customize serialization of the command.
+
+[click] If we need to store the _result_ of the job, we can also implement `IJobResultStorage`.
+
+Once we add this, we also need to provide a property for the result [click], and implement the `Get` and `SetResult` methods to handle serialization of the result. [click]
+
+With our job storage record ready to persist, we also need to implement a job storage provider. [click]
+
+We really have our choice of persistence mechanism here [click], as long as we implement the `IJobStorageProvider` interface.
+
+[click] Again, while these aren't _all_ the methods we need to implement, the ones we'll actively use are along the lines of explicitly storing or canceling jobs.
+
+And similar to the `JobRecord` [click], if we need to store the result we can also implement `IJobResultProvider` [click], and implement the methods.
+
+[click] So, fairly easy to get these background tasks up and running, just with that bit of overhead to add some form of persistence.
+-->
