@@ -1,5 +1,5 @@
 <h1>FastEndpoints</h1>
-<h2>Job queues</h2>
+<h2>Job Queues</h2>
 
 <div class="content">
   <v-drag pos="52,176,375,_">
@@ -106,7 +106,7 @@ The only difference is that instead of invoking it directly with `ExecuteAsync` 
 ---
 
 <h1>FastEndpoints</h1>
-<h2>Job queues</h2>
+<h2>Job Queues</h2>
 
 <v-drag pos="52,176,385,_">
 <div class="box">

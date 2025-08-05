@@ -106,6 +106,10 @@ src: ./pages/15-job-queues.md
 ---
 
 ---
+src: ./pages/16-remote-command-bus.md
+---
+
+---
 disabled: true
 ---
 
