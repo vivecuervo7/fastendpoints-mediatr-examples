@@ -110,6 +110,10 @@ src: ./pages/16-remote-command-bus.md
 ---
 
 ---
+src: ./pages/17-remote-event-queues.md
+---
+
+---
 disabled: true
 ---
 
