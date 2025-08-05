@@ -241,46 +241,130 @@ We can also call `AddError` [click] from a command handler to append to the erro
 <h1>FastEndpoints</h1>
 <h2>Job queues</h2>
 
+<ul class="content">
+  <li>Allows for background processing of commands</li>
+  <v-clicks>
+    <li>Configurable parallelism, maximum execution time and per-job delayed start and expiry</li>
+    <li>Per the functionality of commands, jobs can also return a result</li>
+    <li>Job execution progress can also be tracked</li>
+    <li>Designed to be durable, job queues require that jobs are persisted; including any values returned as part of the job execution</li>
+  </v-clicks>
+</ul>
+
+<!--
+Coming to some of the spicier offerings, FastEndpoints also gives a way to invoke these same commands as background jobs.
+
+[click] We have control over the degree of parallelism, maximum execution times, delayed starts and expiries.
+
+[click] Given that these jobs are essentially just commands under the hood, they can still return a result if required [click], and we can also track the progress of these jobs.
+
+[click] While it seems like we can just easily throw our existing commands into a job queue, these jobs _are_ designed to be durable, which means there's a bit more setup involved.
+-->
+
+
+---
+
+<h1>FastEndpoints</h1>
+<h2>Job queues</h2>
+
 <div class="content">
-  <v-drag pos="52,176,350,_">
+  <v-drag pos="52,176,375,_">
     <div class="box">
-```csharp
+```csharp {all|none}{at:1}
 class Endpoint<TRequest>
 ```
       <hr/>
-````md magic-move
-```csharp
+```csharp {all|1|2|2|none}{at:1}
 var command = new ExampleCommand();
-var result = await command.ExecuteAsync(ct);
+var trackingId = await command.QueueJobAsync(ct: ct);
 ```
-```csharp
-var command = new ExampleCommand();
-var result = await command.QueueJobAsync(ct: ct);
+<div v-click="4">
+  <hr/>
+```csharp {all|none}{at:5}
+var result = await JobTracker<ExampleCommand>
+    .GetJobResultAsync<int>(trackingId, ct);
 ```
-````
+</div>
+<div v-click="5">
+  <hr/>
+```csharp {all|none}{at:6}
+await JobTracker<ExampleCommand>
+    .CancelJobAsync(trackingId, ct);
+```
+</div>
     </div>
   </v-drag>
 
+  <v-drag pos="553,164,112,_">
+    <div v-click="3" class="floating-label text-pink-500" data-id="job-queue" v-mark.gray.box="{ at: 3, iterations: 1, animationDuration: 350 }">Job Queue</div>
+  </v-drag>
+  <FancyArrow v-click="3" x1="422" y1="200" x2="545" y2="180" color="gray" arc="0.15" head-size="15" width="1" class="z-100" seed="40" />
+
+  <v-drag pos="546,221,390,_">
+    <div class="box" data-id="command-handler" v-click="6">
+````md magic-move {at:7}
+```csharp
+class Handler : ICommandHandler<ExampleCommand, int>
+```
+```csharp {all|none|none|none|none}{at:6}
+class Handler(IJobTracker<ExampleCommand> tracker)
+    : ICommandHandler<ExampleCommand, int>
+```
+````
+      <hr/>
+```csharp {all|none}{at:7}
+Task<int> ExecuteAsync(
+    ExampleCommand command,
+    CancellationToken ct);
+```
+<div v-click="8">
+  <hr/>
+````md magic-move {at:9}
+```csharp
+var jobResult = new JobResult<int>(totalSteps: 100);
+```
+```csharp {2}
+var jobResult = new JobResult<int>(totalSteps: 100);
+jobResult.CurrentStep = 30;
+```
+```csharp {3|none}
+var jobResult = new JobResult<int>(totalSteps: 100);
+jobResult.CurrentStep = 30;
+jobResult.Result = 123;
+```
+````
+</div>
+<div v-click="11">
+  <hr/>
+```csharp
+await tracker
+    .StoreJobResultAsync(job.TrackingID, jobResult, ct);
+```
+</div>
+    </div>
+  </v-drag>
 </div>
 
+<style>
+  .slidev-vclick-hidden {
+    display: none;
+  }
+</style>
+
 <!--
-Leaning into commands more heavily and getting into the really interesting offerings.
+So, this still uses the exact same command from our previous example. [click]
 
-Job queues are a fantastic piece of functionality, giving us an easy way to spin up background jobs — useful for long-running tasks where we don’t want to block a user’s interaction with a web page, for example.
+The only difference is that instead of invoking it directly with `ExecuteAsync` [click], we're calling `QueueJobAsync` instead.
 
-The jobs themselves are use the same ICommand interface — unless we want to hook into progress tracking, in which case we must use a different interface provided by FastEndpoints.
+[click] Now, `QueueJobAsync` simply adds the job the to queue, and returns a tracking ID.
 
-While it is a little annoying to have this decision made for us, jobs are designed to be durable and as such require a persistence layer of sorts.
+[click] We can use that tracking ID to check the progress of the job [click], or cancel it if required.
 
-While a little boilerplate needs to be introduced to support this, it is largely copying and pasting a couple of files from the documentation, and we very quickly have a nice way to handle potentially long-running background operations asynchronously.
+[click] The queue will then be responsible for executing the command in the background, depending on how we've configured our parallelism etc.
 
-Outside of bringing in the boilerplate code, we simply call QueueJobAsync() on the command instead of ExecuteAsync() to queue the command for background execution.
+[click] If we do want to implement progress tracking, we need to inject an `IJobTracker` into our handler and have our command implement an `ITrackableJob` interface.
 
-This command in particular implements job tracking, so it uses the ITrackableJob interface, and the handler on the right sets the total steps before looping through and incrementing the steps over time.
+[click] We then create a new `JobResult`, where we can set the total number of steps, [click] and from there, we can update the current step as the job progresses [click], and finally, we can set the result of the job.
 
-Since the endpoint that starts the job returns a tracking ID, <CLICK> we can use that to cancel the job at any point.
-
-Assuming we don’t do that however, we can query the status of the job, allowing us to provide the caller with a progress update, or simply sending back the result <CLICK>.
-
-Very handy, with just a small amount of boilerplate code required.
+[click] Now, as mentioned, these jobs are designed to be durable, and as this method indicates, we need to set up some way to store the jobs and their results.
 -->
