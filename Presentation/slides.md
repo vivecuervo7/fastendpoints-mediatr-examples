@@ -94,7 +94,15 @@ src: ./pages/12-pre-post-processors.md
 ---
 
 ---
-src: ./pages/13-events-commands-queues.md
+src: ./pages/13-events.md
+---
+
+---
+src: ./pages/14-commands.md
+---
+
+---
+src: ./pages/15-job-queues.md
 ---
 
 ---
