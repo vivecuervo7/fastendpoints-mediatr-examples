@@ -118,6 +118,10 @@ src: ./pages/18-server-sent-events.md
 ---
 
 ---
+src: ./pages/19-integration-testing.md
+---
+
+---
 disabled: true
 ---
 
