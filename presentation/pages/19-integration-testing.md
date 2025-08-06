@@ -22,4 +22,6 @@ And with tests often being missed altogether, making it as easy as possible to w
 [click] This allows us to use one of many extension methods provided for the `HttpClient` that accept endpoints, and DTOs as arguments or type parameters, meaning we don't have to specify the route URL at all when writing the tests.
 
 [click] It uses any annotations on our request DTO to construct a `HttpRequestMessage` with the data in the right place &mdash; such as a property with the `FromHeader` attribute being set as a header in the request.
+
+Touching lightly on unit testing, the library also provides us with a factory to create instances of our endpoints if we want to test the handler functionality directly, passing in any mocked dependencies.
 -->
