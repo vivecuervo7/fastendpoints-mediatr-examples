@@ -17,7 +17,7 @@ While we certainly don't _need_ to use this library, it does cut down on the ted
 
 [click] The biggest benefit I've found with this personally, is a focus on "route-less testing".
 
-[click] This allows us to use one of many extension methods provided for the `HttpClient` that accept endpoints, and DTOs as arguments, meaning we don't have to specify the route URL when writing the test.
+[click] This allows us to use one of many extension methods provided for the `HttpClient` that accept endpoints, and DTOs as arguments or type parameters, meaning we don't have to specify the route URL when writing the test.
 
 [click] It uses any annotations on our request DTO to construct a `HttpResponseMessage` with the data in the right place &mdash; such as a property with the `FromHeader` attribute being set as a header in the request.
 -->

@@ -122,52 +122,24 @@ src: ./pages/19-integration-testing.md
 ---
 
 ---
-disabled: true
+src: ./pages/20-conveniences.md
 ---
 
-<h3>Endpoint structure</h3>
+---
+src: ./pages/21-summary.md
+---
 
-<span class="slide-reload-marker" style="display:none">reload-1751934151449</span>
-<ReloadCodeButton />
+---
+layout: cover
+---
 
-<div class="editor-runner">
-
-<<< ../Example_FastEndpoints/Example_FastEndpoints.Api/Features/Users/Temp/Endpoint.cs csharp {monaco-write}
-
-::div
-```js {monaco-run} {autorun:false}
-const url = 'http://localhost:5158/users/1';
-const response = await fetch(url);
-const isJson = response.headers.get("content-type")?.includes("application/json");
-const data = isJson ? await response.json() : await response.text();
-console.log(`Status: ${response.status}`);
-console.log(`Body: ${JSON.stringify(data, null, 2)}`);
-```
-::
+<img src="./images/FE-logo.svg" class="ml-83 mr-70 mt-8">
+<div class="flex justify-center font-extralight text-slate-500 mt-4">
+  Isaac&nbsp;Dedini
 </div>
 
+<!--
+Thanks!
 
----
-disabled: true
----
-
-<h3>Endpoint structure</h3>
-
-<span class="slide-reload-marker" style="display:none">reload-1751934151449</span>
-<ReloadCodeButton />
-
-<div class="editor-runner">
-
-<<< ../Example_FastEndpoints/Example_FastEndpoints.Api/Features/Users/Temp/Models.cs csharp {monaco-write}
-
-::div
-```js {monaco-run} {autorun:false}
-const url = 'http://localhost:5158/users/1';
-const response = await fetch(url);
-const isJson = response.headers.get("content-type")?.includes("json");
-const data = isJson ? await response.json() : await response.text();
-console.log(`Status: ${response.status}`);
-console.log(`Body: ${JSON.stringify(data, null, 2)}`);
-```
-::
-</div>
+Any questions?
+-->
