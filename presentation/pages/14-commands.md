@@ -93,7 +93,7 @@ Commands are likewise straightforward to implement at the most basic level, prov
 
 We can also call `AddError` [click] from a command handler to append to the error context, which will add the error to any others raised by other commands or the endpoint itself.
 
-[click] Commands also give us the benefit of a middleware-like pipeline which function just about the same as pipeline behaviours in MediatR.
+[click] Commands also give us the benefit of a middleware-like pipeline which functions just about the same as pipeline behaviours in MediatR.
 
 [click] Using a middleware here simply requires us to invoke the `next()` delegate to execute our command handler, with whatever code we want to run before [click] and after [click] the command is handled.
 -->

@@ -7,13 +7,15 @@ layout: section
 </div>
 
 <!-- 
-And, it's at this point that it's worth asking a very valid question, which is "can't we just do that ourselves?"
+And there's a very valid question that can be asked here, which is "can't we just do that ourselves?"
 
-And yeah, it's not too difficult to simply register a bunch of different endpoints in different files.
+And yep, we can!
 
-We've kind of solved that whole problem that I was talking about, _and_ avoided the need to bring in an additional dependency.
+It's not too difficult to simply register a bunch of different endpoints in different files.
 
-Concerns about whether FastEndpoints is going to be the next MediatR in going commercial aside, I think it still offers enough that it's absolutely worth using over barebones Minimal API, or using controllers.
+And then we've kind of solved that whole problem that I was talking about, _and_ avoided the need to bring in an additional dependency.
+
+FastEndpoints does have a few bells and whistles though, and I think it offers enough that it's absolutely worth considering using over barebones Minimal API, or using controllers.
  -->
 
 ---

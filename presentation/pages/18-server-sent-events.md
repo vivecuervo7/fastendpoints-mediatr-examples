@@ -60,15 +60,15 @@ async IAsyncEnumerable<object> GetDataStream(
 </style>
 
 <!--
-Alright, getting close to the end now, I promise!
+Getting close to the end now, I promise!
 
 Server-sent events are another one that FastEndpoints makes easy.
 
-So if we need any one-way, _live_, server-to-client communications, we can implement this pretty easily as well. [click]
+So if we need any _live_ server-to-client communications, we can implement this pretty easily as well. [click]
 
-We use the `SendEventStreamAsync` method [click] to send the event stream to the client.
+We use the `SendEventStreamAsync` method to send the event stream to the client [click], and we need to implement our `GetDataStream` method as well.
 
-We need to implement our `GetDataStream` method [click], which returns an `IAsyncEnumerable` of whatever thing it is we want to send back.
+[click] This is essentially a method that returns an `IAsyncEnumerable` of whatever thing it is we want to send back.
 
 On the front end [click], we just need to create our `EventSource` and start listening for the events...
 

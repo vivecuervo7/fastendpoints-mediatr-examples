@@ -76,8 +76,8 @@ public class Endpoint : Endpoint<Request>
     }
 }
 ```
-```csharp {13-16}
-public class Endpoint(AppDbContext db) : Endpoint<Request>
+```csharp {15}
+public class Endpoint : Endpoint<Request>
 {
     public override void Configure()
     {
@@ -99,7 +99,7 @@ public class Endpoint(AppDbContext db) : Endpoint<Request>
 }
 ```
 ```csharp {18}
-public class Endpoint(AppDbContext db) : Endpoint<Request>
+public class Endpoint : Endpoint<Request>
 {
     public override void Configure()
     {
@@ -122,7 +122,31 @@ public class Endpoint(AppDbContext db) : Endpoint<Request>
     }
 }
 ```
-```csharp {11|1}
+```csharp {11}
+public class Endpoint : Endpoint<Request>
+{
+    public override void Configure()
+    {
+        Post("/users/{id:int}");
+        DontThrowIfValidationFails();
+    }
+
+    public override async Task HandleAsync(Request req, CancellationToken ct)
+    {
+        var emailAlreadyExists = await db.Users.AnyAsync(u => u.Email == req.Email, ct);
+
+        if (emailAlreadyExists)
+        {
+            AddError("Email is already in use");
+        }
+
+        ThrowIfAnyErrors();
+
+        await SendNoContentAsync(ct);
+    }
+}
+```
+```csharp {1}
 public class Endpoint(AppDbContext db) : Endpoint<Request>
 {
     public override void Configure()
@@ -234,9 +258,11 @@ public class Endpoint(AppDbContext db) : Endpoint<Request>
 </style>
 
 <!--
-Closely related to model binding, we also get validation straight out of the box with FastEndpoints, using FluentValidation rules. [click]
+Closely related to model binding, we also get validation straight out of the box with FastEndpoints, using FluentValidation rules.
 
-Typically this ends up in our `Models` file [click], although personally I don't find myself a fan of squeezing too many different classes into a single file, but we'll stick to what seems to be the most common pattern in the examples floating around the web.
+Typically this ends up in our `Models` file. [click] [click]
+
+Personally I don't find myself a fan of squeezing too many different classes into a single file, but we'll stick to what seems to be the most common pattern in the examples floating around the web.
 
 Similar to where we had the option to move our endpoint summary outside of the endpoint file itself [click], we can just pass the endpoint as a type parameter to a class inheriting from `Validator` and we won't need to manually register this with our DI container. [click]
 
@@ -246,11 +272,15 @@ Which is nice and succinct for the simple cases, but we can build on this for mo
 
 Coming back to our `Endpoint` class [click], we can tell FastEndpoints to not automatically return a validation failed response by calling `DontThrowIfValidationFails` [click].
 
-Calling `AddError` adds an error to the aggregated list [click], so we can provide a response that contains _all_ of our errors to save on multiple repeat requests that only discover new errors.
+Calling `AddError` adds an error to the aggregated list. [click]
 
-This alone isn't enough to actually return an error, so while FastEndpoints offers us more explicit ways to return such a failure, the easiest way to prevent further execution of our endpoint logic is to simply call `ThrowIfAnyErrors` [click].
+This allows us to provide a response that contains _all_ of our errors to save on multiple repeat requests that only discover new errors.
 
-This will interrupt our handler execution and send a response with all of our aggregated errors, by default with a 400 status code, but we can override that if we want to.
+This alone isn't enough to actually return an error.
+
+While FastEndpoints offers us more explicit ways to return such a failure, the easiest way to prevent further execution of our endpoint logic is to simply call `ThrowIfAnyErrors` [click].
+
+This will interrupt our handler execution and send a response with all of our aggregated errors, by default with an overridable 400 status code.
 
 [click] Now, we can see here that we've also introduced the use of a service &mdash; in this case, a `DbContext`.
 
@@ -259,6 +289,8 @@ Injecting this is straightforward [click], just needing to be injected via the c
 In addition to any explicitly injected services [click], FastEndpoints automatically resolves some services for us.
 
 Every endpoint, by default, has access to the configuration, a logger and the web host environment.
+
+_[[pause]]_
 
 [click] Most examples also make use of a separate `Data` file to house any data access or manipulation.
 

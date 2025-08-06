@@ -11,15 +11,15 @@
 </ul>
 
 <!--
-So, anyone familiar with MediatR has probably used its pre and post processors, or pipeline behaviours, at some point.
+First up, anyone familiar with MediatR has probably used its pre and post processors, or pipeline behaviours, at some point.
 
 FastEndpoints has an equivalent offering here [click], which allows us to run code before and after the endpoint handler is executed.
 
-Where FastEndpoints' implementation differs from MediatR, is that these processors wrap the endpoint execution itself, and don't provide a middleware-like pattern the way a fully fledged pipeline behaviour would.
+Where FastEndpoints' implementation differs from MediatR, is that these processors wrap the entire endpoint execution itself, and don't provide a middleware-like pattern the way a fully fledged pipeline behaviour would.
 
-[click] We _do_ however have the ability to share state between all stages of the pipeline, although the implementation _is_ a little clunky to hold.
+[click] We _do_ however have the ability to share state between all stages of the pipeline, although the implementation _can_ feel a little clunky to hold.
 
-[click] This is largely due to us needing to lean on an additional state object to share any values between processors, and being limited to one state object per request.
+[click] This is largely due to us needing to lean on an additional state object to share any values between processors &mdash; which isn't much of a concern in itself, but we're also limited to only having one state object per request.
 -->
 
 ---
@@ -132,8 +132,9 @@ The clunkiness here [click] comes if we wanted to use a similar approach to, hyp
 
 We would have to add that user data as a property to our existing state object due to that limitation of only being allowed to register one state object overall per request.
 
-[click] This example here is for a specific endpoint, where each endpoint that wants either of these processors to run needs to add them in the `Configure` method.
+[click] This example here is for a specific endpoint, where each endpoint that wants either of these processors to run needs to add them in their respective `Configure` methods.
 
 We can however just as easily register global pre and post processors as well.
--->
 
+They do need to be carefully configured if we have multiple processors that need to be executed in a particular order, but often this just requires using an overloaded method that allows us to specify this. 
+-->

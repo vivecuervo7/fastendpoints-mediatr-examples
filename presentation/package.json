@@ -5,6 +5,7 @@
   "scripts": {
     "build": "slidev build",
     "dev": "slidev --open",
+    "preview": "vite preview",
     "export": "slidev export"
   },
   "dependencies": {

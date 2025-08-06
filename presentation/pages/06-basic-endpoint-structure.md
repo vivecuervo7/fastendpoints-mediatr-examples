@@ -195,6 +195,12 @@ public class Endpoint : EndpointWithoutRequest
     {
         Get("/users/{id:int}");
     }
+
+    public override async Task<Results<Ok, NotFound>> ExecuteAsync(CancellationToken ct)
+    {
+        var response = TypedResults.Ok();
+        return await Task.FromResult(response);
+    }
 }
 ```
 ```csharp {1}
@@ -203,6 +209,12 @@ public class Endpoint : EndpointWithoutRequest<Response>
     public override void Configure()
     {
         Get("/users/{id:int}");
+    }
+
+    public override async Task<Results<Ok, NotFound>> ExecuteAsync(CancellationToken ct)
+    {
+        var response = TypedResults.Ok();
+        return await Task.FromResult(response);
     }
 }
 ```
@@ -213,6 +225,12 @@ public class Endpoint : Endpoint<Request>
     {
         Get("/users/{id:int}");
     }
+
+    public override async Task<Results<Ok, NotFound>> ExecuteAsync(CancellationToken ct)
+    {
+        var response = TypedResults.Ok();
+        return await Task.FromResult(response);
+    }
 }
 ```
 ```csharp {1}
@@ -221,6 +239,12 @@ public class Endpoint : Endpoint<Request, Response>
     public override void Configure()
     {
         Get("/users/{id:int}");
+    }
+
+    public override async Task<Results<Ok, NotFound>> ExecuteAsync(CancellationToken ct)
+    {
+        var response = TypedResults.Ok();
+        return await Task.FromResult(response);
     }
 }
 ```
@@ -245,7 +269,7 @@ public class Endpoint : Endpoint<Request, Response>
 <!--
 So, looking at our overall structure, we'll focus on the implementation of a very basic endpoint before we start diving into the other features.
 
-There is some registration for FastEndpoints required in the `Program.cs` file, but we'll skip over that as it's not anything too unexpected.
+There is some registration for FastEndpoints required in our `Program.cs` file, but we'll skip over that as it's not anything too unexpected.
 
 Starting with the most basic endpoint possible [click], we need to create a class which inherits from `EndpointWithoutRequest`.
 

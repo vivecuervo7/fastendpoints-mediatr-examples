@@ -16,19 +16,17 @@ fonts:
 </div>
 
 <!--
-Hi. I'm Isaac.
+Hi. I'm Isaac, and I'm a software developer!
 
-And, I happen to be a software developer!
+I started working here actually, with Telstra Purple a little over five years ago.
 
-No, I started working here actually, with Telstra Purple a little over five years ago, which is about the extent of my career.
-
-In that time, I've been incredibly fortunate enough to have worked on quite a few projects now, across many different domains, and with more than a just a small handful of different technologies.
+And in that time, I've had the incredible fortune to have worked on quite a few projects now, across many different domains, and with more than a just a small handful of different technologies.
 
 I've also had a really fantastic support structure around me, and it's allowed me the freedom to really explore different ways of doing things.
 
 That freedom has led to me constantly being on the lookout for new ways of doing things, _especially_ when it comes to making the development experience better.
 
-After all, I set my sights on a career in software development after falling in love with writing code, and honestly I'm probably _still_ in a bit of a honeymoon phase with it, but one thing I'm really focused on is trying to preserve that feeling for as long as possible.
+I set my sights on a career in software development after falling in love with writing code, and honestly I'm probably _still_ in a bit of a honeymoon phase with it, but one thing I'm really focused on is trying to preserve that feeling for as long as possible.
 
 FastEndpoints happens to be one of the things that I stumbled across in recent times, and I wanted to share a bit of an overview of it, and also why I think it's worth actually using.
 -->
@@ -80,13 +78,13 @@ layout: section
 <!--
 So, we've got a nice, _expressive_ way to write our endpoints, and it cuts down on a fair bit of boilerplate.
 
-By keeping all of our code closely linked together, it allows us to start simple, declaring a single endpoint and easily extending functionality to those supporting classes as required.
+By keeping all of our code closely grouped together, it allows us to start simple, declaring a single endpoint and easily extending functionality to those supporting classes as required.
 
-That said, so far all we've really done so far is wrap a few helper methods around Minimal API and moved our application layer into the presentation layer.
+That said, so far all we've really done is wrap a few helper methods around Minimal API and moved our application layer into the presentation layer.
 
-Honestly if it stopped here I'd probably consider it not worth the risk of leaning so heavily on yet another library.
+And honestly, if it stopped here I'd probably consider it not worth the risk of leaning so heavily on yet another library.
 
-There's a few tricks left up FastEndpoints' sleeve that really make it an interesting choice though.
+There's still a few tricks left up FastEndpoints' sleeve though, that really make it an interesting choice.
 -->
 
 ---

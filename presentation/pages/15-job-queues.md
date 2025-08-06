@@ -1,6 +1,31 @@
 <h1>FastEndpoints</h1>
 <h2>Job Queues</h2>
 
+<ul class="content">
+  <li>Allows for background processing of commands</li>
+  <v-clicks>
+    <li>Configurable parallelism, maximum execution time and per-job delayed start and expiry</li>
+    <li>Per the functionality of commands, jobs can also return a result</li>
+    <li>Job execution progress can also be tracked</li>
+    <li>Designed to be durable, job queues require that jobs are persisted; including any values returned as part of the job execution</li>
+  </v-clicks>
+</ul>
+
+<!--
+FastEndpoints also gives a way to invoke these same commands as background jobs.
+
+[click] We have control over the degree of parallelism, maximum execution times, delayed starts and expiries.
+
+[click] Given that these jobs are essentially just commands under the hood, they can still return a result if required [click], and we can also track the progress of these jobs.
+
+[click] While it seems like we can just easily throw our existing commands into a job queue, these jobs _are_ designed to be durable, which means there's a bit more setup involved.
+-->
+
+---
+
+<h1>FastEndpoints</h1>
+<h2>Job Queues</h2>
+
 <div class="content">
   <v-drag pos="52,176,375,_">
     <div class="box">

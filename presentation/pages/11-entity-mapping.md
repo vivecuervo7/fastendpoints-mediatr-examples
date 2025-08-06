@@ -22,7 +22,7 @@
 ```csharp
 ‎
 ```
-```csharp {all|3|13|all}
+```csharp {all|3-11|13-21|all}
 public class Mapper : Mapper<Request, Response, User>
 {
     public override User ToEntity(Request request)
@@ -46,7 +46,21 @@ public class Mapper : Mapper<Request, Response, User>
     }
 }
 ```
-```csharp {18}
+```csharp {all}
+public class Mapper : Mapper<Request, Response, User>
+{
+    public override User ToEntity(Request request)
+    {
+        return new User();
+    }
+
+    public override Response FromEntity(User user)
+    {
+        return new Response();
+    }
+}
+```
+```csharp {3,18}
 public class Mapper : Mapper<Request, Response, User>
 {
     public override User ToEntity(Request request)
@@ -73,7 +87,7 @@ public class Endpoint(AppDbContext db) : EndpointWithMapper<Request, Mapper>
     }
 }
 ```
-```csharp {19}
+```csharp {8,19}
 public class Mapper : Mapper<Request, Response, User>
 {
     public override User ToEntity(Request request)
@@ -148,12 +162,12 @@ public class Mapper : Mapper<Request, Response, User>
 {
     public override User ToEntityAsync(Request request)
     {
-        return Task.FromResult(new User());
+        return new User();
     }
 
     public override Response FromEntityAsync(User user)
     {
-        return Task.FromResult(new Response());
+        return new Response();
     }
 }
 
@@ -170,9 +184,11 @@ public class Endpoint : EndpointWithoutRequest<Response, Mapper>
 </div>
 
 <!--
-The last thing we'll cover in terms of a basic endpoint is the wrappers that FastEndpoints gives us around mapping between our entities and their request or response DTOs.
+The last thing we'll cover in terms of a basic endpoint are the wrappers that FastEndpoints gives us around mapping between our entities and their request or response DTOs.
 
 [click] A `Mapper` file is often introduced, which holds some code that simply maps to [click] and from [click] our entity. [click]
+
+I'll shrink those down to give us some extra room to work with. [click]
 
 In the case of our request to entity mapping [click], it gives us the ability to simply call `ToEntity` to convert our request into the target entity.
 

@@ -29,11 +29,13 @@
 </v-drag>
 
 <!--
-FastEndpoints, on the other hand, looks to flip this relationship around by putting our application logic into the presentation layer.
+FastEndpoints, on the other hand, looks to flip this relationship around by moving our application logic into the presentation layer.
 
-The temptation to slide just a bit more code into an already busy handler that's already doing all the things kind of goes away.
+The temptation to slide just a bit more code into an already busy handler, that's already doing all the things anyway, kind of goes away.
 
-At the very least, it gives us a simple decision to make as to whether this is presentation or application logic, or if it's logic that should really belong in the domain layer.
+At the very least, it gives us a simple decision to make.
+
+Is this domain logic, or isn't it?
 
 It becomes an either-or choice, and we're not busying up our thoughts with where to put DTOs and how we're mapping to and from them.
 

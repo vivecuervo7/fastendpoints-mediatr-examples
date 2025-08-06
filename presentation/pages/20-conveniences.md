@@ -6,7 +6,7 @@
     <li>Route-based versioning of endpoints</li>
     <li>Response and output caching</li>
     <li>Rate limiting</li>
-    <li>Scaffolding via dotnet templates, snippets (IDE extension), and an OpenAPI generator</li>
+    <li>Scaffolding via dotnet templates, snippets, and an OpenAPI generator</li>
   </v-clicks>
 </ul>
 
@@ -17,5 +17,5 @@ These include things like easy route-based versioning of endpoints [click], cach
 
 There's also an OpenAPI generator that I _haven't_ tried using, but that's also an interesting option to say the least...
 
-Although it might give you an idea of how FastEndpoints might look in an existing project without having to do a lot of the legwork.
+Although, it might give you an idea of how FastEndpoints might look in an existing project without having to do a lot of the legwork.
 -->

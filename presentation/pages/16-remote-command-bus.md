@@ -12,11 +12,11 @@
 <!--
 Sitting on top of gRPC for .NET, we can also easily allow for separate servers to handle our commands.
 
-Now, I've never really had to use this gRPC at all, mostly just knowing that it was a thing out there.
+Now, I've never really had to use gRPC at all, mostly just knowing that it was a thing out there.
 
 [click] However it's made pretty easy easy for us, with FastEndpoints wrapping the implementation under, once again, our commands!
 
-[click] There is a little more setup required, with each remote procedure needing to be registered individually.
+[click] There is a little more setup required however, with each remote procedure needing to be registered individually.
 -->
 
 ---
@@ -96,7 +96,7 @@ app.MapHandlers(h =>
 <FancyArrow v-click="3" q1="[data-id=server-program]" q2="[data-id=server-handler]" pos1="top" pos2="bottom" color="pink" arc="-0.1" head-size="15" class="z-100" />
 
 <!--
-Alright, I don't want to go into too much depth here, as we're starting to get into the very problem-specific areas that these features address, but to cover this at a high level at least, we start with once again, our command.
+Not wanting to go into too much detail here, as we're starting to get into the very problem-specific areas that these features address, but to cover this at a high level at least, we start with once again, our command.
 
 [click] And, once again all we need to do is change our method call, this time to `RemoteExecuteAsync`.
 

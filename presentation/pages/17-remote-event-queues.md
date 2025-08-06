@@ -10,13 +10,13 @@
 </ul>
 
 <!--
-We can handle events on a separate server as well, this time using the existing `IEvent` and `IEventHandler` interfaces.
+We can also handle events on a separate server as well, this time using the same `IEvent` and `IEventHandler` interfaces that we use for local events.
 
-[click] Only the server can broadcast events, but it can also be configured to act as an event broker, relaying events to all subscribers, or in a round-robin format for distributed workloads.
+[click] By default, only the server can broadcast events, but can be configured to act as an event broker, relaying events to all subscribers, or in a round-robin format for distributed workloads.
 
 [click] Events are handled in-memory by default, but we can apply a pattern similar to what we saw for the durable background jobs.
 
-Although at this point it's probably worth considering using a dedicated message broker.
+Although at this point, it's probably worth considering using a dedicated message broker.
 -->
 
 ---
@@ -164,7 +164,7 @@ That will notify any subscribers of that event [click], which are registered in 
 
 [click] Once that notification has been raised, then any handlers registered for that event are invoked.
 
-Pretty straightforward.
+_[[pause]]_
 
 Registering the server as an event broker is also quite easy to set up.
 

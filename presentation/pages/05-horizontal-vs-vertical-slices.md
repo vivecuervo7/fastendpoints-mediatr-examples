@@ -124,17 +124,21 @@ On the left here we've got a pretty basic view of the sort of architecture that 
 
 All of these files would typically be required to implement a single, basic feature &mdash; in this case, a simple request to get a user from our database.
 
-We've got our Api project and our DTOs, controllers all grouped together.
+We've got our API project and our DTOs, controllers all grouped together.
 
-Our application layer has our query and handler, and then we've got our user entity and `DbContext`.
+And our application layer has our queries and handlers all mixed in with one another.
 
-Naturally, as a project grows, it becomes quite hard to navigate and find specific handlers or entities when they're all thrown in together like this.
+Of course, there's the user entity and `DbContext`, but these remain the same across the implementations so we won't bother with those.
 
-As our business logic increases in complexity, we risk ending up with handlers calling other handlers with no sense of visible hierarchy, and it can quickly turn into a spiderweb that's just difficult to work with. [click]
+Naturally, as a project grows, it becomes quite hard to navigate and find specific handlers, endpoints and DTOs when they're all thrown in together like this.
+
+As our business logic increases in complexity, we risk ending up with handlers calling other handlers with no sense of visible hierarchy, and it can quickly turn into a tangled mess that's difficult to work with. [click]
 
 The vertical slice architecture encouraged by FastEndpoints comprises of a single endpoint, or feature, nested under appropriately-named folders.
 
-Now, I fully understand that this may not be everyone's cup of tea, and we can always name our classes however we please, but the majority of the examples &mdash; not just in this presentation, but out in the wild &mdash; will follow this naming pattern or similar.
+Typically, these follow an established naming convention.
+
+Now, I fully understand that this may not be everyone's cup of tea, and we can always name our classes however we please, but the majority of the examples &mdash; not just in this presentation, but out in the wild as well &mdash; will follow this naming pattern or similar.
 
 But anyway, thanks to namespaces, if we do adopt the convention we end up with a series of files that very explicitly reflect what they do, consistently, across every endpoint.
  -->

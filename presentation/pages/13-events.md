@@ -17,9 +17,9 @@ This allows for what is a very simple starting point to organically grow into a 
 
 FastEndpoint’s commands and events reflect the familiar MediatR request / response pattern, as well as their notifications pattern.
 
-[click] Events are essentially a one-to-many fire-and-forget, while commands [click] have a one-to-one relationship with handlers, and may return a result.
+[click] Events are essentially a 1:many fire-and-forget operation, while commands [click] have a 1:1 relationship with handlers, and may return a result.
 
-[click] We also have the ability to queue up commands to be run in the background &mdash; useful for long-running tasks where we don't want to block a user's interaction with a web page.
+[click] We also have the ability to queue up commands to be run in the background &mdash; useful for those long-running tasks where we don't want to block a user's interaction with a web page.
 -->
 
 ---

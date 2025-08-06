@@ -71,13 +71,15 @@
 <FancyArrow v-click="10" q1="[data-id=domain]" q2="[data-id=application]" pos1="top" pos2="bottom" color="blue" head-size="20" class="z-100" />
 
 <!-- 
-I hadn't really sat down and tried to figure out exactly what I _didn't_ like quite so much about the way I'd seen things done.
+Now, I hadn't really sat down and tried to figure out exactly what I _didn't_ like so much about the way I'd seen things done.
 
 For the most part, it all worked, and it all made sense.
 
 I was still pretty green when I was first introduced to these patterns, and honestly it was all I could do to keep up, let alone question things.
 
-Very quickly, it became the comfortable, established way to do things &mdash; even if it sometimes felt a little cumbersome to hold.
+And very quickly, it became the comfortable, established way to do things &mdash; even if it sometimes felt a little cumbersome to hold.
+
+_[[pause]]_
 
 Now, most people are going to be at least somewhat familiar with a diagram similar to this one.
 
@@ -87,7 +89,7 @@ Which is great, and we're all used to it.
 
 Still, there are a lot of moving parts that can make things feel a bit overwhelming.
 
-We have our presentation layer which is responsible for the request and response DTOs [click], serialization and returning errors.
+To quickly run through those moving parts, and to put a lot of busy arrows on the screen to make it look as terrible as possible, we have our presentation layer which is responsible for the request and response DTOs [click], serialization and returning errors.
 
 Then we have queries and commands housed in our application layer [click], along with our handlers [click].
 
@@ -105,9 +107,13 @@ We make decisions hard for ourselves, and we make code cumbersome to write.
 
 And so, we cut corners, and we find the easiest place to put code.
 
-More often than not, I see this presented as the handlers in our application layer being made aware of, or even "owning" the request and response DTOs. [click]
+More often than not, I see this presented as the handlers in our application layer becoming the God of all our logic.
 
-And honestly, I don't mind this one all that much. It's pragmatic.
+Almost invariably, I've seen them being made aware of, or even "owning" the request and response DTOs. [click]
+
+And honestly, I don't mind this one all that much.
+
+It's pragmatic.
 
 That said, at best it's still increasing the surface area for disagreement.
 
@@ -115,7 +121,9 @@ The thing I've noticed that doesn't sit well with me however, is that quite ofte
 
 Allowing the domain logic to bleed into our application layer undermines the value of encapsulating all that business logic into a single area of the codebase.
 
-It becomes hard to find those business rules as they're scattered amongst handlers and entities, and working with our system can quickly become inconsistent and error-prone.
+It becomes hard to find those business rules as they're scattered amongst handlers and entities.
+
+Working with our system can quickly become inconsistent and error-prone.
 
 In most projects, I've seen this increasingly normalised combination of the domain and application layers to result in _explicitly_ moving the entire application layer into the domain.
  -->
@@ -189,9 +197,13 @@ Very few of the projects I've worked on have actually maintained the distinction
 </v-drag>
 
 <!--
-Typically, this has resulted in very thin controllers, thin wrappers around a database or services, and then a very busy "domain" project which does pretty much everything.
+Typically, this has resulted in very thin controllers.
 
-_Especially_ when we combine this with the approach of allowing our application layer to be aware of, and map to and from our presentation layer's DTOs &mdash; all of a sudden, we have those DTOs present in our _domain_ layer.
+Thin wrappers around a database or services.
 
-Even when things are kept relatively clean, we're relying on _individual developers_ to maintain boundaries instead of putting the appropriate guardrails in place.
+And a very busy "domain" project which does pretty much everything.
+
+_Especially_ when we combine this with the approach of allowing our application layer to be aware of, and to map to and from our presentation layer's DTOs &mdash; all of a sudden, we even have elements of our _presentation_ layer creeping into our _domain_ layer.
+
+Even when things are kept relatively clean, we're still relying on _individual developers_ to maintain boundaries instead of putting the appropriate guardrails in place.
 -->
