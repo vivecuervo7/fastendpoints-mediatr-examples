@@ -6,7 +6,7 @@
   <v-clicks>
     <li>Comes with a set of extension methods for the <strong>HttpClient</strong>, allowing us to easily send our requests</li>
     <li>Uses endpoints, request and response DTOs directly &mdash; no more specifying route URLs when testing endpoints</li>
-    <li>If we've annotated our request DTO's properties with attributes such as <strong>[FromHeader]</strong>, the testing library will construct a <strong>HttpResponseMessage</strong> with the correct headers etc.</li>
+    <li>If we've annotated our request DTO's properties with attributes such as <strong>[FromHeader]</strong>, the testing library will construct a <strong>HttpRequestMessage</strong> with the correct headers etc.</li>
   </v-clicks>
 </ul>
 
@@ -21,5 +21,5 @@ And with tests often being missed altogether, making it as easy as possible to w
 
 [click] This allows us to use one of many extension methods provided for the `HttpClient` that accept endpoints, and DTOs as arguments or type parameters, meaning we don't have to specify the route URL at all when writing the tests.
 
-[click] It uses any annotations on our request DTO to construct a `HttpResponseMessage` with the data in the right place &mdash; such as a property with the `FromHeader` attribute being set as a header in the request.
+[click] It uses any annotations on our request DTO to construct a `HttpRequestMessage` with the data in the right place &mdash; such as a property with the `FromHeader` attribute being set as a header in the request.
 -->

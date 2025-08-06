@@ -43,7 +43,7 @@ layout: cover
 ---
 
 <div class="grid grid-cols-[1fr_auto_1fr] items-center w-[55%] space-x-6 mx-auto">
-<img src="../images/FE-logo.svg" class="">
+<img src="../images/FE-logo.svg" class="view-transition-fe-logo">
 <p class="text-3xl">❤️</p>
 <p class="text-2xl font-serif">Web&nbsp;APIs</p>
 </div>

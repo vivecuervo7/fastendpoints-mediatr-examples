@@ -131,7 +131,7 @@ src: ./pages/21-summary.md
 layout: cover
 ---
 
-<img src="./images/FE-logo.svg" class="ml-83 mr-70 mt-8">
+<img src="./images/FE-logo.svg" class="ml-83 mr-70 mt-8 view-transition-fe-logo">
 <div class="flex justify-center font-extralight text-slate-500 mt-4">
   Isaac&nbsp;Dedini
 </div>
