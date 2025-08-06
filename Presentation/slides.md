@@ -114,6 +114,10 @@ src: ./pages/17-remote-event-queues.md
 ---
 
 ---
+src: ./pages/18-server-sent-events.md
+---
+
+---
 disabled: true
 ---
 

@@ -6,7 +6,7 @@ export default defineShikiSetup(() => {
       dark: "dark-plus",
       light: "aurora-x",
     },
-    langs: ["csharp"],
+    langs: ["csharp", "html", "json"],
     transformers: [],
   };
 });
