@@ -137,15 +137,13 @@ app.MapRemote(
 </div>
 </v-drag>
 
-<FancyArrow v-click="[3,5]" q1="[data-id=server-program]" q2="[data-id=client-program]" pos1="bottom" pos2="left" color="pink" arc="-0.15" head-size="15" class="z-100" />
+<FancyArrow v-click="[3,5]" x1="250" y1="378" x2="533" y2="440" pos2="left" color="pink" arc="-0.15" head-size="15" class="z-100" />
 
-<FancyArrow v-click="[4,5]" q1="[data-id=client-program]" q2="[data-id=client-handler]" pos1="top" pos2="bottom" color="pink" arc="-0.1" head-size="15" class="z-100" />
+<FancyArrow v-click="[4,5]" x1="730" y1="363" x2="730" y2="274" pos2="bottom" color="pink" arc="-0.1" head-size="15" class="z-100" />
 
-<FancyArrow q1="[data-id=server-program]" q2="[data-id=server-handler]" pos1="top" pos2="bottom" color="pink" arc="-0.1" head-size="15" class="z-100" />
+<FancyArrow v-click="8" x1="250" y1="363" x2="255" y2="322" color="pink" arc="0.1" head-size="15" class="z-100" />
 
-<FancyArrow v-click="8" q1="[data-id=client-publish]" q2="[data-id=server-program]" pos1="top" pos2="bottom" color="pink" arc="0.1" head-size="15" class="z-100" />
-
-<FancyArrow v-click="9" x1="463" y1="220" q2="[data-id=client-handler]" pos2="left" color="pink" arc="0.1" head-size="15" class="z-100" />
+<FancyArrow v-click="9" x1="463" y1="220" x2="533" y2="220" color="pink" arc="0.1" head-size="15" class="z-100" />
 
 <style>
   .slidev-vclick-hidden {
@@ -172,7 +170,7 @@ Coming back to where we registered our event hub [click], we simply need it to t
 
 This essentially means that now both the server and connected clients can issue events.
 
-[click] And to achieve that, first we need to tell our client's `Program.cs` to register the event as a remote pocedure, [click] and then we can call `RemotePublishAsync` on the event somewhere in our client.
+[click] And to achieve that, first we need to tell our client's `Program.cs` to register the event as a remote procedure, [click] and then we can call `RemotePublishAsync` on the event somewhere in our client.
 
 [click] This will hit the event hub [click], which then sends it out to all of the subscribed clients.
 -->
