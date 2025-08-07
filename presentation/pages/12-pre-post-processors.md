@@ -124,7 +124,11 @@ We'll see an example here however that shows how that state can be accessed by v
 
 [click] Flow progresses to the endpoint, which can access the state object and, for example, attach specific timings to it for individual tasks.
 
-[click] This example uses a response interceptor, which is another feature of FastEndpoints &mdash; and required in this case &mdash; as post-processors are run _after_ the response has been sent, so if we want to add headers to, or modify the response, it needs to be done here.
+[click] This example uses a response interceptor, which is another feature of FastEndpoints.
+
+It is required in this case &mdash; as post-processors are run _after_ the response has been sent.
+
+If we want to add headers to, or modify the response, it needs to be done here.
 
 [click] And lastly, our post-processor picks up the same state object and simply logs the total execution time.
 

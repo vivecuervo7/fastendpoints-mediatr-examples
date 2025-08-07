@@ -70,17 +70,7 @@
 
 <FancyArrow v-click="10" q1="[data-id=domain]" q2="[data-id=application]" pos1="top" pos2="bottom" color="blue" head-size="20" class="z-100" />
 
-<!-- 
-Now, I hadn't really sat down and tried to figure out exactly what I _didn't_ like so much about the way I'd seen things done.
-
-For the most part, it all worked, and it all made sense.
-
-I was still pretty green when I was first introduced to these patterns, and honestly it was all I could do to keep up, let alone question things.
-
-And very quickly, it became the comfortable, established way to do things &mdash; even if it sometimes felt a little cumbersome to hold.
-
-_[[pause]]_
-
+<!--
 Now, most people are going to be at least somewhat familiar with a diagram similar to this one.
 
 In a typical application, particularly one using DDD, we would aim to separate our code into presentation, application, domain and infrastructure layers.
@@ -89,7 +79,9 @@ Which is great, and we're all used to it.
 
 Still, there are a lot of moving parts that can make things feel a bit overwhelming.
 
-To quickly run through those moving parts, and to put a lot of busy arrows on the screen to make it look as terrible as possible, we have our presentation layer which is responsible for the request and response DTOs [click], serialization and returning errors.
+I'll quickly run through those moving parts, and put a lot of busy arrows on the screen to make it look as terrible as possible.
+
+We have our presentation layer which is responsible for the request and response DTOs [click], serialization and returning errors.
 
 Then we have queries and commands housed in our application layer [click], along with our handlers [click].
 
@@ -101,7 +93,7 @@ Assuming, of course, that we haven't just exposed those DTOs to the handlers the
 
 Ultimately, what I've observed is that with this many moving parts, that a disproportionate amount of logic ends up in the handlers. [click]
 
-While it's complete speculation, I consider this to be the result of having too many places for code to live.
+While there's a fair amount of speculation at play, I consider this to be the result of having too many places for code to live.
 
 We make decisions hard for ourselves, and we make code cumbersome to write.
 
@@ -203,7 +195,9 @@ Thin wrappers around a database or services.
 
 And a very busy "domain" project which does pretty much everything.
 
-_Especially_ when we combine this with the approach of allowing our application layer to be aware of, and to map to and from our presentation layer's DTOs &mdash; all of a sudden, we even have elements of our _presentation_ layer creeping into our _domain_ layer.
+_Especially_ when we combine this with the approach of allowing our application layer to be aware of, and to map to and from our presentation layer's DTOs.
+
+All of a sudden, we even have elements of our _presentation_ layer creeping into our _domain_ layer.
 
 Even when things are kept relatively clean, we're still relying on _individual developers_ to maintain boundaries instead of putting the appropriate guardrails in place.
 -->

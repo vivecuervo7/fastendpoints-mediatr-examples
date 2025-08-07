@@ -19,9 +19,15 @@ And with tests often being missed altogether, making it as easy as possible to w
 
 [click] The biggest benefit I've found with this personally, is a focus on "route-less testing".
 
-[click] This allows us to use one of many extension methods provided for the `HttpClient` that accept endpoints, and DTOs as arguments or type parameters, meaning we don't have to specify the route URL at all when writing the tests.
+[click] This allows us to use one of many extension methods provided for the `HttpClient`.
 
-[click] It uses any annotations on our request DTO to construct a `HttpRequestMessage` with the data in the right place &mdash; such as a property with the `FromHeader` attribute being set as a header in the request.
+These methods accept endpoints and DTOs as arguments or type parameters, and gives us the means to write our tests without having to specify the route URL at all.
 
-Touching lightly on unit testing, the library also provides us with a factory to create instances of our endpoints if we want to test the handler functionality directly, passing in any mocked dependencies.
+[click] It uses any annotations on our request DTO's properties to construct a `HttpRequestMessage` with the data in the right place.
+
+If we have such a property with the `FromHeader` attribute, it will be set as a header in the request.
+
+Touching lightly on unit testing, the library also provides us with a factory to create instances of our endpoints.
+
+This allows us to test the handler functionality directly, passing in any mocked dependencies.
 -->

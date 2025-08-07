@@ -24,7 +24,6 @@ async IAsyncEnumerable<object> GetDataStream(
     while (!ct.IsCancellationRequested)
     {
         yield return new { Guid = Guid.NewGuid() };
-        await Task.Delay(1000);
     }
 }
 ```
@@ -60,9 +59,7 @@ async IAsyncEnumerable<object> GetDataStream(
 </style>
 
 <!--
-Getting close to the end now, I promise!
-
-Server-sent events are another one that FastEndpoints makes easy.
+Getting close to the end now, server-sent events are another one that FastEndpoints makes easy.
 
 So if we need any _live_ server-to-client communications, we can implement this pretty easily as well. [click]
 

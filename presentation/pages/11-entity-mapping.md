@@ -134,52 +134,6 @@ public class Endpoint : EndpointWithoutRequest<Response, Mapper>
     }
 }
 ```
-```csharp {19}
-public class Mapper : Mapper<Request, Response, User>
-{
-    public override User ToEntity(Request request)
-    {
-        return new User();
-    }
-
-    public override Response FromEntity(User user)
-    {
-        return new Response();
-    }
-}
-
-public class Endpoint : EndpointWithoutRequest<Response, Mapper>
-{
-    public override async Task HandleAsync(CancellationToken ct)
-    {
-        var user = new User();
-        await SendMappedAsync(user, ct: ct);
-    }
-}
-```
-```csharp {3,8,19}
-public class Mapper : Mapper<Request, Response, User>
-{
-    public override User ToEntityAsync(Request request)
-    {
-        return new User();
-    }
-
-    public override Response FromEntityAsync(User user)
-    {
-        return new Response();
-    }
-}
-
-public class Endpoint : EndpointWithoutRequest<Response, Mapper>
-{
-    public override async Task HandleAsync(CancellationToken ct)
-    {
-        var user = new User();
-        await SendMappedAsync(user, ct: ct);
-    }
-}
-```
 ````
 </div>
 
@@ -196,5 +150,5 @@ For response mapping [click], we simply do the inverse of this, and call `FromEn
 
 FastEndpoints also gives us a `SendMapped` method [click] that we can use to return the mapped response DTO.
 
-I've found this can be a little annoying though, as there's both sync and async mapping methods, and depending on whether you call `SendMapped` [click] or `SendMappedAsync` [click], you need to have overridden the correct methods.
+Again, this is down to personal choice, and I tend to lean towards just constructing these directly in the handler, but this still is a nice option to have.
 -->

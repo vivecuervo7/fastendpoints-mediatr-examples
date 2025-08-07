@@ -85,7 +85,8 @@ HandleAsync(ExampleEvent ev, CancellationToken ct);
   </v-drag>
 
   <FancyArrow v-click="2" q1="[data-id=endpoint]" q2="[data-id=first]" pos1="bottom-right" pos2="top-left" color="gray" head-size="15" width="1" class="z-100" seed="1" />
-  <FancyArrow v-click="[5,7]" q1="[data-id=endpoint]" q2="[data-id=first]" pos1="bottom-right" pos2="top-left" color="pink" head-size="15" width="3" class="z-100" seed="1" />
+  <FancyArrow v-click="[2,7]" q1="[data-id=endpoint]" q2="[data-id=first]" pos1="bottom-right" pos2="top-left" color="pink" head-size="15" class="z-100" seed="1" />
+  <FancyArrow v-click="[5,7]" q1="[data-id=endpoint]" q2="[data-id=first]" pos1="bottom-right" pos2="top-left" color="pink" head-size="15" width="5" class="z-100" seed="1" />
 
   <v-drag pos="608,204,355,_">
     <div class="box" data-id="second" v-click="5">

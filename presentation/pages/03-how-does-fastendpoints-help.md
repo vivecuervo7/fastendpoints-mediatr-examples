@@ -31,7 +31,7 @@
 <!--
 FastEndpoints, on the other hand, looks to flip this relationship around by moving our application logic into the presentation layer.
 
-The temptation to slide just a bit more code into an already busy handler, that's already doing all the things anyway, kind of goes away.
+The temptation to slide just a bit more code into an already busy handler, that's already doing all of the things anyway, kind of goes away.
 
 At the very least, it gives us a simple decision to make.
 
@@ -207,7 +207,7 @@ And what I've found is that by pushing a lot of the code right up to the present
 </style>
 
 <!-- 
-So, our typical controller gets broken up into a bunch of separate endpoints. [click]
+So, our typical controller gets broken up into a bunch of separate endpoint classes. [click]
 
 Request comes in, gets mapped to an endpoint, we execute the code in our handler [click], and spit out the result.
  -->

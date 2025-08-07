@@ -166,11 +166,11 @@ _[[pause]]_
 
 Registering the server as an event broker is also quite easy to set up.
 
-Coming back to where we registered our event hub [click], we simply need it to tell to start in event broker mode.
+Coming back to where we registered our event hub [click], we simply need register that event with our hub mode set to event broker.
 
 This essentially means that now both the server and connected clients can issue events.
 
-[click] And to achieve that, first we need to tell our client's `Program.cs` to register the event as a remote procedure, [click] and then we can call `RemotePublishAsync` on the event somewhere in our client.
+[click] And to achieve that, first we need to tell our client's `Program.cs` to register the event as a remote procedure, [click] and then it's as simple as calling `RemotePublishAsync` on the event somewhere in our client.
 
 [click] This will hit the event hub [click], which then sends it out to all of the subscribed clients.
 -->

@@ -9,7 +9,7 @@ layout: section
 <!-- 
 And there's a very valid question that can be asked here, which is "can't we just do that ourselves?"
 
-And yep, we can!
+And yeah, we can!
 
 It's not too difficult to simply register a bunch of different endpoints in different files.
 

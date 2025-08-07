@@ -16,19 +16,41 @@ fonts:
 </div>
 
 <!--
-Hi. I'm Isaac, and I'm a software developer!
+I started my career working here with Telstra Purple, a little over five years ago now.
 
-I started working here actually, with Telstra Purple a little over five years ago.
+And in that time, I've had the incredible fortune to have worked on quite a number of projects, across many different domains, and with more than a just a small handful of different technologies.
 
-And in that time, I've had the incredible fortune to have worked on quite a few projects now, across many different domains, and with more than a just a small handful of different technologies.
+One of the recurring technologies I use, is .NET.
 
-I've also had a really fantastic support structure around me, and it's allowed me the freedom to really explore different ways of doing things.
+Very infrequently have I worked on a project that doesn't use it in some capacity, and more often than not, there's an API component to whatever we're building.
 
-That freedom has led to me constantly being on the lookout for new ways of doing things, _especially_ when it comes to making the development experience better.
+_[[pause]]_
 
-I set my sights on a career in software development after falling in love with writing code, and honestly I'm probably _still_ in a bit of a honeymoon phase with it, but one thing I'm really focused on is trying to preserve that feeling for as long as possible.
+Every one of those projects I've worked on has loosely followed the same structure.
 
-FastEndpoints happens to be one of the things that I stumbled across in recent times, and I wanted to share a bit of an overview of it, and also why I think it's worth actually using.
+And every time, it's effective.
+
+It works, we're all familiar with it, and it gets the job done.
+
+_[[pause]]_
+
+But I don't _love_ it.
+
+And I say this as someone who still does love writing code.
+
+Call it a prolonged honeymoon phase, or outright delusion if you will.
+
+But I _do_ enjoy writing code, and it bothers me when things feel just that little bit off.
+
+FastEndpoints is a library for .NET that I stumbled across recently, and when it comes to building an API, it rekindled some of that dwindling love that I had for the practice.
+
+Where I realized I was starting to groan a little internally whenever the usual explosion of files and folders appeared, FastEndpoints instead had me picking up the laptop again early on a Saturday morning.
+
+My cricket team wasn't too happy when I turned up late for a game, but there it was.
+
+I was enjoying it again.
+
+And I wanted to share that with you today.
 -->
 
 ---
@@ -78,7 +100,9 @@ layout: section
 <!--
 So, we've got a nice, _expressive_ way to write our endpoints, and it cuts down on a fair bit of boilerplate.
 
-By keeping all of our code closely grouped together, it allows us to start simple, declaring a single endpoint and easily extending functionality to those supporting classes as required.
+By keeping all of our code closely grouped together, it allows us to start simple.
+
+We can declare a single endpoint and easily extend functionality to those supporting classes as required.
 
 That said, so far all we've really done is wrap a few helper methods around Minimal API and moved our application layer into the presentation layer.
 

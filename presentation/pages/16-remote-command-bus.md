@@ -102,9 +102,9 @@ Not wanting to go into too much detail here, as we're starting to get into the v
 
 We do need to tell FastEndpoints where to find the handler, which we do in our `Program.cs` file. [click]
 
-Over on the remote server, we need to register the handler for that command. [click]
+And over on the remote server, we need to register the handler for that command. [click]
 
-At a very high level, very simple to get going _if_ this behaviour is required.
+At a very high level, very simple to get going if this behaviour is required.
 
 Assuming we have the server up and running, once registered, we can treat it almost like any other command in our codebase.
 -->

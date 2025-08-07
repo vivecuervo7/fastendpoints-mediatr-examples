@@ -7,8 +7,6 @@ layout: statement
 </div>
 
 <!-- 
-FastEndpoints!
-
 FastEndpoints is, in it's own words, "a developer friendly alternative to Minimal APIs and MVC".
 
 Ultimately, it just offers us a different way to structure our code.
@@ -71,11 +69,19 @@ It offered a similar no-nonsense, cohesive approach to building APIs.
 
 That said however, much like SvelteKit, it felt doomed to live in the shadow of the status quo.
 
-I didn't too many people would would be keen on moving away from the tried and true MediatR-based approach that I've seen in 90% of the projects I've worked on. [click]
+I didn't think too many people would would be keen on moving away from the tried and true MediatR-based approach that I've seen in 90% of the projects that I've worked on. [click]
 
 And then, all of a sudden MediatR went commercial.
 
-The commercialisation of MediatR gave me a _very_ good reason to go back and really give FastEndpoints a proper assessment.
+The commercialization of MediatR gave me a _very_ compelling reason to go back and really give FastEndpoints a proper assessment.
 
 I wanted to see if it could actually slot into our typical projects and not just replace MediatR, but actually improve the overall developer experience.
+
+I hadn't really sat down and tried to figure out exactly what I _didn't_ like so much about the way I'd seen things done.
+
+For the most part, it all worked, and it all made sense.
+
+I was still pretty green when I was first introduced to these patterns, and honestly it was all I could do to keep up, let alone question things.
+
+And very quickly, it became the comfortable, established way to do things &mdash; even if it sometimes felt a little cumbersome to hold.
  -->

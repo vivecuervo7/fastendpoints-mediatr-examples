@@ -57,6 +57,13 @@ public class Endpoint : Endpoint<Request>
 
     public override async Task HandleAsync(Request req, CancellationToken ct)
     {
+        var emailAlreadyExists = await db.Users.AnyAsync(u => u.Email == req.Email, ct);
+
+        if (emailAlreadyExists)
+        {
+            // Invalid request
+        }
+
         await SendNoContentAsync(ct);
     }
 }
@@ -72,6 +79,13 @@ public class Endpoint : Endpoint<Request>
 
     public override async Task HandleAsync(Request req, CancellationToken ct)
     {
+        var emailAlreadyExists = await db.Users.AnyAsync(u => u.Email == req.Email, ct);
+
+        if (emailAlreadyExists)
+        {
+            // Invalid request
+        }
+
         await SendNoContentAsync(ct);
     }
 }
@@ -260,9 +274,9 @@ public class Endpoint(AppDbContext db) : Endpoint<Request>
 <!--
 Closely related to model binding, we also get validation straight out of the box with FastEndpoints, using FluentValidation rules.
 
-Typically this ends up in our `Models` file. [click] [click]
+Typically this ends up in our `Models` file. [click] [click], although I'm not a fan of squeezing too many different classes into a single file, and actually do tend to break this one out.
 
-Personally I don't find myself a fan of squeezing too many different classes into a single file, but we'll stick to what seems to be the most common pattern in the examples floating around the web.
+But, we'll stick to what seems to be the most common pattern in the examples floating around the web.
 
 Similar to where we had the option to move our endpoint summary outside of the endpoint file itself [click], we can just pass the endpoint as a type parameter to a class inheriting from `Validator` and we won't need to manually register this with our DI container. [click]
 

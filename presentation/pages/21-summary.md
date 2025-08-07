@@ -17,15 +17,15 @@ Even coming back to some older code, it's very easy to navigate and understand a
 
 It does away with the layers of indirection and abstractions that just make us think harder than we need to.
 
-[click] It also cuts down the areas of code that we might disagree on.
+[click] It also cuts down on the areas of code that we might disagree on.
 
 Considerations around whether we should be returning anything from commands, or how we're communicating failure states back to the API, all become moot.
 
 [click] It's also easy for us to get started with a _very_ basic implementation.
 
-Often I've seen the scaffolding of a backend include a ping endpoint to prove functionality, and we've already got queries and handlers flying around just to establish a pattern.
+Often I've seen the scaffolding of a backend include an endpoint to prove functionality, and we've already got queries and handlers flying around just to establish a pattern.
 
-That same ping endpoint in FastEndpoints can be a single file with very little code.
+That same endpoint in FastEndpoints can be a single file with very little code.
 
 We don't need to go adding commands and handlers, mapping, or exception handling middleware just to get started.
 
