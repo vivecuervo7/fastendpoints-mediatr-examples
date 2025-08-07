@@ -10,10 +10,10 @@
         <li>
           <span><FolderIcon />...</span>
             <ul>
-              <li data-id="data"><span><CsharpIcon />Data.cs</span></li>
-              <li data-id="endpoint" v-mark.circle="{ at: [5,13], color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Endpoint.cs</span></li>
+              <li data-id="data" v-mark.highlight="{ at: 13, color: '#034A71', seed: 6, iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Data.cs</span></li>
+              <li data-id="endpoint" v-mark.highlight="{ at: [5,13], color: '#034A71', seed: 6, iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Endpoint.cs</span></li>
               <li data-id="mapper"><span><CsharpIcon />Mapper.cs</span></li>
-              <li data-id="models" v-mark.circle="{ at: [1,5], color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Models.cs</span></li>
+              <li data-id="models" v-mark.highlight="{ at: [1,5], color: '#034A71', seed: 6, iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Models.cs</span></li>
             </ul>
         </li>
       </ul>

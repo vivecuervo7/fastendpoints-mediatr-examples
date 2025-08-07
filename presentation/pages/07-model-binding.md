@@ -11,7 +11,7 @@
               <li data-id="data"><span><CsharpIcon />Data.cs</span></li>
               <li data-id="endpoint"><span><CsharpIcon />Endpoint.cs</span></li>
               <li data-id="mapper"><span><CsharpIcon />Mapper.cs</span></li>
-              <li data-id="models" v-mark.circle="{ at: 1, color: 'orange', iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Models.cs</span></li>
+              <li data-id="models" v-mark.highlight="{ at: 1, color: '#034A71', seed: 6, iterations: 1, animationDuration: 350 }"><span><CsharpIcon />Models.cs</span></li>
             </ul>
         </li>
       </ul>
